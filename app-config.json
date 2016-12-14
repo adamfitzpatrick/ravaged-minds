@@ -1,0 +1,5 @@
+{
+  "prod": {
+    "origin": "http://localhost:7010"
+  }
+}

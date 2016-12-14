@@ -1,0 +1,36 @@
+// colors
+$white: rgba(255, 255, 255, 1);
+$black: rgba(0, 0, 0, 1);
+
+$purple: #9c27b0;
+$deep-purple: #6a1b9a;
+
+$red: #f44336;
+$deep-red: #c62828;
+
+$orange: #ff5722;
+$deep-orange: #d84315;
+
+$teal: #009688;
+$deep-teal: #00695c;
+
+$text-light: $white;
+$border-light: $white;
+$border-dark: $black;
+$border-purple: $purple;
+
+// fonts
+$title-font: "Cinzel";
+
+// dimensions
+$header-height: 108px;
+
+// resources
+$city-backdrop: url("../assets/city.png");
+
+@import "./top-bar/top-bar";
+@import "./story/story";
+
+.top { height: $header-height; }
+
+.main { height: calc(100vh - #{$header-height}); }

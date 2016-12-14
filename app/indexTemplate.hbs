@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ htmlWebpackPlugin.options.title }}</title>
+
+    {{#each htmlWebpackPlugin.options.cdnResources.fonts }}<link href="{{ this }}" rel="stylesheet" type="text/css"/>{{/each}}
+    {{#each htmlWebpackPlugin.options.cdnResources.css }}<link href="{{ this }}" rel="stylesheet" type="text/css"/>{{/each}}
+</head>
+<body ng-app="{{ htmlWebpackPlugin.options.ngAppName }}" layout="column">
+    <top-bar class="top"></top-bar>
+    <ng-view class="main" layout="row"></ng-view>
+{{#each htmlWebpackPlugin.options.cdnResources.js }}<script type="application/javascript" src="{{ this }}"></script>{{/each}}
+</body>
+</html>

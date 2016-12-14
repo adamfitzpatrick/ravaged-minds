@@ -1,0 +1,11 @@
+<md-button
+    ng-mouseenter="vm.onMouseOver($event)"
+    ng-mouseleave="vm.onExit()"
+    class="story-node md-fab md-hue-3"
+    ng-class="vm.getNodeType()"
+>
+    <i
+        class="fa fa-flag"
+        ng-class="{ 'fa-2x': vm.isMajor }"
+    ></i>
+</md-button>

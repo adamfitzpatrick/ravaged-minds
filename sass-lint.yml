@@ -1,0 +1,60 @@
+options:
+  formatter: compact
+#  0 === ignore
+#  1 === warn
+#  2 === error
+
+rules:
+  border-zero:
+    - 2
+    - convention: none
+  clean-import-paths: 2
+  empty-args: 2
+  empty-line-between-blocks: 0
+  extends-before-declarations: 2
+  extends-before-mixins: 2
+  final-newline: 0 # Temporarily disable due to bug
+  hex-length: 2
+  hex-notation: 2
+  indentation:
+    - 2
+    - size: 4
+  leading-zero:
+    - 2
+    - include: true
+  mixins-before-declarations: 2
+  nesting-depth:
+    - 2
+    - max-depth: 4 # Block + modifier + element + modifier
+  no-color-keywords: 2
+  no-color-literals: 2
+  no-css-comments: 2
+  no-debug: 2
+  no-duplicate-properties: 2
+  no-empty-rulesets: 2
+  no-extends: 2
+  no-ids: 2
+  no-important: 2
+  no-invalid-hex: 2
+  one-declaration-per-line: 2
+  placeholder-in-extend: 2
+  property-sort-order: 0 # TODO: Switch to smacss order
+  quotes:
+    - 2
+    - style: double
+  single-line-per-selector: 0 # Temporarily disable due to bug.
+  space-after-colon: 2
+  space-after-comma: 2
+  space-before-brace: 2
+  space-before-colon:
+    - 2
+    - include: false
+  space-between-parens:
+    - 2
+    - include: false
+  trailing-semicolon:
+    - 2
+    - include: true
+  zero-unit:
+    - 2
+    - include: false

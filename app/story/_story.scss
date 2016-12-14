@@ -1,0 +1,107 @@
+.story {
+    width: 100vw;
+    height: 100%;
+    padding: 2rem;
+    overflow: auto;
+    background: $city-backdrop;
+    background-size: cover;
+
+    &__column { height: 100%; }
+
+    &-node {
+        margin: 2rem;
+        &.md-button.md-fab { box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.8)}
+
+        &--minor {
+            .fa { line-height: 40px;}
+
+            &.md-fab {
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+            }
+            &.md-fab .material-icons {
+                font-size: 1.2rem;
+                line-height: 1.6rem;
+            }
+        }
+
+        &--major {
+            .fa { line-height: 56px; }
+        }
+    }
+
+    &-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    &-brief {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 27vw;
+
+        &--left { left: 0; }
+
+        &__container {
+            position: absolute;
+            top: 120px;
+            right: 1vw;
+            width: 25vw;
+            background: $white;
+            border-radius: 0.25rem;
+        }
+
+        &__title {
+            line-height: 2rem;
+            padding: 1rem;
+            border-top-right-radius: 0.25rem;
+            border-top-left-radius: 0.25rem;
+        }
+
+        &__content {
+            padding: 1rem;
+        }
+
+        &__tagline {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        &__path {
+            font-size: 80%;
+            margin-bottom: 1rem;
+            line-height: 2rem;
+
+            .md-button.md-fab {
+                margin: 0;
+                margin-top: -2px;
+                min-height: inherit;
+                height: 20px;
+                width: 20px;
+                line-height: 16px;
+                font-size: 80%;
+                background-color: $teal;
+            }
+        }
+
+        &__activities {
+            margin-top: 1rem;
+        }
+
+        &__shader {
+            background: $black;
+            opacity: 0.6;
+            height: 100vh;
+            width: 30vw;
+            box-shadow: 0 0 5px 5px $black;
+        }
+
+
+    }
+}

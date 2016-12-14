@@ -1,0 +1,13 @@
+.top-bar {
+    width: 100vw;
+    min-height: inherit;
+
+    &__title {
+        margin-left: 2rem;
+        font-family: $title-font;
+    }
+
+    &__nav {
+        margin-right: 2rem;
+    }
+}
