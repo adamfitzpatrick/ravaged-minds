@@ -3,7 +3,7 @@ name: Other Dude
 size: medium
 type: humanoid
 subType: dwarf
-imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/beholder.png
+imageUrl: /images/beholder.png
 aligment: lawful evil
 armorClass: 16
 speed: 25

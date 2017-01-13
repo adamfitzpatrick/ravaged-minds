@@ -44,8 +44,8 @@ export class StoriesController {
     }
 
     connectNodes = (): void => {
-        this.canvasContext.canvas.width = this.$window.innerWidth;
-        this.canvasContext.canvas.height = this.$window.innerHeight;
+        this.canvasContext.canvas.width = this.$element[0].offsetWidth;
+        this.canvasContext.canvas.height = this.$element[0].offsetHeight;
         this.canvasContext
             .clearRect(0, 0, this.canvasContext.canvas.width, this.canvasContext.canvas.height);
         this.nodes.forEach(this.calculateConnector);
@@ -105,9 +105,11 @@ export class StoriesController {
 
     private getAllNodes(): void {
         const nodes = this.$element.find("story-node");
+        /* tslint:disable:prefer-for-of */
         for (let k = 0; k < nodes.length; k++) {
             this.nodes.push(nodes[k]);
         }
+        /* tslint:enable:prefer-for-of */
         this.nodes.sort(this.sortNodes);
     }
 

@@ -1,5 +1,6 @@
 import {Entity} from "../entities/entity.model";
-export class CombatantCondition { name: string; duration: number; }
+
+export interface CombatantCondition { name: string; duration: number; }
 
 export class Combatant {
     name: string;

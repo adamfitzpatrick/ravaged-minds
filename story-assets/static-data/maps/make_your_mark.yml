@@ -1,7 +1,7 @@
 id: 7
 name: Make Your Mark
 type: encounter
-imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/lions-paw-tavern.jpg
+imageUrl: /images/lions-paw-tavern.jpg
 entities: [ 1, 1, 1, 2, 3 ]
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam fringilla nisl odio. Nunc non mauris et quam sagittis congue. Phasellus nec facilisis sapien, laoreet commodo neque. Vivamus facilisis arcu id leo ornare, ut semper sapien pharetra. Nullam gravida fringilla lorem sed tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus lacinia et risus eget scelerisque. Morbi gravida, nisl id aliquet venenatis, mauris odio posuere magna, sit amet bibendum ex leo in risus. Duis at turpis dictum, dignissim enim quis, tempus libero. Duis fermentum eleifend ante ac mollis. Integer porttitor volutpat enim, in viverra neque placerat ac. In volutpat enim sit amet ultrices vestibulum. In nibh diam, porttitor id dui non, pulvinar sagittis metus. Sed imperdiet diam leo, id semper dui pharetra at. Pellentesque sagittis pretium tincidunt.
 rewards: The duergar has 100gp in various jewels.

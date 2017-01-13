@@ -41,6 +41,6 @@ export class EntityService {
             return (response.data as Entity[]).map(entity => new Entity(entity));
         } else {
             return new Entity(response.data as Entity);
-        };
+        }
     }
 }

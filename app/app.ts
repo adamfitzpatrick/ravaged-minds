@@ -24,7 +24,6 @@ const app = angular.module("App", [
 declare const CONFIG: Object;
 Object.keys(CONFIG).forEach(key => app.constant(key, CONFIG[key]));
 
-
 initConfig(app);
 initRoutes(app);
 initComponents(app);

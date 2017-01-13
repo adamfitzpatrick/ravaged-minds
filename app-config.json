@@ -1,5 +1,11 @@
 {
+  "dev": {
+    "ORIGIN": "http://localhost:7010"
+  },
+  "qa": {
+    "ORIGIN": "https://localhost:7010"
+  },
   "prod": {
-    "origin": "http://localhost:7010"
+    "ORIGIN": "https://localhost:80"
   }
 }

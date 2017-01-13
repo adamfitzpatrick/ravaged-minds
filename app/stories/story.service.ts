@@ -6,7 +6,6 @@ export class StoryService {
         private $http: angular.IHttpService
     ) {}
 
-
     get(): angular.IPromise<Story[]>;
     get(id: number): angular.IPromise<Story>;
     get(id?): any {

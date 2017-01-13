@@ -1,22 +1,49 @@
-const jsonServer = require("json-server");
+const http2 = require("spdy");
+const fs = require("fs");
+const path = require("path");
+const express = require("express");
 const bodyParser = require("body-parser");
-const staticDb = require("./static-db.js");
+const morgan = require("morgan");
+const yargs = require("yargs").argv;
 
-module.exports = () => {
+const env = yargs.env || "prod";
+const appConfig = require("./app-config.json")[env];
+
+module.exports = (webpack) => {
     "use strict";
 
-    const server = jsonServer.create();
+    require("./stage-images")();
 
-    server.use(jsonServer.defaults());
-    server.use(bodyParser.json());
-    const router = jsonServer.router(staticDb);
+    const app = express();
 
-    server.use("/stories", require("./stories/story-routes")(staticDb));
-    server.use("/maps", require("./maps/map-routes")(staticDb));
-    server.use("/entities", require("./entities/entity-routes")(staticDb));
-    server.use("/notes", require("./notes/note-routes")());
-    server.use("/players", require("./players/player-routes")());
-    server.use(router);
+    app.use(bodyParser.json());
+    app.use(morgan("dev"));
 
-    server.listen(3012);
+    app.use(express.static(path.resolve(__dirname, "../public")));
+
+    //app.use("/push-resources", require("./push/push-routes"));
+
+    app.use("/stories", require("./stories/story-routes"));
+    app.use("/maps", require("./maps/map-routes"));
+    app.use("/entities", require("./entities/entity-routes"));
+    app.use("/notes", require("./notes/note-routes"));
+    app.use("/synopses", require("./synopses/synopsis-routes"));
+    app.use("/players", require("./players/player-routes"));
+
+    const options = {
+        key: fs.readFileSync('./server.key'),
+        cert: fs.readFileSync('./server.crt')
+    };
+
+    if (webpack) {
+        app.listen(appConfig.port);
+        console.log(`\nServer listening on http://localhost:${appConfig.port}.`)
+    } else {
+        http2
+            .createServer(options, app)
+            .listen(appConfig.port, () => {
+                    console.log(`\nServer listening on https://localhost:${appConfig.port}.`)
+                }
+            )
+    }
 };

@@ -3,7 +3,7 @@ name: Another Dude
 size: medium
 type: humanoid
 subType: dwarf
-imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/Duergar_duergar_blackguard.png
+imageUrl: /images/duergar.png
 aligment: lawful evil
 armorClass: 16
 speed: 25

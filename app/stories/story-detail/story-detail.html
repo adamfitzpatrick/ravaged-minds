@@ -89,7 +89,7 @@
                         ng-repeat="entity in vm.entities"
                         ng-href="#/entities/{{ entity.id }}"
                     >
-                        <img class="md-avatar" src="../../../story-assets/images/Duergar_duergar_blackguard.png"/>
+                        <img class="md-avatar" ng-src="{{ entity.imageUrl }}"/>
                         <div class="md-list-item-text">{{ entity.name }}</div>
                     </md-list-item>
                 </md-list>

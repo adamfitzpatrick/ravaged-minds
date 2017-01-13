@@ -2,7 +2,7 @@ id: 1
 name: Duergar
 size: medium
 type: humanoid
-imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/Duergar_duergar_blackguard.png
+imageUrl: /images/duergar.png
 subType: dwarf
 aligment: lawful evil
 armorClass: 16

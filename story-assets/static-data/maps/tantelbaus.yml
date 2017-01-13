@@ -3,7 +3,7 @@ name: Tantelbaus
 type: city
 subType: city
 descriptor: large
-imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/city1-map.jpg
+imageUrl: /images/city1-map.jpg
 x: 13
 y: 13
 playerVisible: true

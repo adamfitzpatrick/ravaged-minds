@@ -7,10 +7,19 @@
 
     {{#each htmlWebpackPlugin.options.cdnResources.fonts }}<link href="{{ this }}" rel="stylesheet" type="text/css"/>{{/each}}
     {{#each htmlWebpackPlugin.options.cdnResources.css }}<link href="{{ this }}" rel="stylesheet" type="text/css"/>{{/each}}
+    <style>
+    {{#each htmlWebpackPlugin.options.preloadImages }}
+        .preload-image-{{ @index }} {
+            display: none;
+            background: url({{ this }});
+        }
+    {{/each}}
+    </style>
 </head>
 <body ng-app="{{ htmlWebpackPlugin.options.ngAppName }}" layout="column">
     <top-bar class="top"></top-bar>
     <ng-view class="main" layout="row"></ng-view>
 {{#each htmlWebpackPlugin.options.cdnResources.js }}<script type="application/javascript" src="{{ this }}"></script>{{/each}}
+{{#each htmlWebpackPlugin.options.preloadImages }}<div class="preload-image-{{ @index }}"></div>{{/each}}
 </body>
 </html>

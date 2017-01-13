@@ -43,4 +43,3 @@ export class Note {
         return LINK_TYPE_ICONS[this.linkType];
     }
 }
-

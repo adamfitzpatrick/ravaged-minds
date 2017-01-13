@@ -8,6 +8,9 @@ const yargs = require("yargs");
 const startServer = require("./backend/server.js");
 const appConfig = require("./app-config.json");
 
+const preloadImagePaths = path.resolve(process.cwd(), "./story-assets/images/preload-images.json");
+const preloadImages = require(preloadImagePaths).map(path => `/images/${path}`);
+
 const flags = yargs.argv;
 const env = flags.env || "prod";
 
@@ -15,10 +18,10 @@ const cdnResources = {
     js: [
         "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js",
         "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.js",
-        "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js",
-        "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js",
-        "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js",
-        "http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js",
+        "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js",
+        "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js",
+        "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js",
+        "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js",
         "https://use.fontawesome.com/8a2e588d30.js"
     ],
     fonts: [
@@ -28,7 +31,7 @@ const cdnResources = {
         "https://fonts.googleapis.com/icon?family=Material+Icons"
     ],
     css: [
-        "http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"
+        "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"
     ]
 };
 
@@ -37,8 +40,11 @@ const externals = [
 ];
 
 if (process.argv[1].indexOf("webpack-dev-server") !== -1) {
+    startServer(true);
+} else if (flags.run !== false) {
     startServer();
 }
+
 
 module.exports = {
     entry: "./app/app.ts",
@@ -82,7 +88,8 @@ module.exports = {
             title: "Ravaged Minds",
             ngAppName: "App",
             template: "./app/indexTemplate.hbs",
-            cdnResources: cdnResources
+            cdnResources: cdnResources,
+            preloadImages: preloadImages
         }),
         new webpack.DefinePlugin({
             CONFIG: JSON.stringify(appConfig[env])

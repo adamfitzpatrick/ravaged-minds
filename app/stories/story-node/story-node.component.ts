@@ -13,6 +13,6 @@ export class StoryNodeController {
 
     onMouseOver($event: MouseEvent): void {
         const left = ($event.target as HTMLElement).getBoundingClientRect().left > 700;
-        this.onEnter({ id: this.story.id, left: left });
+        this.onEnter({ id: this.story.id, left });
     }
 }

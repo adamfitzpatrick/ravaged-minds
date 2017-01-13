@@ -1,7 +1,7 @@
 id: 1
 name: Perchine
 type: area
-imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/global-map.png
+imageUrl: /images/global-map.png
 playerVisible: true
 maps:
   - 2

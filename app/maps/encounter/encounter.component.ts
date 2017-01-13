@@ -21,7 +21,7 @@ export class EncounterController {
     startCombat(): void {
         const combatants = this.getEncounterEntities().map(this.makeCombatant);
         const state = {
-            combatants: combatants,
+            combatants,
             selectedCombatantIndex: void 0,
             turnCombatantIndex: 0,
             round: 1
@@ -41,7 +41,7 @@ export class EncounterController {
         const uniqueName = entity.uniqueName || entity.name;
         const combatantObj = {
             name: uniqueName,
-            entity: entity,
+            entity,
             hitPoints: entity.fixedHitPoints,
             dexterity: entity.dexterity,
             engaged: true

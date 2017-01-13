@@ -1,7 +1,6 @@
 import * as angular from "angular";
 import {PlayerAccessService, PlayerAccessAttrs} from "../player-access.service";
 
-
 export class PlayerClickableController {
 
     constructor(
