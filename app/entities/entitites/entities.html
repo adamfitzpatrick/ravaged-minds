@@ -1,0 +1,28 @@
+<div class="entities" md-theme="content_page">
+    <div class="entities__wrapper">
+        <md-content ng-if="!vm.selectedEntity">
+            <md-list>
+                <md-list-item
+                    player-visible="{{ entity.playerVisible }}"
+                    class="md-2-line md-clickable"
+                    ng-repeat="entity in vm.entities | orderBy: 'name'"
+                    ng-href="#/entities/{{ entity.id }}"
+                >
+                    <img class="md-avatar" ng-src="{{ entity.imageUrl }}"/>
+                    <div class="md-list-item-text">
+                        <h3>{{ entity.name }}</h3>
+                        <p>{{ entity.getDescriptor() }}</p>
+                    </div>
+                    <div
+                        layout="column"
+                        class="md-secondary entities__item--secondary"
+                    >
+                        <div><strong>Armor Class</strong> {{ entity.armorClass }}</div>
+                        <div><strong>Hit Points</strong> {{ entity.hitPoints }}</div>
+                        <div><strong>Challenge</strong> {{ entity.challenge }}</div>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+</div>

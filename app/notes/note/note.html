@@ -1,0 +1,44 @@
+<div
+    layout="row"
+    class="note"
+>
+    <a
+        class="material-icons note__link-type-icon"
+        ng-class="{ 'note__editable': vm.editing }"
+        ng-click="vm.cycleLinkType()"
+        ng-blur="vm.changeNote()"
+        tabindex="0"
+    >
+        <span ng-if="vm.note.linkType">{{ vm.note.linkTypeIcon }}</span>
+        <span ng-if="!vm.note.linkType">event_note</span>
+    </a>
+
+    <div flex layout="column">
+
+        <div flex layout="row" layout-align="space-between center">
+            <div class="note__link-select-wrapper">
+                <select
+                    ng-if="vm.showLinkableSelect()"
+                    class="note__link-select"
+                    ng-model="vm.note.linkId"
+                    ng-options="linkable.id as vm.linkableLabel(linkable) for linkable in vm.linkableList"
+                    ng-blur="vm.changeNote()"
+                >
+                </select>
+                <i
+                    ng-if="vm.showLinkableSelect()"
+                    class="material-icons note__link-select-icon">arrow_drop_down</i>
+            </div>
+            <div>{{ vm.note.dateTimeString }}</div>
+        </div>
+
+        <p
+            contenteditable="true"
+            class="note__note"
+            ng-blur="vm.changeNote()"
+        >
+            {{ vm.note.note }}
+        </p>
+    </div>
+</div>
+

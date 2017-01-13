@@ -1,0 +1,121 @@
+<div
+    class="map"
+    ng-class="{ 'map--encounter': vm.encounterView }"
+    md-theme="map_page"
+    ng-cloak>
+    <div
+        class="map__wrapper"
+        ng-class="vm.getZoomLevel()"
+    >
+        <img
+            class="map__image"
+            ng-class="{ 'map__image--encounter': vm.encounterView }"
+            ng-src="{{ vm.map.url }}"/>
+        <map-icon
+            ng-click="vm.gotoMap(city.id)"
+            ng-repeat="city in vm.cities"
+            item="city"
+        ></map-icon>
+        <map-icon
+            ng-click="vm.gotoMap(detail.id)"
+            ng-repeat="detail in vm.details"
+            item="detail"
+        ></map-icon>
+        <map-icon
+            ng-click="vm.gotoMap(site.id)"
+            ng-repeat="site in vm.sites"
+            item="site"
+        ></map-icon>
+        <map-icon
+            ng-if="!vm.encounterView"
+            player-visible="false"
+            ng-click="vm.showEncounter(encounter)"
+            ng-repeat="encounter in vm.encounters"
+            item="encounter"
+        ></map-icon>
+    </div>
+
+    <md-fab-speed-dial
+        md-direction="down"
+        class="md-fling md-hover-full map__controls"
+        ng-class="{ 'map__controls--encounter': vm.encounterView }"
+        ng-mouseenter="vm.showControls()"
+        ng-mouseleave="vm.hideControls()"
+        md-open="vm.isControlOpen"
+    >
+        <md-fab-trigger>
+            <md-button class="md-fab">
+                <md-icon class="material-icons">settings</md-icon>
+            </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.zoomIn()"
+                md-colors="vm.getControlColor(vm.zoom === 6 || vm.encounterView)"
+            >
+                <md-tooltip md-direction="left">Zoom In</md-tooltip>
+                <md-icon class="material-icons">zoom_in</md-icon>
+            </md-button>
+
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.zoomOut()"
+                md-colors="vm.getControlColor(vm.zoom === 0 || vm.encounterView)"
+            >
+                <md-tooltip md-direction="left">Zoom Out</md-tooltip>
+                <md-icon class="material-icons">zoom_out</md-icon>
+            </md-button>
+
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.moveUpPath()"
+                md-colors="vm.getControlColor(vm.mapPath.length === 1)"
+            >
+                <md-tooltip md-direction="left">Previous Map</md-tooltip>
+                <md-icon class="material-icons">arrow_back</md-icon>
+            </md-button>
+
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.toggleLegend()"
+                md-colors="vm.getControlColor(!vm.showLegend)"
+            >
+                <md-tooltip md-direction="left">Show/Hide Legend</md-tooltip>
+                <md-icon class="material-icons">help_outline</md-icon>
+            </md-button>
+
+            <md-button
+                player-visible="false"
+                class="md-fab md-mini"
+                ng-click="vm.togglePlayerVisibleThrottled()"
+            >
+                <md-tooltip md-direction="left">Player Visible</md-tooltip>
+                <md-icon class="material-icons">
+                    <span ng-if="vm.map.playerVisible">visibility</span>
+                    <span ng-if="!vm.map.playerVisible">visibility_off</span>
+                </md-icon>
+            </md-button>
+
+            <md-button
+                player-visible="false"
+                class="md-fab md-mini"
+                ng-click="vm.togglePlayerClickableThrottled()"
+            >
+                <md-tooltip md-direction="left">Player Clickable</md-tooltip>
+                <md-icon class="material-icons">
+                    <span ng-if="vm.map.playerClickable">mouse</span>
+                    <span ng-if="!vm.map.playerClickable">not_interested</span>
+                </md-icon>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+
+    <div ng-if="vm.showLegend" class="map__legend">
+        <map-legend ng-if="vm.details.length" icons="vm.icons.detail"></map-legend>
+        <map-legend ng-if="vm.cities.length" icons="vm.icons.city"></map-legend>
+        <map-legend ng-if="vm.sites.length" icons="vm.icons.site"></map-legend>
+    </div>
+</div>
+<encounter ng-if="vm.encounterView" encounter="vm.encounterView"></encounter>

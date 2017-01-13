@@ -1,0 +1,13 @@
+.encounter {
+    width: 25vw;
+
+    &__header {
+        padding: 0 1rem;
+        height: 75px;
+    }
+
+    &__content {
+        height: calc(100vh - #{$header-height} - 75px);
+        padding: 0 1rem;
+    }
+}

@@ -1,0 +1,40 @@
+.map {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - #{$header-height});
+    overflow: scroll;
+
+    &--encounter { width: 75vw; }
+
+    &__wrapper {
+        position: absolute;
+
+        &--encounter { width: 75vw; }
+
+        @for $i from 0 through 6 {
+            &--zoom-#{$i} { width: 100vw + 50 * $i }
+        }
+    }
+
+    &__image {
+        display: block;
+        width:100%;
+
+        &--encounter { width: 75vw; }
+    }
+
+    &__controls {
+        position: fixed;
+        top: calc(#{$header-height} + 5vh);
+        right: 0;
+        width: 10vw;
+
+        &--encounter { right: 28vw; }
+    }
+
+    &__legend {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}

@@ -1,0 +1,10 @@
+id: 4
+name: Aruesalos
+type: city
+subType: capital
+descriptor: large
+size: 2
+x: 26.8
+y: 37.8
+playerVisible: true
+playerClickable: false

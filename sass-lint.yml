@@ -9,6 +9,8 @@ rules:
     - 2
     - convention: none
   clean-import-paths: 2
+  class-name-format:
+    - convention: hyphenatedbem
   empty-args: 2
   empty-line-between-blocks: 0
   extends-before-declarations: 2

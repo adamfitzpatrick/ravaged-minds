@@ -1,0 +1,90 @@
+<div class="entity-detail" md-theme="content_page">
+
+    <md-toolbar
+        layout="row"
+        layout-align="space-between center"
+        ng-if="!vm.noHeader"
+        class="content-page__toolbar"
+        md-whiteframe="4">
+        <div layout="column">
+            <h1 class="content-page__title">{{ vm.entity.name }}</h1>
+            <div class="content-page__descriptor">{{ vm.entity.getDescriptor() }}</div>
+        </div>
+        <md-button
+            player-visible="false"
+            ng-click="vm.togglePlayerVisibleThrottled()"
+            class="md-fab"
+        >
+            <md-icon ng-if="vm.entity.playerVisible" class="material-icons">visibility</md-icon>
+            <md-icon ng-if="!vm.entity.playerVisible" class="material-icons">visibility_off</md-icon>
+        </md-button>
+    </md-toolbar>
+
+    <md-content class="content-page__content">
+        <img class="entity-detail__image" ng-src="{{ vm.entity.imageUrl}}"/>
+        <div class="entity-detail__abilities" layout="row">
+            <div class="entity-detail__ability" layout="column" layout-align="center center">
+                <div><strong>STR</strong></div>
+                <div>{{ vm.entity.strength }}</div>
+            </div>
+            <div class="entity-detail__ability" layout="column" layout-align="center center">
+                <div><strong>DEX</strong></div>
+                <div>{{ vm.entity.dexterity }}</div>
+            </div>
+            <div class="entity-detail__ability" layout="column" layout-align="center center">
+                <div><strong>CON</strong></div>
+                <div>{{ vm.entity.constitution }}</div>
+            </div>
+            <div class="entity-detail__ability" layout="column" layout-align="center center">
+                <div><strong>INT</strong></div>
+                <div>{{ vm.entity.intelligence }}</div>
+            </div>
+            <div class="entity-detail__ability" layout="column" layout-align="center center">
+                <div><strong>WIS</strong></div>
+                <div>{{ vm.entity.wisdom }}</div>
+            </div>
+            <div class="entity-detail__ability" layout="column" layout-align="center center">
+                <div><strong>CHA</strong></div>
+                <div>{{ vm.entity.charisma }}</div>
+            </div>
+        </div>
+
+        <div class="entity-detail__specs" layout="row">
+            <div flex="40">
+                <div><strong>Armor Class</strong> {{ vm.entity.armorClass }}</div>
+                <div><strong>Hit Points</strong> {{ vm.entity.hitPoints }}</div>
+                <div><strong>Speed</strong> {{ vm.entity.speed }} ft.</div>
+            </div>
+            <div flex="60">
+                <div>
+                    <strong>Damage Resistances</strong>
+                    <span ng-repeat="resistance in vm.entity.damageResistance">{{ resistance }}<span ng-if="!$last">, </span></span>
+                </div>
+                <div><strong>Senses</strong>
+                    <span ng-repeat="sense in vm.entity.senses">{{ sense }}<span ng-if="!$last">, </span></span>
+                </div>
+                <div><strong>Languages</strong>
+                    <span ng-repeat="language in vm.entity.languages">{{ language }}<span ng-if="!$last">, </span></span>
+                </div>
+                <div><strong>Challenge</strong> {{ vm.entity.challenge }}</div>
+            </div>
+        </div>
+
+        <p ng-repeat="feature in vm.entity.features">
+            <strong>{{ feature[0] }}:</strong>
+            {{ feature[1] }}
+        </p>
+
+        <h2>Actions</h2>
+
+        <p ng-repeat="action in vm.entity.actions">
+            <strong>{{ action[0] }}:</strong>
+            {{ action[1] }}
+        </p>
+
+        <div ng-if="!vm.noHeader" class="entity-detail__notes">
+            <h3>Entity Notes</h3>
+            <notes link-id="vm.entity.id" link-type="entity"></notes>
+        </div>
+    </md-content>
+</div>

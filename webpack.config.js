@@ -11,11 +11,6 @@ const appConfig = require("./app-config.json");
 const flags = yargs.argv;
 const env = flags.env || "prod";
 
-const navMenu = require("./assets/static-data/nav-menu.json");
-const staticData = {
-    navMenu: navMenu
-};
-
 const cdnResources = {
     js: [
         "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js",
@@ -29,6 +24,7 @@ const cdnResources = {
     fonts: [
         "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic",
         "https://fonts.googleapis.com/css?family=Cinzel",
+        "https://fonts.googleapis.com/css?family=IM+Fell+French+Canon:400i",
         "https://fonts.googleapis.com/icon?family=Material+Icons"
     ],
     css: [
@@ -82,15 +78,14 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            favicon: "./assets/favicon.png",
+            favicon: "./story-assets/favicon.png",
             title: "Ravaged Minds",
             ngAppName: "App",
             template: "./app/indexTemplate.hbs",
             cdnResources: cdnResources
         }),
         new webpack.DefinePlugin({
-            CONFIG: JSON.stringify(appConfig[env]),
-            STATIC: JSON.stringify(staticData)
+            CONFIG: JSON.stringify(appConfig[env])
         })
     ]
 };

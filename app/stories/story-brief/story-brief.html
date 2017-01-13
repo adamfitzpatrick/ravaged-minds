@@ -1,0 +1,50 @@
+<div
+    class="story-brief"
+    ng-class="{ 'story-brief--left': vm.left }"
+>
+    <div
+        layout="row"
+        layout-align="space-between center"
+        flex
+        class="story-brief__header"
+    >
+        <h3 flex class="story-brief__header-title">{{ vm.brief.id }} {{ vm.brief.title }}</h3>
+        <md-button
+            ng-if="vm.brief.complete"
+            class="md-fab md-mini story-brief__header-icon"
+            ng-class="{ 'md-warn': !vm.brief.success }"
+        >
+            <md-icon class="material-icons">{{ vm.brief.statusIcon }}</md-icon>
+        </md-button>
+        <md-button
+            ng-if="!vm.brief.complete"
+            class="md-fab md-primary md-mini story-brief__header-icon"
+        >
+            <md-icon class="material-icons">{{ vm.brief.statusIcon }}</md-icon>
+        </md-button>
+    </div>
+
+    <div layout="column" class="story-brief__content">
+        <div class="story-brief__tagline">{{ vm.brief.tagline }}</em></div>
+        <div flex layout="row" class="story-brief__path">
+            Story path&nbsp;
+            <span ng-if="vm.hasFrom()">
+                from
+                <span ng-repeat="from in vm.brief.from">
+                    <md-button class="md-fab md-primary">{{ from }}</md-button>
+                </span>
+            </span>
+            <span ng-if="vm.hasTo()">
+                &nbsp;to
+                <span ng-repeat="to in vm.brief.to">
+                    <md-button class="md-fab md-primary">{{ to }}</md-button>
+                </span>
+            </span>
+        </div>
+        <div>{{ vm.brief.synopsis }}</div>
+        <div layout="row" class="story-brief__activities">
+            <md-chips flex ng-model="vm.brief.activities" readonly="true"></md-chips>
+        </div>
+    </div>
+</div>
+

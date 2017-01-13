@@ -1,0 +1,55 @@
+.story-brief {
+    display: block;
+    position: fixed;
+    top: calc(#{$header-height} + 30px);
+    right: 50px;
+    width: 25vw;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    color: $white;
+
+    &--left { left: 0; }
+
+    &__header {
+        line-height: 52px;
+        margin: 0 1rem;
+        border-bottom: 1px solid $white;
+
+        &-title { margin: 0; }
+
+        &-icon {
+            margin-right: -8px;
+            transform: scale(0.6);
+        }
+    }
+
+    &__content {
+        padding: 1rem;
+    }
+
+    &__tagline {
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    &__path {
+        font-size: 80%;
+        margin-bottom: 1rem;
+        line-height: 2rem;
+
+        .md-button.md-fab {
+            margin: 0;
+            margin-top: -2px;
+            min-height: inherit;
+            height: 20px;
+            width: 20px;
+            line-height: 16px;
+            font-size: 80%;
+            background-color: $teal;
+        }
+    }
+
+    &__activities {
+        margin-top: 1rem;
+    }
+}

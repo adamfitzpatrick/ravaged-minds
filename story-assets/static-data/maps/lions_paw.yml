@@ -1,0 +1,12 @@
+id: 6
+name: The Lion's Paw
+type: site
+subType: shop
+descriptor: tavern
+x: 28.6
+y: 14.5
+imageUrl: https://s3-us-west-2.amazonaws.com/ravaged-minds/lions-paw-tavern.jpg
+playerVisible: false
+playerClickable: false
+maps:
+- 7

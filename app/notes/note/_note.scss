@@ -1,0 +1,51 @@
+.note {
+    background: rgb(250, 250, 250);
+    padding: 0.5rem;
+
+    &__link-type-icon {
+        margin: 1rem;
+        cursor: pointer;
+
+        &:focus { outline: none; }
+    }
+
+    &__link-select {
+        display: inline-block;
+        margin: 0.5rem 0 0.5rem 0;
+        width: 25vw;
+        -webkit-appearance: none;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid $blue-grey-50;
+        cursor: pointer;
+
+        &:focus { outline: none; }
+
+        &-wrapper {
+            position: relative;
+            width: 25vw;
+        }
+
+        &-icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            pointer-events: none;
+        }
+    }
+
+    .md-secondary-container { margin-top: 0; }
+
+    &__note {
+        border: none;
+        border-left: 1px solid $blue-grey-50;
+
+        &:focus {
+            outline: none;
+            border-left: 2px solid $blue-grey-400;
+        }
+    }
+}
+
+.note-wrapper {
+}

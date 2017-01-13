@@ -1,0 +1,19 @@
+<div
+    ng-class="{ 'map-legend--top': vm.top }"
+    class="map-legend"
+    layout="row"
+>
+    <div
+        ng-repeat="(column, rows) in vm.icons"
+        layout="column"
+        class="map-legend__column"
+    >
+        <div
+            ng-repeat="(row, icon) in rows"
+            class="map-legend__item"
+        >
+            <i class="material-icons map-legend__icon">{{ icon }}</i>
+            {{ row | capitalize }} {{ column | capitalize }}
+        </div>
+    </div>
+</div>

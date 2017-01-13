@@ -1,0 +1,22 @@
+.map-icon {
+    position: absolute;
+    background: $translucent-black;
+    color: $white;
+    padding: 2px 8px 2px 2px;
+    border-radius: 15px;
+    line-height: 0;
+    cursor: pointer;
+
+    &__icon {
+        color: $white;
+        vertical-align: middle;
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    &__label {
+        vertical-align: middle;
+        font-size: 15px;
+        line-height: 15px;
+    }
+}

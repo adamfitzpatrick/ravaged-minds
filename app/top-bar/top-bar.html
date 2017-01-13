@@ -1,5 +1,16 @@
-<md-toolbar class="top-bar" md-whiteframe="4" layout="row">
-    <h1 flex class="top-bar__title" layout="column">Ravaged Minds</h1>
+<md-toolbar class="top-bar" md-whiteframe="4" layout="row" layout-align="space-between center">
+    <h1
+        flex
+        class="top-bar__title"
+    >
+        Ravaged Minds
+    </h1>
+    <md-switch
+        ng-if="vm.dmSwitch"
+        class="top-bar__dm-switch"
+        ng-model="vm.dm"
+        ng-change="vm.setDm()"
+    ></md-switch>
     <md-nav-bar
         class="top-bar__nav"
         flex
@@ -9,7 +20,7 @@
     >
         <md-nav-item
             ng-repeat="navItem in vm.navItems"
-            md-nav-href="{{ navItem.path }}"
+            md-nav-click="vm.setNav(navItem)"
             name="{{ navItem.path }}"
         >
             {{ navItem.label }}

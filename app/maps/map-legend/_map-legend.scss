@@ -1,0 +1,13 @@
+.map-legend {
+    background: $translucent-black;
+    color: $white;
+    font-size: 12px;
+    border-radius: 5px;
+    margin-bottom: 1px;
+
+    &__column { margin: 1rem 1rem 0.5rem 1rem; }
+
+    &__item { margin-bottom: 0.5rem; }
+
+    &__icon { font-size: 12px; }
+}

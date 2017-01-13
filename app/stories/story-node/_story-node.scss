@@ -1,0 +1,29 @@
+.story-node {
+    position: relative;
+    margin: 30px;
+
+    &.md-button.md-fab {
+        background: rgba(0, 0, 0, 0.5);
+        overflow: visible;
+
+        &:hover {
+            background: rgba(60, 60, 60, 1);
+        }
+
+        .material-icons { color: $white; }
+    }
+
+    &__status {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        transform: scale(0.5);
+
+        &--minor {
+            top: 5px;
+            left: 5px;
+        }
+
+        &.md-button.md-fab .material-icons { color: $black; }
+    }
+}

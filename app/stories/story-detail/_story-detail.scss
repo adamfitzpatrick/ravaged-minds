@@ -1,0 +1,75 @@
+.story-detail {
+
+    &__wrapper {
+        position: absolute;
+        top: 0;
+        margin-left: 10%;
+        height: 100%;
+        width: 80%;
+        background-color: $white;
+    }
+
+    &__header {
+        font-family: $title-font;
+
+        &--title { margin: 0; }
+
+        &--tagline {
+            font-family: $script;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+
+        &--path {
+            font-size: 0.9rem;
+            font-family: $sans;
+
+            .md-chips md-chip .md-chip-content { font-size: 0.9rem; }
+        }
+    }
+
+    &__inset {
+        float: right;
+        margin: 2rem;
+
+        &-block {
+            margin: 0 2rem 1rem;
+            padding-top: 0.5rem;
+            min-width: 20vw;
+
+            &:last-child { margin-bottom: 0; }
+        }
+
+        &-title {
+            margin: 0.5rem 1rem 0;
+            text-align: center;
+        }
+    }
+
+    &__content-wrapper {
+        box-sizing: border-box;
+        height: calc(100% - 111px);
+        overflow-y: scroll;
+    }
+
+    &__content {
+        padding: 1rem 2rem;
+
+        &--p {
+            &::first-letter {
+                float: left;
+                font-family: $title-font;
+                font-size: 120px;
+                line-height: 0.6;
+                padding-top: 19px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    &__progress {
+        margin: 6px 8px;
+    }
+
+    &__notes { margin: 0 2rem; }
+}

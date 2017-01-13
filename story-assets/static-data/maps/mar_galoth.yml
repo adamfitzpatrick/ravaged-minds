@@ -1,0 +1,8 @@
+id: 5
+name: Mar Galoth
+type: site
+subType: ruins
+x: 30
+y: 29
+playerVisible: false
+playerClickable: false

@@ -1,0 +1,28 @@
+<div class="encounter">
+    <md-toolbar
+        layout="row"
+        layout-align="space-between center"
+        class="md-accent encounter__header"
+    >
+        <h3>{{ vm.encounter.name }}</h3>
+        <md-button
+            ng-click="vm.startCombat()"
+            class="md-fab md-mini md-primary"
+        >
+            <md-icon class="material-icons">star_border</md-icon>
+        </md-button>
+    </md-toolbar>
+    <md-content class="encounter__content" md-theme="content_page">
+        <p>{{ vm.encounter.description }}</p>
+        <md-list>
+            <md-list-item
+                ng-href="#/entities/{{ entity.id }}"
+                ng-repeat="entity in vm.getEncounterEntities() track by $index"
+            >
+                <img class="md-avatar" ng-src="{{ entity.imageUrl }}">
+                <p>{{ entity.name }}</p>
+            </md-list-item>
+        </md-list>
+        <p>{{ vm.encounter.rewards }}</p>
+    </md-content>
+</div>

@@ -1,0 +1,33 @@
+<div
+    class="synopsis"
+    md-theme="content_page"
+>
+    <md-toolbar
+        class="synopsis__toolbar"
+        md-whiteframe="4"
+        layout="row"
+    >
+        <md-icon
+            ng-if="!vm.expanded"
+            ng-click="vm.toggle()"
+            class="material-icons synopsis__expander"
+        >
+            keyboard_arrow_right
+        </md-icon>
+        <md-icon
+            ng-if="vm.expanded"
+            ng-click="vm.toggle()"
+            class="material-icons synopsis__expander"
+        >
+            keyboard_arrow_downs
+        </md-icon>
+        <h3 class="synopsis__title">
+            {{ vm.synopsis.title }}
+        </h3>
+    </md-toolbar>
+    <div
+        ng-if="vm.expanded"
+        class="synopsis__content"
+        ng-bind-html="vm.synopsisContent"
+    ></div>
+</div>

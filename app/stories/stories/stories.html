@@ -1,0 +1,24 @@
+<div
+    class="stories"
+    layout="row"
+>
+    <div
+        ng-if="!vm.storyId"
+        ng-repeat="storyColumn in vm.sortedStories"
+        class="story__column"
+        layout="column"
+        layout-align="center center"
+    >
+        <story-node
+            node-id="{{ story.id }}"
+            ng-repeat="story in storyColumn"
+            story="story"
+            on-enter="vm.showBrief(id, left)"
+            on-exit="vm.hideBrief()"
+            player-visible="{{ story.complete }}"
+        ></story-node>
+    </div>
+
+</div>
+<canvas class="stories-canvas"></canvas>
+<story-brief left="vm.left" ng-if="vm.viewBrief" brief="vm.viewBrief"></story-brief>

@@ -1,36 +1,75 @@
-// colors
-$white: rgba(255, 255, 255, 1);
-$black: rgba(0, 0, 0, 1);
+$application-backdrop: url("../story-assets/images/backdrop.png");
 
-$purple: #9c27b0;
-$deep-purple: #6a1b9a;
-
-$red: #f44336;
-$deep-red: #c62828;
-
-$orange: #ff5722;
-$deep-orange: #d84315;
-
-$teal: #009688;
-$deep-teal: #00695c;
-
-$text-light: $white;
-$border-light: $white;
-$border-dark: $black;
-$border-purple: $purple;
-
-// fonts
-$title-font: "Cinzel";
-
-// dimensions
-$header-height: 108px;
-
-// resources
-$city-backdrop: url("../assets/city.png");
-
+@import "./global-styles/colors";
+@import "./global-styles/typography";
+@import "./global-styles/layout";
 @import "./top-bar/top-bar";
-@import "./story/story";
+@import "./background/background";
+@import "./synopsis/synopsis";
+@import "./stories/stories";
+@import "./stories/story-detail/story-detail";
+@import "./maps/maps";
+@import "./entities/entities";
+@import "./combat/combat";
+@import "./notes/notes";
 
 .top { height: $header-height; }
 
-.main { height: calc(100vh - #{$header-height}); }
+.main {
+    background: $application-backdrop;
+    background-size: cover;
+    height: calc(100vh - #{$header-height});
+    position: relative;
+}
+
+.no-outline {
+    &:focus { outline: none; }
+}
+
+.content-page {
+    display: block;
+    height: calc(100vh - #{$header-height});
+    width: 80vw;
+    margin: 0 10vw;
+
+    &--wrapped {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+
+    &--short {
+        height: auto;
+        max-height: calc(100vh - #{$header-height});
+    }
+
+    &__toolbar {
+        padding: 1rem 2rem;
+        height: 111px;
+    }
+
+    &__title {
+        margin: 0;
+        font-family: $title-font;
+
+        &:last-child { margin: 14px 0; }
+    }
+
+    &__descriptor {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    &__controls {
+        position: fixed;
+        top: calc(#{$header-height} + 5vh);
+        right: 0;
+        width: 10vw;
+    }
+
+    &__content {
+        padding: 1rem 2rem;
+        height: calc(100% - 111px);
+        box-sizing: border-box;
+    }
+}

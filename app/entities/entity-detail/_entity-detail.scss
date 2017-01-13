@@ -1,0 +1,33 @@
+.entity-detail {
+    height: 100%;
+
+    &__content {
+        padding: 1rem 2rem;
+        height: calc(100% - 111px);
+        box-sizing: border-box;
+    }
+
+    &__image {
+        width: 30%;
+        float: right;
+    }
+
+    &__abilities {
+        margin: 1rem 0;
+    }
+
+    &__ability {
+        height: 50px;
+        width: 70px;
+        margin: 0 auto;
+        border-radius: 15px;
+        background-color: $blue-grey-700;
+        color: $text-light;
+
+        &:first-child { margin-left: 0; }
+    }
+
+    &__specs {
+        margin: 2rem 0;
+    }
+}

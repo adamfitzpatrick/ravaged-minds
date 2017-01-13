@@ -1,0 +1,174 @@
+<div class="combat" ng-cloak>
+
+    <md-fab-speed-dial
+        class="md-fling md-hover-full combat__controls"
+        md-direction="down"
+        md-open="vm.isControlOpen"
+        ng-mouseenter="vm.showControls()"
+        ng-mouseleave="vm.hideControls()"
+    >
+        <md-fab-trigger>
+            <md-button class="md-fab">
+                {{ vm.combatants[vm.turnCombatantIndex].initiative}}/{{ vm.round }}
+            </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.addCombatant()"
+            >
+                <md-icon class="material-icons">add_circle</md-icon>
+            </md-button>
+
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.nextTurn()"
+            >
+                <md-icon class="material-icons">navigate_next</md-icon>
+            </md-button>
+
+            <md-button
+                ng-click="vm.lastTurn()"
+                class="md-fab md-mini"
+            >
+                <md-icon class="material-icons">navigate_before</md-icon>
+            </md-button>
+
+            <md-button
+                ng-click="vm.deleteSelectedCombatant()"
+                class="md-fab md-mini"
+            >
+                <md-icon class="material-icons">remove_circle</md-icon>
+            </md-button>
+
+            <md-button
+                ng-click="vm.resetCombat()"
+                class="md-fab md-mini"
+            >
+                <md-icon class="material-icons">delete_forever</md-icon>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+
+    <md-content class="combat__content">
+        <div
+            ng-repeat="combatant in vm.combatants | orderBy: '-combatOrder'"
+            class="combat__card"
+            ng-class="{ 'combat__card--disengaged': !combatant.engaged }"
+            md-whiteframe="4">
+            <div
+                class="combat__card-selector"
+                ng-click="vm.setSelectedCombatant($index)"
+            >
+                <i class="material-icons">error_outline</i>
+            </div>
+            <div
+                class="combat__card-header"
+                layout="row"
+                layout-align="start center"
+            >
+                <div
+                    ng-click="vm.togglePlayer(combatant)"
+                    class="no-outline"
+                >
+                    <img
+                        ng-if="!combatant.player"
+                        class="combat__card-avatar"
+                        src="../assets/skull-icon.png"
+                    />
+                    <img
+                        ng-if="combatant.player"
+                        class="combat__card-avatar"
+                        src="../assets/shield-icon.png"
+                    />
+                </div>
+                <div flex="18" layout="column">
+                    <h3 class="combat__card-title">
+                        <input
+                            class="combat__input"
+                            ng-model="combatant.name"
+                            placeholder="Name"/>
+                    </h3>
+                    <input
+                        ng-if="combatant.player"
+                        class="combat__input"
+                        ng-model="combatant.clazz"
+                        placeholder="Class"
+                    />
+                    <md-select
+                        ng-if="!combatant.player"
+                        class="combat__select"
+                        ng-model="combatant.entity"
+                        placeholder="Select a creature"
+                    >
+                        <md-option ng-value="creature" ng-repeat="creature in vm.entities">
+                            {{ creature.name }}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div
+                    flex="70"
+                    flex-offset="5"
+                    layout="row"
+                    layout-align="space-between center"
+                >
+                    <div>
+                        <md-icon class="material-icons combat__stat-icon">sort</md-icon>
+                        <input
+                            class="combat__input combat__input--short"
+                            ng-model="combatant.initiative"
+                            placeholder="Init"
+                        />
+                    </div>
+                    <div>
+                        <md-icon class="material-icons combat__stat-icon">healing</md-icon>
+                        <input
+                            class="combat__input combat__input--short"
+                            ng-model="combatant.hitPoints"
+                            placeholder="HP"
+                        />
+                    </div>
+                    <div>
+                        <md-icon class="material-icons combat__stat-icon">directions_run</md-icon>
+                        <input
+                            class="combat__input combat__input--short"
+                            ng-model="combatant.dexterity"
+                            placeholder="Dex"
+                        />
+                        <span>( {{ combatant.dexMod }} )</span>
+                    </div>
+                    <div>
+                        <md-checkbox
+                            ng-model="combatant.engaged"
+                            class="md-primary combat__checkbox"
+                        >
+                            Engaged
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="combat__card-conditions">
+                <md-chips
+                    ng-model="combatant.conditions"
+                    placeholder="Add condition"
+                ></md-chips>
+            </div>
+            <entity-detail
+                ng-if="vm.showEntity(combatant)"
+                entity="combatant.entity"
+                no-header="true"
+            ></entity-detail>
+            <md-button
+                ng-if="vm.isCombatantTurn($index)"
+                class="md-fab md-mini combat__card-turn-indicator"
+                md-whiteframe="4">
+                <md-icon class="material-icons">room</md-icon>
+            </md-button>
+            <div
+                ng-if="!combatant.engaged"
+                class="combat__card-mask"
+            ></div>
+        </div>
+    </md-content>
+</div>

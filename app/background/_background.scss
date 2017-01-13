@@ -1,0 +1,23 @@
+.background {
+    height: calc(100vh - #{$header-height});
+
+    &__sidenav {
+        background: $blue-grey-400;
+        height: 100%;
+    }
+
+    &__sidenav-item {
+        color: $white;
+        padding: 1rem 1rem 1rem 2rem;
+        cursor: pointer;
+
+        &:hover { background: lighten($blue-grey-400, 10); }
+
+        &:focus {
+            outline: 0;
+            background: lighten($blue-grey-400, 5);
+        }
+    }
+
+    &__content { width: calc(100vw - 320px); }
+}

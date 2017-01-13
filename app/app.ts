@@ -10,6 +10,8 @@ import {initConfig} from "./app.config";
 import {initRoutes} from "./app.route";
 import {initComponents} from "./app.component";
 import {initServices} from "./app.service";
+import {initFilters} from "./app.filters";
+import {initRun} from "./app.run";
 
 const app = angular.module("App", [
     "ngRoute",
@@ -21,14 +23,14 @@ const app = angular.module("App", [
 // CONFIG is injected at compile-time by webpack.DefinePlugin
 declare const CONFIG: Object;
 Object.keys(CONFIG).forEach(key => app.constant(key, CONFIG[key]));
-declare const STATIC: Object;
-app.constant("STATIC", STATIC);
 
 
 initConfig(app);
 initRoutes(app);
 initComponents(app);
 initServices(app);
+initFilters(app);
+initRun(app);
 
 export default app;
 export const ng = angular;

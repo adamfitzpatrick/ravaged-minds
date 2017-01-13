@@ -1,0 +1,91 @@
+<div
+    ng-class="{ 'content-page': !vm.linkType }"
+    md-theme="content_page"
+    ng-cloak
+>
+    <md-fab-speed-dial
+        class="md-fling md-hover-full content-page__controls"
+        md-direction="down"
+        md-open="vm.showControls"
+        ng-mouseenter="vm.setShowControls(true)"
+        ng-mouseleave="vm.setShowControls(false)"
+    >
+        <md-fab-trigger>
+            <md-button class="md-fab">
+                <md-icon class="material-icons">settings</md-icon>
+            </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.addNote()"
+            >
+                <md-tooltip md-direction="left">Add note</md-tooltip>
+                <md-icon class="material-icons">add_circle</md-icon>
+            </md-button>
+
+            <md-button
+                class="md-fab md-mini"
+                ng-click="vm.deleteNote()"
+            >
+                <md-tooltip md-direction="left">Remove selected note</md-tooltip>
+                <md-icon class="material-icons">remove_circle</md-icon>
+            </md-button>
+
+            <md-button
+                ng-if="!vm.linkType"
+                class="md-fab md-mini"
+                ng-click="vm.setTypeFilter()"
+            >
+                <md-tooltip md-direction="left">Show all notes</md-tooltip>
+                <md-icon class="material-icons">all_inclusive</md-icon>
+            </md-button>
+
+            <md-button
+                ng-if="!vm.linkType"
+                class="md-fab md-mini"
+                ng-click="vm.setTypeFilter('story')"
+            >
+                <md-tooltip md-direction="left">Show story notes</md-tooltip>
+                <md-icon class="material-icons">security</md-icon>
+            </md-button>
+
+            <md-button
+                ng-if="!vm.linkType"
+                class="md-fab md-mini"
+                ng-click="vm.setTypeFilter('entity')"
+            >
+                <md-tooltip md-direction="left">Show entity notes</md-tooltip>
+                <md-icon class="material-icons">accessibility</md-icon>
+            </md-button>
+
+            <md-button
+                ng-if="!vm.linkType"
+                class="md-fab md-mini"
+                ng-click="vm.setTypeFilter('map')"
+            >
+                <md-tooltip md-direction="left">Show map notes</md-tooltip>
+                <md-icon class="material-icons">location_on</md-icon>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+
+    <md-toolbar
+        ng-if="!vm.linkType"
+        class="content-page__toolbar"
+        md-whiteframe="4"
+    >
+        <h1 class="content-page__title">Game Notes</h1>
+    </md-toolbar>
+
+    <note
+        ng-repeat="note in vm.filteredNotes track by $index"
+        note="note"
+        stories="vm.stories"
+        entities="vm.entities"
+        on-note-change="vm.saveNote(note)"
+        ng-click="vm.setSelectedNote(note)"
+    ></note>
+
+</div>

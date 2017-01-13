@@ -1,23 +1,38 @@
 import * as angular from "angular";
-import {StaticDataService, NavBarDataItem} from "../services/static-data/static-data.service";
+import {StateService} from "../services/state/state.service";
+import {navMenu} from "./nav-menu";
+import {AppRootScope} from "../app.run";
 
 export class TopBarController {
-    navItems: NavBarDataItem[];
+    navItems: any[];
+    dm: boolean;
+    dmSwitch: boolean;
 
     constructor(
         private $location: angular.ILocationService,
-        private staticDataService: StaticDataService
+        private stateService: StateService,
+        private $rootScope: AppRootScope
     ) {}
 
     $onInit(): void {
-        this.navItems = this.staticDataService("navMenu");
+        this.navItems = navMenu;
+        this.dm = this.$rootScope.dm;
+        this.dmSwitch = this.$rootScope.dmSwitch;
     }
 
-    get currentNavItem() {
-        return `#${this.$location.path()}`;
+    setNav(navItem: any): void {
+        if (navItem.path === this.currentNavItem) {
+            this.stateService.clearState(navItem.path);
+        }
+        this.$location.path(navItem.path);
     }
 
-    set currentNavItem(item: string) {
-        this.$location.path(item);
+    setDm(): void { this.$rootScope.dm = this.dm; }
+
+    get currentNavItem(): string {
+        const match = this.$location.path().match(/^\/[^\/]*/);
+        return match && match[0];
     }
+
+    set currentNavItem(item: string) { /* not used */ }
 }

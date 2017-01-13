@@ -1,0 +1,19 @@
+<md-button
+    ng-mouseenter="vm.onMouseOver($event)"
+    ng-mouseleave="vm.onExit()"
+    class="md-fab story-node"
+    ng-class="{ 'md-mini': !vm.story.major }"
+    ng-href="#/story/{{ vm.story.id }}"
+>
+    <md-icon class="material-icons">security</md-icon>
+    <md-button
+        ng-if="vm.story.complete"
+        class="md-fab story-node__status"
+        ng-class="{
+            'story-node__status--minor': !vm.story.major,
+            'md-warn': !vm.story.success
+        }"
+    >
+        <md-icon class="material-icons">{{ vm.story.statusIcon }}</md-icon>
+    </md-button>
+</md-button>
