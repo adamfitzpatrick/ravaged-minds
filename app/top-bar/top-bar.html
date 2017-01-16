@@ -7,7 +7,7 @@
         Ravaged Minds
     </h1>
     <md-switch
-        ng-if="vm.playerAccessService.getDmSwitch()"
+        ng-if="vm.playerAccessService.dmSwitch"
         class="top-bar__dm-switch"
         ng-model="vm.playerAccessService.dm"
     ></md-switch>
@@ -22,6 +22,7 @@
             ng-repeat="navItem in vm.navItems"
             md-nav-click="vm.setNav(navItem)"
             name="{{ navItem.path }}"
+            player-visible="{{ navItem.label !== 'Combat' }}"
         >
             {{ navItem.label }}
         </md-nav-item>

@@ -1,6 +1,6 @@
 import * as angular from "angular";
-import {ACCESS_TOKEN_KEY} from "./player-access/player-access.service";
 import {ToasterService} from "./toaster/toaster.service";
+import {ACCESS_TOKEN_KEY} from "./login/login.service";
 
 const AUTHORIZATION = "authorization";
 
@@ -26,6 +26,7 @@ export function initConfig(app: angular.IModule) {
                     toasterService(`Error ${rejection.status} (${rejection.statusText})
                     on call to ${rejection.config.url}`);
                     $location.path("/login");
+                    return $q.reject(rejection);
                 }
             };
         });

@@ -1,10 +1,8 @@
 import * as angular from "angular";
 import {StateService} from "../services/state/state.service";
 import {navMenu} from "./nav-menu";
-import {
-    PlayerAccessService, ACCESS_TOKEN_KEY,
-    DM_SWITCH
-} from "../player-access/player-access.service";
+import {PlayerAccessService} from "../player-access/player-access.service";
+import {ACCESS_TOKEN_KEY} from "../login/login.service";
 
 export class TopBarController {
     navItems: any[];
@@ -32,7 +30,7 @@ export class TopBarController {
         if (this.logoutRequests > 3) {
             this.logoutRequests = 0;
             localStorage.removeItem(ACCESS_TOKEN_KEY);
-            localStorage.removeItem(DM_SWITCH);
+            this.playerAccessService.dmSwitch = false;
             this.$location.path("/login");
         }
     }

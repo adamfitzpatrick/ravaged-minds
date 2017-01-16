@@ -1,8 +1,8 @@
 import * as angular from "angular";
-import {
-    ACCESS_TOKEN_KEY, PlayerAccessService,
-    DM_SWITCH
-} from "../player-access/player-access.service";
+import {PlayerAccessService} from "../player-access/player-access.service";
+
+export const ACCESS_TOKEN_KEY = "RAVAGEDMINDS_ACCESSTOKEN";
+export const USERNAME = "RAVAGEDMINDS_USERNAME";
 
 export interface LoginResponse {
     data: {
@@ -17,17 +17,22 @@ export function loginService(
     $http: angular.IHttpService,
     playerAccessService: PlayerAccessService
 ) {
+    const handleResponse = (response: LoginResponse) => {
+        localStorage.setItem(ACCESS_TOKEN_KEY, response.data.token);
+        localStorage.setItem(USERNAME, response.data.username);
+        if (response.data.username === "dm") {
+            playerAccessService.dm = true;
+            playerAccessService.dmSwitch = true;
+        } else {
+            playerAccessService.dm = false;
+            playerAccessService.dmSwitch = false;
+        }
+        delete response.data.token;
+        return response;
+    };
 
     return (username: string, password: string): angular.IHttpPromise<{}> => {
 
-        return $http.post("/login", { username, password }).then((response: LoginResponse) => {
-            localStorage.setItem(ACCESS_TOKEN_KEY, response.data.token);
-            if (response.data.username === "dm") {
-                localStorage.setItem(DM_SWITCH, "true");
-                playerAccessService.setDm(true);
-            }
-            delete response.data.token;
-            return response;
-        });
+        return $http.post("/login", { username, password }).then(handleResponse);
     };
 }

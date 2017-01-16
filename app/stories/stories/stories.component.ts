@@ -29,7 +29,9 @@ export class StoriesController {
         private $timeout: angular.ITimeoutService,
         private $location: angular.ILocationService,
         private storyService: StoryService,
-        private stateService: StateService
+        private stateService: StateService,
+        private $scope: angular.IScope,
+        private playerAccessService: PlayerAccessService
     ) {}
 
     $onInit(): void {
@@ -62,13 +64,18 @@ export class StoriesController {
     private loadStories = (stories: Story[]): void => {
         this.stories = stories;
         this.sortStories();
-        this.$timeout(() => {
-            this.getAllNodes();
-            this.canvasContext = (this.$element.find("canvas")[0] as HTMLCanvasElement).getContext("2d");
-            this.$window.onresize = this.connectNodes;
-            this.connectNodes();
-        }, 500);
+        this.$timeout(this.nextTickSetup);
         this.setState();
+    }
+
+    private nextTickSetup = (): void => {
+        this.getAllNodes();
+        this.canvasContext = (this.$element.find("canvas")[0] as HTMLCanvasElement).getContext("2d");
+        this.$window.onresize = this.connectNodes;
+        this.connectNodes();
+        this.$scope.$watch(() => this.playerAccessService.dm, () => {
+            this.$timeout(this.connectNodes);
+        });
     }
 
     private setState = (): void => {

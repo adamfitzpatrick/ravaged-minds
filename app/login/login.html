@@ -15,6 +15,12 @@
                     placeholder="Type password"
                     ng-model="vm.password"
                 />
+                <div
+                    ng-if="vm.loginError"
+                    class="md-input-messages-animation login__error"
+                >
+                    Password is incorrect.
+                </div>
             </md-input-container>
         </md-dialog-content>
         <md-dialog-actions class="login__buttons">

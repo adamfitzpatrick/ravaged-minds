@@ -9,6 +9,7 @@
     "object-literal-sort-keys": false,
     "array-type": [true, "array"],
     "no-var-requires": false,
-    "object-literal-shorthand": false
+    "object-literal-shorthand": false,
+    "adjacent-overload-signatures": false
   }
 }

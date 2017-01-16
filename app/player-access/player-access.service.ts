@@ -5,12 +5,12 @@ export interface PlayerAccessAttrs extends angular.IAttributes {
     playerClickable: string;
 }
 
-export const ACCESS_TOKEN_KEY = "RAVAGEDMINDSACCESSTOKEN";
-export const DM_SWITCH = "DM_SWITCH";
+export const DM = "RAVAGEDMINDS_DM";
+export const DM_SWITCH = "RAVAGEDMINDS_DM_SWITCH";
 
 export class PlayerAccessService {
-    dm: boolean;
-    dmSwitch: boolean;
+
+    constructor(private $location: angular.ILocationService) {}
 
     hasAccess(attrValue: string): boolean { return this.dm || this.calculateVisibility(attrValue); }
 
@@ -18,15 +18,16 @@ export class PlayerAccessService {
         $scope.$watch(this.watchExpression($attrs), (callback as WatchCallback));
     };
 
-    setDm(dm: boolean): void {
-        this.dm = dm;
-        if (this.dm) { this.dmSwitch = true; }
+    get dm(): boolean { return localStorage.getItem(DM) === true.toString(); }
+
+    set dm(dm: boolean) {
+        localStorage.setItem(DM, dm.toString());
+        if (this.$location.path() === "/combat") { this.$location.path("/story"); }
     }
 
-    getDmSwitch(): boolean {
-        if (localStorage.getItem(DM_SWITCH)) { this.dmSwitch = true; }
-        return this.dmSwitch;
-    }
+    get dmSwitch(): boolean { return localStorage.getItem(DM_SWITCH) === true.toString(); }
+
+    set dmSwitch(dmSwitch: boolean) { localStorage.setItem(DM_SWITCH, dmSwitch.toString()); }
 
     private calculateVisibility(value: string): boolean {
         return value !== "false" && !!value;
