@@ -6,63 +6,14 @@ activities:
 from: []
 to:
 - 2
-- 3
-title: 'Our Hero'
-tagline: 'In which events transpire that our protagonist may find undesireable.'
-synopsis: 'Synopsis string'
+title: 'Blown Dust'
+tagline: 'From simple raid to mystery and menace.'
+synopsis: 'Our hero works to harass slavers and the war effort, only to discover a hidden prisoner with strange and dangerous powers.'
 entities:
 - 1
 maps:
 - 1
 content: >
  <p class="story-detail__content--p">
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum ligula vel diam
-     tincidunt, sed maximus erat consequat. Proin imperdiet tincidunt dui, non commodo metus
-     porta euismod. Sed tempor in leo et auctor. Vestibulum faucibus felis nec rutrum luctus.
-     Nullam molestie dui commodo leo lobortis euismod. Donec felis sapien, tincidunt a massa
-     sed, mattis scelerisque odio. Cras urna leo, tempor quis dapibus quis, condimentum ut
-     lacus. Nam ultricies dolor turpis, vel facilisis nunc egestas eget.  Nunc condimentum
-     facilisis mauris, vel gravida odio lacinia a. Aenean ac metus hendrerit,
-     tempor dui vitae, maximus quam. Praesent sit amet aliquet dui, sed fermentum risus. Ut
-     blandit ex non odio ornare, ut posuere arcu ornare. Proin et venenatis enim. Aenean sem
-     lectus, dignissim vitae arcu ut, porttitor lobortis risus. Aliquam erat volutpat. Aenean
-     in ullamcorper nisi. Suspendisse venenatis tortor a finibus bibendum. Integer laoreet
-     sollicitudin elit at sodales.
- </p>
-
- <p>
-     Nulla pellentesque, sapien lobortis maximus blandit, ligula felis ornare felis, a
-     euismod urna ligula id enim. Nunc ultrices neque et sapien porttitor viverra. Sed
-     posuere tincidunt purus eu imperdiet. Donec eleifend ut mi ut aliquet. Cras et
-     condimentum tortor. Curabitur porttitor eros lorem, et scelerisque odio aliquet
-     vulputate. Nunc interdum turpis id lorem maximus porttitor. Morbi commodo ligula quis
-     semper mattis. Maecenas non suscipit orci, pulvinar egestas lacus. Nullam ultricies
-     ipsum sed tellus pellentesque, sed facilisis tellus viverra. In eu tristique est, quis
-     volutpat massa. Duis mollis egestas urna, a placerat magna posuere non. Mauris luctus,
-     nulla eget volutpat hendrerit, diam erat consequat sem, eu aliquam lectus lectus non
-     velit.
- </p>
-
- <p>
-     Mauris ut magna quis orci efficitur euismod. Phasellus suscipit viverra tellus eget
-     faucibus. Sed sed tincidunt justo. Morbi felis nisl, faucibus quis tortor quis, lobortis
-     mollis mi. Integer malesuada metus vel rhoncus elementum. Duis vitae magna sit amet
-     velit luctus laoreet. Cras finibus vehicula lectus nec cursus. Vestibulum nibh eros,
-     scelerisque nec gravida in, accumsan a libero. Nam tincidunt volutpat porta. Sed vitae
-     suscipit tortor, mollis ullamcorper lacus. Morbi pellentesque mattis mi id aliquet.
-     Morbi augue leo, iaculis at maximus ut, congue vel dui. Quisque efficitur molestie elit,
-     nec vulputate orci.
- </p>
-
- <p>
-     Sed euismod, nisl nec varius sagittis, odio felis mollis enim, a tincidunt orci mi eget
-     velit. Quisque faucibus lectus mauris, interdum placerat dui lobortis sed. Suspendisse
-     ut massa convallis, ultrices justo at, eleifend dolor. Fusce efficitur pulvinar quam ac
-     consectetur. Nam fermentum hendrerit felis. Maecenas blandit, sapien eu tristique
-     finibus, ante arcu accumsan dolor, a fringilla nulla nisl sed lectus. Nunc egestas mi
-     eget orci porttitor, vel tempor erat semper. Integer a cursus quam, sit amet volutpat
-     sem. Vestibulum commodo venenatis lectus. Morbi non lacus a metus scelerisque congue.
-     Quisque pretium nibh non eleifend tincidunt. Aliquam erat volutpat. Maecenas vestibulum
-     ultricies nisi. Suspendisse diam purus, scelerisque ac tincidunt et, varius quis erat.
-     Sed interdum dolor urna, ac pulvinar enim consectetur nec.
+     Prequel
  </p>

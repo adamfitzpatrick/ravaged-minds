@@ -38,7 +38,7 @@ export class EncounterController {
     }
 
     private makeCombatant(entity: Entity): Combatant {
-        const uniqueName = entity.uniqueName || entity.name;
+        const uniqueName = entity.name;
         const combatantObj = {
             name: uniqueName,
             entity,

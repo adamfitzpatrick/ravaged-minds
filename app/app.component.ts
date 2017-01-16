@@ -18,9 +18,11 @@ import {synopsis} from "./synopsis/synopsis/synopsis";
 import {encounter} from "./maps/encounter/encounter";
 import {playerVisible} from "./player-access/player-visible/player-visible";
 import {playerClickable} from "./player-access/player-clickable/player-clickable";
+import {login} from "./login/login";
 
 export function initComponents(app: angular.IModule) {
     app.component("topBar", topBar);
+    app.component("login", login);
     app.component("background", background);
     app.component("synopsis", synopsis);
     app.component("story", stories);

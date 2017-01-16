@@ -1,0 +1,25 @@
+<div class="login">
+    <div class="login__mask"></div>
+    <md-dialog class="login__dialog">
+        <div
+            ng-if="vm.loading"
+            class="login__loader-mask"
+        >
+            <md-progress-circular class="login__loader" md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <md-dialog-content>
+            <h2 class="md-title">Please enter your password.</h2>
+            <md-input-container class="login__password">
+                <input
+                    type="password"
+                    placeholder="Type password"
+                    ng-model="vm.password"
+                />
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions class="login__buttons">
+            <md-button class="md-accent md-raised" ng-click="vm.loginPlayer()">Player</md-button>
+            <md-button class="md-accent md-raised" ng-click="vm.loginDM()">DM</md-button>
+        </md-dialog-actions>
+    </md-dialog>
+</div>

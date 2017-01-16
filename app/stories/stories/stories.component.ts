@@ -2,7 +2,7 @@ import * as angular from "angular";
 import {Story} from "../story.model";
 import {StoryService} from "../story.service";
 import {StateService} from "../../services/state/state.service";
-import {AppRootScope} from "../../app.run";
+import {PlayerAccessService} from "../../player-access/player-access.service";
 
 interface ConnectionDiagram {
     from: number[];
@@ -29,9 +29,7 @@ export class StoriesController {
         private $timeout: angular.ITimeoutService,
         private $location: angular.ILocationService,
         private storyService: StoryService,
-        private stateService: StateService,
-        private $rootScope: AppRootScope,
-        private $scope: angular.IScope
+        private stateService: StateService
     ) {}
 
     $onInit(): void {
@@ -69,7 +67,7 @@ export class StoriesController {
             this.canvasContext = (this.$element.find("canvas")[0] as HTMLCanvasElement).getContext("2d");
             this.$window.onresize = this.connectNodes;
             this.connectNodes();
-        }, 100);
+        }, 500);
         this.setState();
     }
 

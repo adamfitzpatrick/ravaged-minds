@@ -6,10 +6,10 @@
         class="synopsis__toolbar"
         md-whiteframe="4"
         layout="row"
+        ng-click="vm.toggle()"
     >
         <md-icon
             ng-if="!vm.expanded"
-            ng-click="vm.toggle()"
             class="material-icons synopsis__expander"
         >
             keyboard_arrow_right

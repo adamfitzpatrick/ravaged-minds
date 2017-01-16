@@ -33,6 +33,7 @@ const mapRoute = (mapService: MapService, $route: RavagedMindsRoute) => {
 export function initRoutes(app: angular.IModule) {
     app.config(($routeProvider: ng.route.IRouteProvider) => {
         $routeProvider.when("/", { template: "<landing></landing>" })
+            .when("/login", { template: "<login></login>"})
             .when("/story", { template: "<story></story>" })
             .when("/story/:storyId", { template: "<story-detail></story-detail>"})
             .when("/background", { template: "<background></background>" })
@@ -46,7 +47,7 @@ export function initRoutes(app: angular.IModule) {
             .when("/entities/:entityId", { template: "<entity-detail-route></entity-detail-route>"})
             .when("/combat", { template: "<combat></combat>" })
             .when("/notes", { template: "<notes></notes>" })
-            .when("/", { redirectTo: "/story" })
-            .otherwise({ redirectTo: "/story" });
+            .when("/", { redirectTo: "/login" })
+            .otherwise({ redirectTo: "/login" });
     });
 }

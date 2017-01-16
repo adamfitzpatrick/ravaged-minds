@@ -5,7 +5,6 @@ export class Entity {
     static WRITEABLE_FIELDS = [ "playerVisible" ];
 
     id: number;
-    uniqueName;
     name: string;
     imageUrl: string;
     size: string;
@@ -25,13 +24,15 @@ export class Entity {
     senses: string[];
     languages: string[];
     challenge: number;
+    skills: string[];
     features: EntityFeaturePair[];
     actions: EntityFeaturePair[];
+    descriptions: EntityFeaturePair[];
+    spells: string[];
     playerVisible: boolean;
 
     constructor(entity: Entity) {
         this.id = entity.id;
-        this.uniqueName = entity.uniqueName;
         this.name = entity.name;
         this.size = entity.size;
         this.type = entity.type;
@@ -51,8 +52,11 @@ export class Entity {
         this.senses = entity.senses;
         this.languages = entity.languages;
         this.challenge = entity.challenge;
+        this.skills = entity.skills;
         this.features = entity.features;
         this.actions = entity.actions;
+        this.descriptions = entity.descriptions;
+        this.spells = entity.spells;
         this.playerVisible = entity.playerVisible;
     }
 

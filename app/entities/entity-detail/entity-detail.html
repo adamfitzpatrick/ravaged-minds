@@ -70,20 +70,38 @@
             </div>
         </div>
 
+        <h2 ng-if="vm.entity.skills && vm.entity.skills.length">Skills</h2>
+
+        <ul>
+            <li ng-repeat="skill in vm.entity.skills">{{ skill }}</li>
+        </ul>
+
+        <h2 ng-if="vm.entity.features && vm.entity.features.length">Features</h2>
+
         <p ng-repeat="feature in vm.entity.features">
             <strong>{{ feature[0] }}:</strong>
             {{ feature[1] }}
         </p>
 
-        <h2>Actions</h2>
+        <h2 ng-if="vm.entity.actions && vm.entity.actions.length">Actions</h2>
 
         <p ng-repeat="action in vm.entity.actions">
             <strong>{{ action[0] }}:</strong>
             {{ action[1] }}
         </p>
 
+        <div ng-repeat="description in vm.entity.descriptions">
+            <h2>{{ description[0] }}</h2>
+            <div ng-bind-html="vm.getDescription(description[1])"></div>
+        </div>
+
+        <h2 ng-if="vm.entity.spells && vm.entity.spells.length">Spells</h2>
+        <ul>
+            <li ng-repeat="spell in vm.entity.spells">{{ spell }}</li>
+        </ul>
+
         <div ng-if="!vm.noHeader" class="entity-detail__notes">
-            <h3>Entity Notes</h3>
+            <h2>Entity Notes</h2>
             <notes link-id="vm.entity.id" link-type="entity"></notes>
         </div>
     </md-content>

@@ -1,6 +1,9 @@
 .synopsis {
 
-    &__toolbar { padding: 1rem 2rem; }
+    &__toolbar {
+        padding: 1rem 2rem;
+        cursor: pointer;
+    }
 
     &__title {
         font-family: $title-font;

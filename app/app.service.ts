@@ -6,9 +6,14 @@ import {MapService} from "./maps/map.service";
 import {NoteService} from "./notes/note.service";
 import {PlayerService} from "./player/player.service";
 import {SynopsisService} from "./synopsis/synopsis.service";
-import {playerAccessService} from "./player-access/player-access.service";
+import {PlayerAccessService} from "./player-access/player-access.service";
+import {loginService} from "./login/login.service";
+import {toasterService} from "./toaster/toaster.service";
 
 export function initServices(app: angular.IModule) {
+    app.service("loginService", loginService);
+    app.service("toasterService", toasterService);
+    app.service("playerAccessService", PlayerAccessService);
     app.service("storyService", StoryService);
     app.service("mapService", MapService);
     app.service("entityService", EntityService);
@@ -16,5 +21,4 @@ export function initServices(app: angular.IModule) {
     app.service("stateService", StateService);
     app.service("playerService", PlayerService);
     app.service("synopsisService", SynopsisService);
-    app.service("playerAccessService", playerAccessService);
 }

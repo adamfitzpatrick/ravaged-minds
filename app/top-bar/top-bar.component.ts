@@ -1,23 +1,23 @@
 import * as angular from "angular";
 import {StateService} from "../services/state/state.service";
 import {navMenu} from "./nav-menu";
-import {AppRootScope} from "../app.run";
+import {
+    PlayerAccessService, ACCESS_TOKEN_KEY,
+    DM_SWITCH
+} from "../player-access/player-access.service";
 
 export class TopBarController {
     navItems: any[];
-    dm: boolean;
-    dmSwitch: boolean;
+    logoutRequests: number = 0;
 
     constructor(
         private $location: angular.ILocationService,
         private stateService: StateService,
-        private $rootScope: AppRootScope
+        private playerAccessService: PlayerAccessService
     ) {}
 
     $onInit(): void {
         this.navItems = navMenu;
-        this.dm = this.$rootScope.dm;
-        this.dmSwitch = this.$rootScope.dmSwitch;
     }
 
     setNav(navItem: any): void {
@@ -27,7 +27,15 @@ export class TopBarController {
         this.$location.path(navItem.path);
     }
 
-    setDm(): void { this.$rootScope.dm = this.dm; }
+    requestLogout(): void {
+        this.logoutRequests++;
+        if (this.logoutRequests > 3) {
+            this.logoutRequests = 0;
+            localStorage.removeItem(ACCESS_TOKEN_KEY);
+            localStorage.removeItem(DM_SWITCH);
+            this.$location.path("/login");
+        }
+    }
 
     get currentNavItem(): string {
         const match = this.$location.path().match(/^\/[^\/]*/);

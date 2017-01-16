@@ -2,14 +2,14 @@
     <h1
         flex
         class="top-bar__title"
+        ng-click="vm.requestLogout()"
     >
         Ravaged Minds
     </h1>
     <md-switch
-        ng-if="vm.dmSwitch"
+        ng-if="vm.playerAccessService.getDmSwitch()"
         class="top-bar__dm-switch"
-        ng-model="vm.dm"
-        ng-change="vm.setDm()"
+        ng-model="vm.playerAccessService.dm"
     ></md-switch>
     <md-nav-bar
         class="top-bar__nav"

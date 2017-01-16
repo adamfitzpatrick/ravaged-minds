@@ -12,11 +12,11 @@ export class PlayerClickableController {
 
     $onInit(): void {
         this.setDisabled();
-        this.playerAccessService.watch(this.$scope, this.$attrs, this.setDisabled);
+        this.playerAccessService.setWatch(this.$scope, this.$attrs, this.setDisabled);
     }
 
     private setDisabled = (): void => {
-        const clickable = this.playerAccessService(this.$attrs.playerClickable);
+        const clickable = this.playerAccessService.hasAccess(this.$attrs.playerClickable);
         if (clickable) {
             this.$element[0].removeAttribute("disabled");
             this.$element[0].style.pointerEvents = "auto";

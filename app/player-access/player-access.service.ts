@@ -1,5 +1,3 @@
-import {AppRootScope} from "../app.run";
-
 interface WatchCallback { (newValue: string, oldValue: string, scope: angular.IScope): any; }
 
 export interface PlayerAccessAttrs extends angular.IAttributes {
@@ -7,26 +5,34 @@ export interface PlayerAccessAttrs extends angular.IAttributes {
     playerClickable: string;
 }
 
-export interface PlayerAccessService {
-    (attrValue: string): boolean;
-    watch: ($scope: angular.IScope, $attrs: PlayerAccessAttrs, callback: Function) => void;
-}
+export const ACCESS_TOKEN_KEY = "RAVAGEDMINDSACCESSTOKEN";
+export const DM_SWITCH = "DM_SWITCH";
 
-function calculateVisibility(value: string): boolean {
-    return value !== "false" && !!value;
-}
+export class PlayerAccessService {
+    dm: boolean;
+    dmSwitch: boolean;
 
-function watchExpression($rootScope: AppRootScope, $attrs: PlayerAccessAttrs): () => string {
-    return () => `${$rootScope.dm}${$attrs.playerVisible}${$attrs.playerClickable}`;
-}
+    hasAccess(attrValue: string): boolean { return this.dm || this.calculateVisibility(attrValue); }
 
-export function playerAccessService($rootScope: AppRootScope): PlayerAccessService {
-    const watch = ($scope: angular.IScope, $attrs: PlayerAccessAttrs, callback: () => void): void => {
-        $scope.$watch(watchExpression($rootScope, $attrs), (callback as WatchCallback));
+    setWatch($scope: angular.IScope, $attrs: PlayerAccessAttrs, callback: () => void): void {
+        $scope.$watch(this.watchExpression($attrs), (callback as WatchCallback));
     };
 
-    const service = (attrValue: string): boolean => $rootScope.dm || calculateVisibility(attrValue);
-    (service as PlayerAccessService).watch = watch;
+    setDm(dm: boolean): void {
+        this.dm = dm;
+        if (this.dm) { this.dmSwitch = true; }
+    }
 
-    return (service as PlayerAccessService);
+    getDmSwitch(): boolean {
+        if (localStorage.getItem(DM_SWITCH)) { this.dmSwitch = true; }
+        return this.dmSwitch;
+    }
+
+    private calculateVisibility(value: string): boolean {
+        return value !== "false" && !!value;
+    }
+
+    private watchExpression($attrs: PlayerAccessAttrs): () => string {
+        return () => `${this.dm}${$attrs.playerVisible}${$attrs.playerClickable}`;
+    }
 }

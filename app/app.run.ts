@@ -1,15 +1,10 @@
-export interface AppRootScope extends angular.IRootScopeService {
-    dm: boolean;
-    dmSwitch: boolean;
-}
+import * as angular from "angular";
+import {loginService, LoginService} from "./login/login.service";
+import {ACCESS_TOKEN_KEY} from "./player-access/player-access.service";
 
-const DM_KEY = "DM_KEY";
-
-export function initRun(app: angular.IModule) {
-    app.run(($rootScope: AppRootScope) => {
-        if (localStorage.getItem(DM_KEY)) {
-            $rootScope.dm = true;
-            $rootScope.dmSwitch = true;
-        }
-    });
+export function initRun(app: angular.IModule): void {
+    /*app.run((loginService: LoginService) => {
+        if (localStorage.getItem(ACCESS_TOKEN_KEY)))
+        loginService("dm", "NerdMindsRavaged");
+    });*/
 }

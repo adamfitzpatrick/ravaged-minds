@@ -39,12 +39,9 @@ const externals = [
     "angular"
 ];
 
-if (process.argv[1].indexOf("webpack-dev-server") !== -1) {
-    startServer(true);
-} else if (flags.run !== false) {
+if (process.argv[1].indexOf("webpack-dev-server") !== -1 || flags.run !== false) {
     startServer();
 }
-
 
 module.exports = {
     entry: "./app/app.ts",

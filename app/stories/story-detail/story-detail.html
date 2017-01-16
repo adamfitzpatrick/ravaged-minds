@@ -81,7 +81,7 @@
 
     <md-content class="story-detail__content-wrapper">
 
-        <div class="story-detail__inset" >
+        <div ng-if="vm.story.entities && vm.story.entities.length" class="story-detail__inset" >
             <div class="story-detail__inset-block" md-whiteframe="4">
                 <h4 class="story-detail__inset-title">Entities</h4>
                 <md-list>
@@ -95,7 +95,7 @@
                 </md-list>
             </div>
 
-            <div class="story-detail__inset-block" md-whiteframe="4">
+            <div ng-if="vm.story.maps && vm.story.maps.length" class="story-detail__inset-block" md-whiteframe="4">
                 <h4 class="story-detail__inset-title">Maps</h4>
                 <md-list>
                     <md-list-item

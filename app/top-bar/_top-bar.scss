@@ -5,6 +5,9 @@
     &__title {
         margin-left: 2rem;
         font-family: $title-font;
+        cursor: pointer;
+
+        &:focus { outline: none; }
     }
 
     md-switch.top-bar__dm-switch { margin-right: 5rem; }

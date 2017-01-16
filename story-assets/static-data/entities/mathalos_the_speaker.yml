@@ -1,0 +1,193 @@
+id: 2
+name: Mathalos the Speaker
+size: medium
+type: humanoid
+subType: human
+imageUrl: /images/mathalos_the_speaker.jpg
+aligment: chaotic good
+armorClass: 13
+speed: 30
+hitPoints: 38
+strength: 9
+dexterity: 16
+constitution: 14
+intelligence: 14
+wisdom: 13
+charisma: 18
+senses:
+  - passive perception 11
+languages:
+  - Dwarvish
+  - Elvish
+  - Common
+  - Imperial Formal
+challenge: 1
+skills:
+  - Acrobatics
+  - Deception
+  - History
+  - Performance
+  - Sleight of Hand
+  - Stealth
+features:
+  -
+    - Bard College
+    - His bard college is college of wit.
+  -
+    - Bardic Knowledge
+    - >
+      "You learn a little bit about
+      everything. When you make an Intelligence check that
+      involves the skills Arcana, History, Nature, or Religion,
+      treat a d20 roll of 9 or lower as a 10."
+  -
+    - Expertise
+    - >
+      "You have expertise with the following
+      four skills: Acrobatics, Deception, History, Stealth.
+      You gain a +5 bonus to any ability check you make
+      that involves these skills."
+  -
+    - Jack of All Trades
+    - >
+      "When you make an ability
+      check using a skill you don’t have proficiency in, you
+      can add half your proficiency bonus (rounded down)
+      to the check."
+proficiencies:
+  - simple weapons
+  - hand crossbows
+  - light crossbows
+  - long swords
+  - rapiers
+  - short swords
+  - flutes
+  - lutes
+  - drums
+actions:
+  -
+    - Melee Attack (Two-Weapon Fighting)
+    - "Short sword (+5 to hit; 1d6 + 3 piercing) and short sword (+5 to hit; 1d6 piercing)"
+  -
+    - Melee or Ranged Attack
+    - "Dagger (range 20 ft./60 ft.; +5 to hit; 1d4 + 3 piercing)"
+  -
+    - Ranged Attack
+    - "Hand crossbow (range 30 ft./120 ft.; +6 to hit; 1d6 + 3 piercing)"
+  -
+    - Spell Saving Throw DC
+    - "14 (12 without musical instrument)"
+descriptions:
+  -
+    - Bardic Performance
+    - >
+      <p>You magically manipulate others through oration,
+      music, and other special performances.</p>
+      <p>To use one of these magical performances, you
+      must speak or play an instrument as an action. Maintaining
+      the performance requires concentration,
+      as some spells do (see the rules for magic). You can
+      switch to a different performance by taking another
+      action. The whole effect, whether it is composed of
+      one performance or several, can last no longer than
+      10 minutes, and it ends early if you are silenced. You
+      can’t use this feature again until you rest for at least
+      10 minutes.</p>
+      <p>A creature can be affected by only one of these
+      performances at a time. If two or more bards try to
+      affect the same creature with such performances, the
+      creature is affected by neither.<p>
+      <p><strong>Call to Battle:</strong> While you perform Call to Battle,
+      friendly creatures, including you, are inspired to
+      fight with greater zeal while within 25 feet of you. An
+      affected creature can roll an extra d4 when rolling
+      damage for melee and ranged attacks.</p>
+      <p><strong>Eviscerating Wit:</strong> You learn Eviscerating Wit, a new
+      use for your Bardic Performance. You can perform it
+      to plant the seeds of doubt in your foes’ minds, using
+      barbed insults and scathing satire to undermine their
+      confidence.</p>
+      <p>While you perform it, each hostile creature within
+      50 feet of you that can understand you must make a
+      Charisma saving throw against your bard spell save
+      DC at the start of its turn. On a failed save, the creature
+      has disadvantage on all ability checks while it
+      remains in the performance’s radius.</p>
+      <p>On a successful save, the creature becomes
+      immune to this performance for 10 minutes.</p>
+      <p><strong>Fascinating Performance:</strong> You learn Fascinating
+      Performance, a new use for your Bardic Performance.
+      While you perform it, each creature within
+      50 feet of you that isn’t hostile to you must make a
+      Wisdom saving throw against your bard spell save
+      DC at the start of its turn. On a failed save, the target
+      is charmed by you until the performance ends or
+      the target leaves its radius. A charmed target cannot
+      move or take actions and makes Wisdom (Perception)
+      checks with disadvantage.</p>
+      <p>If you or another creature draws or brandishes a
+      weapon or casts a spell, each charmed creature can
+      make a new Wisdom saving throw to end the effect.
+      If any of the targets take damage or is otherwise
+      harmed, this effect ends for all of them.<p>
+      <p>If you make an attack or cast a spell that affects
+      anyone but yourself, this effect ends. You cannot use
+      this Bardic Performance if you or any creature
+      that would be affected by it is currently engaged in
+      combat.</p>
+      <p><strong>Inspire Competence:</strong> Your performance of
+      Inspire Competence fills friendly creatures with confidence
+      while they are within 25 feet of you. When
+      you start this performance, choose one of the six abilities.
+      An affected creature can add your proficiency
+      bonus to any check it makes with the chosen ability.</p>
+      <p>As an action, you can change the affected ability.</p>
+  -
+    - Spellcasting
+    - >
+      <p>As a gatherer of esoteric knowledge, you learn a few
+      tricks and surprises from your research and travels.
+      Bards dabble in a variety of different kinds of magic,
+      picking up a few things here and there. You learn
+      spells that you can cast a certain number of times per
+      day, and know cantrips, which you can cast at will.
+      <strong>Spells per Day.</strong> Your bard level determines the
+      number of spells that you can cast of 1st level or
+      higher. You must complete a long rest to regain any
+      castings—also called spell slots—that you use.</p>
+      <table style="margin-left: 2rem; margin-bottom: 1rem;">
+        <th>Spells per Day</th>
+        <tbody>
+          <tr>
+            <td>Spell Level</td><td>1</td><td>2</td>
+          </tr><tr>
+            <td>Spell Slots</td><td>4</td><td>2</td>
+          </tr>
+        </tbody>
+      </table>
+      <strong>Spells Known.</strong> You know three 1st-level spells,
+      one 2nd-level spell, and two cantrips, which are presented
+      in this character. You learn more spells as you
+      gain levels, as detailed on the Bard table in the full
+      description of the class. The spells you learn must be
+      of a level that you can cast or a cantrip.
+      <strong>Casting a Prepared Spell.</strong> When you cast one of
+      the bard spells that you know, you expend a casting of
+      the spell’s level or higher. For example, if you have the
+      1st-level spell cure wounds prepared and can still cast
+      a 1st-level spell and a 2nd-level spell, you can cast
+      cure wounds at either level.
+      <strong>Magic Ability.</strong> Charisma is your magic ability for
+      your bard spells. The saving throw DC to resist one
+      of your spells equals 8 + your Charisma modifier. If
+      you are holding a musical instrument when you cast
+      a spell, you add your proficiency bonus to the spell’s
+      saving throw DC.
+spells:
+- Charm Person
+- Cure Wounds
+- Invisibility
+- Message
+- Prestidigitation
+- Silence
+- Zone of Truth
