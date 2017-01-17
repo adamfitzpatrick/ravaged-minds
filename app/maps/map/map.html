@@ -14,6 +14,8 @@
                 ng-class="{ 'map__image--encounter': vm.encounterView }"
                 ng-src="{{ vm.map.imageUrl }}"/>
             <map-icon
+                player-visible="{{ area.playerVisible }}"
+                player-clickable="{{ area.playerClickable }}"
                 ng-click="vm.gotoMap(area.id)"
                 ng-repeat="area in vm.areas"
                 map="area"
@@ -26,11 +28,15 @@
                 map="site"
             ></map-icon>
             <map-icon
+                player-visible="{{ city.playerVisible }}"
+                player-clickable="{{ city.playerClickable }}"
                 ng-click="vm.gotoMap(city.id)"
                 ng-repeat="city in vm.cities"
                 map="city"
             ></map-icon>
             <map-icon
+                player-visible="{{ encounter.playerVisible }}"
+                player-clickable="{{ encounter.playerClickable }}"
                 ng-click="vm.gotoMap(encounter.id)"
                 ng-repeat="encounter in vm.encounters"
                 map="encounter"

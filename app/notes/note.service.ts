@@ -34,6 +34,6 @@ export class NoteService {
     }
 
     delete(note: Note): angular.IHttpPromise<{}> {
-        return this.$http.delete(`/notes/${note.id}`);
+        return this.$http.delete(`/notes/${note._id}`);
     }
 }

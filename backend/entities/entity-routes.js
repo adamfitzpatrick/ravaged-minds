@@ -2,61 +2,60 @@
 
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
-const path = require("path");
-const entityJsonPath = path.resolve(__dirname, "./entities.json");
-const entityJson = require(entityJsonPath);
-const staticDb = require("../static-db");
+const staticEntityDb = require("../static-db").entities;
+const EntityModel = require("./entity.model");
 
-const getEntityIndex = (id) => {
-    id = parseInt(id, 10);
-    return entityJson.findIndex(entity => entity.id === id);
+const populateFromSchema = (dynamicEntity, staticEntity) => {
+    if (!dynamicEntity) { return; }
+    Object.keys(EntityModel.schema.obj).forEach(key => staticEntity[key] = dynamicEntity[key]);
 };
 
-const consolidate = (staticEntities) => {
-    staticEntities.forEach(staticMap => {
-        const entityDb = entityJson.find(entity => entity.id === staticMap.id);
-        if (entityDb) { Object.keys(entityDb).forEach(key => staticMap[key] = entityDb[key]); }
-    });
+const consolidate = (dynamicEntities, staticEntities) => {
+    return staticEntities.map(staticEntity => {
+        const dynamicEntity = dynamicEntities.find(entity => entity.id === staticEntity.id);
+        if (dynamicEntity) { populateFromSchema(dynamicEntity, staticEntity); }
+        return staticEntity;
+    }).sort((a, b) => a.id - b.id);
 };
 
-consolidate(staticDb.entities);
+const findStaticById = (id) => {
+    return staticEntityDb.filter(entity => entity.id === id)[0];
+};
+
+const findStaticByIds = (ids) => {
+    if (!ids) { return staticEntityDb; }
+    return staticEntityDb.filter(entity => ids.some(id => id === entity.id));
+};
 
 router.get("/", (req, res) => {
-    if (!req.query || !req.query.id) {
-        return res.json(staticDb.entities);
+    let query = {};
+    let ids;
+    if (req.query && req.query.id) {
+        if (!(req.query.id instanceof Array)) { req.query.id = [req.query.id]; }
+        ids = req.query.id.map(id => parseInt(id, 10));
+        query = { id: { $in: ids }};
     }
 
-    if (req.query.id) {
-        if (!(req.query.id instanceof Array)) { req.query.id = [req.query.id]; }
-        const ids = req.query.id.map(id => parseInt(id, 10));
-        return res.json(staticDb.entities.filter(entity => ids.some(id => entity.id === id)));
-    }
+    return EntityModel.find(query, (err, entities) => {
+        if (err) { return res.send(err).status(500).end(); }
+        return res.json(consolidate(entities, findStaticByIds(ids)));
+    });
 });
 
 router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id, 10);
-    const entity = staticDb.entities.find(entityCandidate => entityCandidate.id === id);
 
-    if (entity) {
-        res.json(entity);
-    } else {
-        res.status(404).end();
-    }
+    return EntityModel.findOne({ id: id }, (err, entity) => {
+        if (err) { return res.send(err).status(500).end(); }
+        const staticEntity = findStaticById(id);
+        populateFromSchema(entity, staticEntity);
+        return res.json(staticEntity);
+    });
 });
 
 router.post("/", (req, res) => {
-    const entityIndex = getEntityIndex(req.body.id);
-    if (entityIndex > -1) {
-        entityJson[entityIndex] = req.body;
-    } else {
-        entityJson.push(req.body);
-    }
-    return fs.writeFile(entityJsonPath, JSON.stringify(entityJson), (err) => {
-        if (err) {
-            return res.status(500).end();
-        }
-        consolidate(staticDb.entities);
+    EntityModel.findOneAndUpdate({ id: req.body.id }, req.body, { upsert: true}, (err) => {
+        if (err) { return res.send(err).status(500).end(); }
         return res.status(200).end();
     });
 });

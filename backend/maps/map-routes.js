@@ -2,75 +2,60 @@
 
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
-const path = require("path");
-const mapJsonPath = path.resolve(__dirname, "./maps.json");
-const mapJson = require(mapJsonPath);
-const staticDb = require("../static-db");
+const staticMapDb = require("../static-db").maps;
+const MapModel = require("./map.model");
 
-const getMapIndex = (id) => {
-    id = parseInt(id, 10);
-    return mapJson.findIndex(map => map.id === id);
+const populateFromSchema = (dynamicMap, staticMap) => {
+    if (!dynamicMap) { return; }
+    Object.keys(MapModel.schema.obj).forEach(key => staticMap[key] = dynamicMap[key]);
 };
 
-const consolidate = (staticMaps) => {
-    staticMaps.forEach(staticMap => {
-        const mapDb = mapJson.find(map => map.id === staticMap.id);
-        if (mapDb) { Object.keys(mapDb).forEach(key => staticMap[key] = mapDb[key]); }
-    });
+const consolidate = (dynamicMaps, staticMaps) => {
+    return staticMaps.map(staticMap => {
+        const dynamicMap = dynamicMaps.find(map => map.id === staticMap.id);
+        if (dynamicMap) { populateFromSchema(dynamicMap, staticMap); }
+        return staticMap;
+    }).sort((a, b) => a.id - b.id);
 };
 
-consolidate(staticDb.maps);
+const findStaticById = (id) => {
+    return staticMapDb.filter(map => map.id === id)[0];
+};
+
+const findStaticByIds = (ids) => {
+    if (!ids) { return staticMapDb; }
+    return staticMapDb.filter(map => ids.some(id => id === map.id));
+};
 
 router.get("/", (req, res) => {
-    if (!req.query || !req.query.id) {
-        return res.json(staticDb.maps);
+    let query = {};
+    let ids;
+    if (req.query && req.query.id) {
+        if (!(req.query.id instanceof Array)) { req.query.id = [req.query.id]; }
+        ids = req.query.id.map(id => parseInt(id, 10));
+        query = { id: { $in: ids }};
     }
 
-    if (req.query.id) {
-        if (!(req.query.id instanceof Array)) { req.query.id = [req.query.id]; }
-        const ids = req.query.id.map(id => parseInt(id, 10));
-        return res.json(staticDb.maps.filter(map => ids.some(id => map.id === id)));
-    }
+    return MapModel.find(query, (err, maps) => {
+        if (err) { return res.send(err).status(500).end(); }
+        return res.json(consolidate(maps, findStaticByIds(ids)));
+    });
 });
 
 router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id, 10);
-    const map = staticDb.maps.find(mapCandidate => mapCandidate.id === id);
 
-    if (map) {
-        res.json(map);
-    } else {
-        res.status(404).end();
-    }
-});
-
-router.get("/type/:type", (req,res) => {
-    const typeMaps = staticDb.maps.filter(map => map.type === req.params.type);
-    if (!req.query || !req.query.id) {
-        return res.json(typeMaps);
-    }
-    let ids;
-    if (req.query.id && req.query.id instanceof Array) {
-        ids = req.query.id.map(id => parseInt(id, 10));
-    } else {
-        ids = [parseInt(req.query.id, 10)];
-    }
-    return res.json(typeMaps.filter(map => ids.some(id => map.id === id)));
+    return MapModel.findOne({ id: id }, (err, map) => {
+        if (err) { return res.send(err).status(500).end(); }
+        const staticMap = findStaticById(id);
+        populateFromSchema(map, staticMap);
+        return res.json(staticMap);
+    });
 });
 
 router.post("/", (req, res) => {
-    const mapIndex = getMapIndex(req.body.id);
-    if (mapIndex > -1) {
-        mapJson[mapIndex] = req.body;
-    } else {
-        mapJson.push(req.body);
-    }
-    return fs.writeFile(mapJsonPath, JSON.stringify(mapJson), (err) => {
-        if (err) {
-            return res.status(500).end();
-        }
-        consolidate(staticDb.maps);
+    MapModel.findOneAndUpdate({ id: req.body.id }, req.body, { upsert: true}, (err) => {
+        if (err) { return res.send(err).status(500).end(); }
         return res.status(200).end();
     });
 });

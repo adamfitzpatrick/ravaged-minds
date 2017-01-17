@@ -53,7 +53,9 @@
     "yargs": "^6.5.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.7.22",
     "bcrypt": "^1.0.2",
+    "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
@@ -61,6 +63,8 @@
     "imagemin": "^5.2.2",
     "imagemin-pngquant": "^5.0.0",
     "jsonwebtoken": "^7.2.1",
+    "mongodb-backup": "^1.6.9",
+    "mongoose": "^4.7.7",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "rimraf": "^2.5.4",

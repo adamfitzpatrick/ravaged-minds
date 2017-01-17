@@ -7,7 +7,8 @@ const LINK_TYPE_ICONS = {
 };
 
 export class Note {
-    id: string;
+    // tslint:disable:variable-name
+    _id: string;
     note: string;
     date: Date;
     linkId: number;
@@ -16,8 +17,8 @@ export class Note {
     constructor(note: string, linkId: number, linkType: LinkType);
     constructor(note: Note);
     constructor(note: any, linkId?: number, linkType?: LinkType) {
-        if (note.id) {
-            this.id = note.id;
+        if (note._id) {
+            this._id = note._id;
             this.note = note.note;
             this.linkType = note.linkType;
             this.linkId = note.linkId;

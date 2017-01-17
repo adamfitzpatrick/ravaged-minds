@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const yargs = require("yargs").argv;
+const mongoose = require("mongoose");
+const schedule = require("node-schedule");
 
 const env = yargs.env || "prod";
 const appConfig = require("./app-config.json")[env];
@@ -15,6 +17,9 @@ module.exports = () => {
     "use strict";
 
     require("./stage-images")();
+
+    mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
+    //schedule.scheduleJob("0 1 * * * *", require("./db-backup/db-backup"));
 
     const app = express();
 
@@ -31,7 +36,6 @@ module.exports = () => {
     app.use("/entities", require("./entities/entity-routes"));
     app.use("/notes", require("./notes/note-routes"));
     app.use("/synopses", require("./synopses/synopsis-routes"));
-    app.use("/players", require("./players/player-routes"));
 
     app.listen(appConfig.port);
     console.log(`\nServer listening on http://localhost:${appConfig.port}.`)
