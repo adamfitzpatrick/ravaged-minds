@@ -1,4 +1,3 @@
-const http2 = require("spdy");
 const fs = require("fs");
 const path = require("path");
 const express = require("express");
@@ -12,6 +11,7 @@ const schedule = require("node-schedule");
 const env = yargs.env || "prod";
 const appConfig = require("./app-config.json")[env];
 const gatekeeper = require("./authentication/gatekeeper");
+const dbBackup = require("./db-backup/db-backup");
 
 module.exports = () => {
     "use strict";
@@ -19,7 +19,12 @@ module.exports = () => {
     require("./stage-images")();
 
     mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
-    //schedule.scheduleJob("0 1 * * * *", require("./db-backup/db-backup"));
+    schedule.scheduleJob("* */4 * * *", () => {
+        console.log(`\nStarting DB Backup... at ${new Date().toISOString()}`);
+        dbBackup().then(() => {
+            console.log(`DB Backup complete.\n`);
+        });
+    });
 
     const app = express();
 

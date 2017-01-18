@@ -24,17 +24,16 @@ const backupData = {};
 const backupCollection = (collection) => {
     promises.push(collection.model.findAsync().then(docs => {
         backupData[collection.name] = docs;
-        console.log(`Done reading ${collection.name}.`);
+        // console.log(`Done reading ${collection.name}.`);
     }));
 };
 
 module.exports = () => {
-    // mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
     collections.forEach(collection => backupCollection(collection));
 
-    Promise.all(promises).then(() => {
+    return Promise.all(promises).then(() => {
         fs.writeFileSync(path.resolve(__dirname, "./ravaged-minds-db-backup.json"), JSON.stringify(backupData));
-        console.log("Backup file written.");
-        dbS3.writeBackup();
+        // console.log("Backup file written.");
+        return dbS3.writeBackup();
     });
 }

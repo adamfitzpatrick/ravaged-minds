@@ -25,7 +25,7 @@ const readBackup = () => {
 const writeBackup = () => {
     writeParams.Body = fs.readFileSync(filePath);
     return s3.putObjectAsync(writeParams).then(data => {
-        console.log(`DB backup file written from ${filePath}`);
+        //console.log(`DB backup file written from ${filePath}\n`);
         return data;
     });
 };
