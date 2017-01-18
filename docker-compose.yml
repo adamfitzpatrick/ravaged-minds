@@ -1,0 +1,19 @@
+version: "2"
+services:
+  app:
+    build: .
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - JWT_SECRET
+      - RAVAGED_MINDS_PRODUCTION=true
+    ports:
+      - "80:3012"
+    command: /opt/app/docker-run.sh
+  mongo:
+    image: mongo:latest
+    command: --smallfiles --rest --noauth

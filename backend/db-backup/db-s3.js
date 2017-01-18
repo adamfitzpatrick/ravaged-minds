@@ -5,7 +5,7 @@ const bluebird = require("bluebird");
 const s3 = bluebird.promisifyAll(new AWS.S3());
 const fs = require("fs");
 const path = require("path");
-
+const yargs = require("yargs");
 const filePath = path.resolve(__dirname, "./ravaged-minds-db-backup.json");
 
 const params = { Bucket: "ravaged-minds", Key: "ravaged-minds-db-backup.json" };
@@ -17,7 +17,7 @@ AWS.config.update({
 
 const readBackup = () => {
     return s3.getObjectAsync(params).then(data => {
-        console.log(`DB backup file loaded to ${filePath}`);
+        // console.log(`DB backup file loaded to ${filePath}`);
         return fs.writeFileSync(filePath, data.Body);
     });
 };

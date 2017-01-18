@@ -39,7 +39,7 @@ const externals = [
     "angular"
 ];
 
-if (process.argv[1].indexOf("webpack-dev-server") !== -1 || flags.run !== false) {
+if (process.argv[1].indexOf("webpack-dev-server") !== -1) {
     startServer();
 }
 
@@ -69,7 +69,7 @@ module.exports = {
     },
     devServer: {
         port: 7010,
-        proxy: {"*": { target: "http://localhost:3012" } }
+        proxy: {"*": { target: "http://0.0.0.0:3012" } }
     },
     tslint: {
         emitErrors: true,

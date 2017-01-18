@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const express = require("express");
 const hashedPasswords = require("./hashed-passwords.json");
-const secret = require("./jwt-secret.json").secret;
+const secret = process.env.JWT_SECRET;
 
 const router = express.Router();
 

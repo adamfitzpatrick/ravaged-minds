@@ -1,0 +1,9 @@
+version: "2"
+services:
+  app:
+    volumes:
+      - .:/opt/app/
+    environment:
+      - RAVAGED_MINDS_PRODUCTION=false
+    ports:
+      - "7010:7010"

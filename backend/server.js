@@ -8,24 +8,11 @@ const yargs = require("yargs").argv;
 const mongoose = require("mongoose");
 const schedule = require("node-schedule");
 
-const env = yargs.env || "prod";
-const appConfig = require("./app-config.json")[env];
 const gatekeeper = require("./authentication/gatekeeper");
+const dbRestore = require("./db-backup/db-restore");
 const dbBackup = require("./db-backup/db-backup");
 
-module.exports = () => {
-    "use strict";
-
-    require("./stage-images")();
-
-    mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
-    schedule.scheduleJob("* */4 * * *", () => {
-        console.log(`\nStarting DB Backup... at ${new Date().toISOString()}`);
-        dbBackup().then(() => {
-            console.log(`DB Backup complete.\n`);
-        });
-    });
-
+const startBackendApplication = () => {
     const app = express();
 
     app.use(helmet());
@@ -42,6 +29,29 @@ module.exports = () => {
     app.use("/notes", require("./notes/note-routes"));
     app.use("/synopses", require("./synopses/synopsis-routes"));
 
-    app.listen(appConfig.port);
-    console.log(`\nServer listening on http://localhost:${appConfig.port}.`)
+    app.listen(3012);
+    console.log(`\nServer listening on port 3012.`)
+};
+
+module.exports = () => {
+    "use strict";
+
+    require("./stage-images")();
+
+    mongoose.connect("mongodb://mongo/ravaged_minds");
+
+    dbRestore().then(() => {
+        schedule.scheduleJob("* */4 * * *", () => {
+            console.log(`\nStarting DB Backup... at ${new Date().toISOString()}`);
+            dbBackup().then(() => {
+                console.log(`DB Backup complete.\n`);
+            }).catch(err => {
+                console.log(err);
+            });
+        });
+        startBackendApplication();
+    }).catch(err => {
+        console.log(err);
+        startBackendApplication();
+    });
 };
