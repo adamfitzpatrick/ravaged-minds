@@ -39,7 +39,7 @@ const externals = [
     "angular"
 ];
 
-if (process.argv[1].indexOf("webpack-dev-server") !== -1 || flags.run !== false) {
+if (process.argv[1].indexOf("webpack-dev-server") !== -1) {
     startServer();
 }
 

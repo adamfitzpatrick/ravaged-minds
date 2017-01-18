@@ -4,28 +4,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const yargs = require("yargs").argv;
 const mongoose = require("mongoose");
 const schedule = require("node-schedule");
 
-const env = yargs.env || "prod";
-const appConfig = require("./app-config.json")[env];
 const gatekeeper = require("./authentication/gatekeeper");
+const dbRestore = require("./db-backup/db-restore");
 const dbBackup = require("./db-backup/db-backup");
 
-module.exports = () => {
-    "use strict";
+port = 3012;
+if (process.env.PRODUCTION && process.env.PRODUCTION !== "false") { port = 80; }
 
-    require("./stage-images")();
-
-    mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
-    schedule.scheduleJob("* */4 * * *", () => {
-        console.log(`\nStarting DB Backup... at ${new Date().toISOString()}`);
-        dbBackup().then(() => {
-            console.log(`DB Backup complete.\n`);
-        });
-    });
-
+const startBackendApplication = () => {
     const app = express();
 
     app.use(helmet());
@@ -42,6 +31,29 @@ module.exports = () => {
     app.use("/notes", require("./notes/note-routes"));
     app.use("/synopses", require("./synopses/synopsis-routes"));
 
-    app.listen(appConfig.port);
-    console.log(`\nServer listening on http://localhost:${appConfig.port}.`)
+    app.listen(port);
+    console.log(`\nServer listening on port ${port}.`)
+};
+
+module.exports = () => {
+    "use strict";
+
+    require("./stage-images")();
+
+    mongoose.connect("mongodb://127.0.0.1:27017/ravaged_minds");
+
+    dbRestore().then(() => {
+        schedule.scheduleJob("* */4 * * *", () => {
+            console.log(`\nStarting DB Backup... at ${new Date().toISOString()}`);
+            dbBackup().then(() => {
+                console.log(`DB Backup complete.\n`);
+            }).catch(err => {
+                console.log(err);
+            });
+        });
+        startBackendApplication();
+    }).catch(err => {
+        console.log(err);
+        startBackendApplication();
+    });
 };

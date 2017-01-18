@@ -23,16 +23,10 @@ const promises = [];
 
 const restoreCollection = (collection) => {
     const collectionPromises = [];
-    const data = restoreData[collection.name]
     restoreData[collection.name].forEach(doc => {
-        collectionPromises.push(collection.model
-            .findByIdAndUpdateAsync(doc._id, doc, { upsert: true }).then(() => {
-            console.log(`${collection.name} ${doc._id} restored.`);
-        }));
+        collectionPromises.push(collection.model.findByIdAndUpdateAsync(doc._id, doc, { upsert: true }));
     });
-    return Promise.all(collectionPromises).then(() => {
-        console.log(`Done restoring ${collection.name}.`);
-    })
+    return Promise.all(collectionPromises)
 };
 
 const cleanDocs = (collection) => {
@@ -41,17 +35,20 @@ const cleanDocs = (collection) => {
     });
 };
 
-mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
+// mongoose.connect("mongodb://127.0.0.1/ravaged_minds");
 
-promises.push(dbS3.readBackup().then(() => {
-    const filePath = path.resolve(__dirname, "./ravaged-minds-db-backup.json");
-    restoreData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    Object.keys(restoreData).forEach(key => {
-        cleanDocs(restoreData[key]);
+module.exports = () => {
+    console.log("\nRestoring DB data.");
+    promises.push(dbS3.readBackup().then(() => {
+        const filePath = path.resolve(__dirname, "./ravaged-minds-db-backup.json");
+        restoreData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        Object.keys(restoreData).forEach(key => {
+            cleanDocs(restoreData[key]);
+        });
+        return collections.forEach(collection => restoreCollection(collection));
+    }));
+
+    return Promise.all(promises).then(() => {
+        console.log("Finished restoring data.\n");
     });
-    collections.forEach(collection => restoreCollection(collection));
-}));
-
-Promise.all(promises).then(() => {
-    console.log("Finished restoring data.");
-});
+}
