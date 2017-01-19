@@ -48,7 +48,7 @@ export class NoteController {
     }
 
     showLinkableSelect(): boolean {
-        return this.note.linkType && (
+        return this.note && this.note.linkType && (
                 (this.note.linkType === "story" && !!this.stories) ||
                 (this.note.linkType === "entity" && !!this.entities) ||
                 (this.note.linkType === "map" && !!this.maps)

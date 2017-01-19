@@ -1,0 +1,23 @@
+id: 4
+name: The Old Main In The Box
+size: medium
+type: humanoid
+subType: human
+imageUrl: /images/old_man_in_box.jpg
+aligment: Chaotic Good
+armorClass: 8
+speed: 20
+hitPoints: 4
+strength: 7
+dexterity: 8
+constitution: 8
+intelligence: 11
+wisdom: 13
+charisma: 10
+senses:
+  - passive perception 10
+languages:
+  - None
+challenge: 0
+skills:
+actions:

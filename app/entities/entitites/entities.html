@@ -1,11 +1,23 @@
 <div class="entities" md-theme="content_page">
     <div class="entities__wrapper">
         <md-content ng-if="!vm.selectedEntity">
+            <div class="entities-search-bar" md-whiteframe="4">
+                <label class="entities-search-bar__label" for="search-input">Search:</label>
+                <md-input-container class="login__password">
+                    <input
+                        id="search-input"
+                        class="entities-search-bar__input"
+                        type="text"
+                        placeholder="Type entity name to search"
+                        ng-model="vm.nameSearch"
+                    />
+                </md-input-container>
+            </div>
             <md-list>
                 <md-list-item
                     player-visible="{{ entity.playerVisible }}"
                     class="md-2-line md-clickable"
-                    ng-repeat="entity in vm.entities | orderBy: 'name'"
+                    ng-repeat="entity in vm.filteredEntities | orderBy:vm.getName"
                     ng-href="#/entities/{{ entity.id }}"
                 >
                     <img class="md-avatar" ng-src="{{ entity.imageUrl }}"/>

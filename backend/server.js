@@ -12,7 +12,11 @@ const dbRestore = require("./db-backup/db-restore");
 const dbBackup = require("./db-backup/db-backup");
 
 port = 3012;
-if (process.env.PRODUCTION && process.env.PRODUCTION !== "false") { port = 80; }
+let scheduleString = "*/10 * * * *";
+if (process.env.PRODUCTION && process.env.PRODUCTION !== "false") {
+    port = 80;
+    scheduleString = "* */4 * * *';"
+}
 
 const startBackendApplication = () => {
     const app = express();
@@ -43,7 +47,7 @@ module.exports = () => {
     mongoose.connect("mongodb://127.0.0.1:27017/ravaged_minds");
 
     dbRestore().then(() => {
-        schedule.scheduleJob("* */4 * * *", () => {
+        schedule.scheduleJob(scheduleString, () => {
             console.log(`\nStarting DB Backup... at ${new Date().toISOString()}`);
             dbBackup().then(() => {
                 console.log(`DB Backup complete.\n`);

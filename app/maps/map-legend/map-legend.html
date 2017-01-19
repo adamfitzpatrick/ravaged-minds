@@ -4,16 +4,34 @@
     layout="row"
 >
     <div
-        ng-repeat="(column, rows) in vm.icons"
-        layout="column"
+        ng-if="vm.icon.subGroup"
+        ng-repeat="icon in vm.icon.subGroup"
         class="map-legend__column"
+        layout="column"
+        flex
     >
         <div
-            ng-repeat="(row, icon) in rows"
+            ng-if="icon.subGroup"
+            ng-repeat="row in icon.subGroup"
             class="map-legend__item"
         >
-            <i class="material-icons map-legend__icon">{{ icon }}</i>
-            {{ row | capitalize }} {{ column | capitalize }}
+            <i class="material-icons map-legend__icon">{{ row.icon}}</i>
+            <span ng-if="row.label">{{ row.name | capitalize }}</span>
+            <span ng-if="icon.label">{{ icon.name | capitalize }}</span>
         </div>
+        <div
+            ng-if="!icon.subGroup"
+            class="map-legend__item"
+        >
+            <i class="material-icons map-legend__icon">{{ icon.icon }}</i>
+            <span ng-if="icon.label">{{ icon.name }}</span>
+        </div>
+    </div>
+    <div
+        ng-if="!vm.icon.subGroup"
+        class="map-legend__column map-legend__item"
+    >
+        <i class="material-icons map-legend__icon">{{ vm.icon.icon }}</i>
+        <span ng-if="vm.icon.label">{{ vm.icon.name }}</span>
     </div>
 </div>

@@ -123,9 +123,10 @@
         </md-fab-speed-dial>
 
         <div ng-if="vm.showLegend" class="map__legend">
-            <map-legend ng-if="vm.details.length" icons="vm.icons.detail"></map-legend>
-            <map-legend ng-if="vm.cities.length" icons="vm.icons.city"></map-legend>
-            <map-legend ng-if="vm.sites.length" icons="vm.icons.site"></map-legend>
+            <map-legend ng-if="vm.areas.length" top-level="area"></map-legend>
+            <map-legend ng-if="vm.cities.length" top-level="city"></map-legend>
+            <map-legend ng-if="vm.sites.length" top-level="site"></map-legend>
+            <map-legend ng-if="vm.encounters.length" top-level="encounter"></map-legend>
         </div>
     </div>
 </div>

@@ -15,4 +15,13 @@
         line-height: 1.5;
         width: 10vw;
     }
+
+    &-search-bar {
+        padding: 0 1rem;
+        font-size: 0.8rem;
+
+        &__label { display: none; }
+
+        .md-errors-spacer { display: none; }
+    }
 }

@@ -1,0 +1,38 @@
+id: 6
+name: Imperial Mage I
+size: medium
+type: humanoid
+subType: human
+imageUrl: /images/mage-1.png
+aligment: Lawful Neutral
+armorClass: 14
+speed: 30
+hitPoints: 19
+strength: 11
+dexterity: 13
+constitution: 15
+intelligence: 17
+wisdom: 11
+charisma: 12
+senses:
+  - passive perception 12
+languages:
+  - Common
+challenge: 2 (450 XP)
+skills:
+  - Arcana +5
+  - Intimidation +3
+actions:
+  -
+    - Quarterstaff
+    - "Melee Weapon Attack +2 to hit, reach 5 ft, one target. Hit: 3 (1d6 +0 ) bludgeoning damage."
+spells:
+  - Mage Hand
+  - Ray of Frost
+  - Prestidigitation
+  - Burning Hands
+  - Magic Missile
+  - Thunderwave
+  - Mage Armor
+  - Melf's Acid Arrow
+  - Web

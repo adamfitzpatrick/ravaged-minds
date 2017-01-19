@@ -10,11 +10,11 @@ const handleErr = (err, res) => {
 };
 
 router.get("/", (req, res) => {
-    let query = {};
-    if (req.query && req.query.id) {
-        if (!(req.query.id instanceof Array)) { req.query.id = [req.query.id]; }
+    let query = req.query;
+    if (query && query.id) {
+        if (!(query.id instanceof Array)) { query.id = [query.id]; }
         const ids = req.query.id.map(id => parseInt(id, 10));
-        query = { id: { $in: ids }};
+        query.id = { $in: ids };
     }
     return NoteModel.find(query, (err, notes) => {
         if (err) { return handleErr(err, res); }
@@ -23,21 +23,21 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:idOrType", (req, res) => {
-    const id = parseInt(req.params.idOrType, 10);
-    if (id === id) {
-        return NoteModel.findOne({ id }, (err, note) => {
+    const idOrType = req.params.idOrType;
+    if (idOrType === "entity" || idOrType === "story" || idOrType === "map") {
+        return NoteModel.find({ linkType: idOrType }, (err, notes) => {
             if (err) { return handleErr(err, res); }
-            return res.json(note);
+            return res.json(notes);
         });
     }
-    return NoteModel.find({ type: req.params.idOrType }, (err, notes) => {
+    return NoteModel.findById(idOrType, (err, note) => {
         if (err) { return handleErr(err, res); }
-        return res.json(notes);
+        return res.json(note);
     });
 });
 
 router.post("/", (req, res) => {
-    if (!req.body._id) { req.body._id = mongoose.Types.ObjectId(); }
+    if (!req.body._id) { req.body._id = ObjectId(); }
     NoteModel.findByIdAndUpdate(req.body._id, req.body, { upsert: true }, (err) => {
         if (err) { return handleErr(err, res); }
         return res.status(200).end();

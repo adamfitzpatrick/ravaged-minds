@@ -1,0 +1,34 @@
+id: 3
+major: true
+activities:
+- Sneak
+- Fight
+from:
+- 1
+to:
+- 4
+title: 'Up The Ridge'
+tagline: 'On The Run'
+synopsis: 'Trapped by Imperial Forces at the base of the ridge, Our Hero escapes to the steppes above.'
+entities:
+- 3
+- 8
+maps:
+- 1
+content: >
+  <p class="story-detail__content--p">
+    If the player remains concealed near the top of the ridge for a few hours, she will get to observe
+    Margrave Callister bombard the ridge from above.
+  </p>
+  <p>
+    Possible opportunity to learn about penny riders (transport spheres), and the Empires growing power
+    and plans for the slave trade.
+  </p>
+  <p>
+    Opportunity to get a horse, if she takes down a guard on patrol.
+  </p>
+  <p>
+    If the player attempts to take on Callister, she will be captured and sent to the front.
+  </p>
+
+

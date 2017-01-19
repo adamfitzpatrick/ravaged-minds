@@ -1,0 +1,33 @@
+id: 4
+major: false
+activities:
+- Sneak
+- Fight
+- Investigate
+from:
+- 3
+to: []
+title: 'On The Steppes'
+tagline: 'Out in the cold, no where to go'
+synopsis: 'Cut off from civilization by both imperial forces and the harsh environment, Our Hero ponders her next move.'
+entities:
+- 3
+- 7
+- 9
+maps:
+- 1
+content: >
+  <p class="story-detail__content--p">
+    The player may see smoke in the distance; this will lead her to Gram Trevils.
+  </p>
+  <p>
+    If the player is not cautious, she may be waylaid by imperial guards
+  </p>
+  <p>
+    If the player attempts to navigate around to descend from the steppes, she will have a random encounter with kobolds.
+  </p>
+  <p>
+    The player can return to civilization to the east by circling the ridge to the north (3 days) or to the south (5 days).
+  </p>
+
+

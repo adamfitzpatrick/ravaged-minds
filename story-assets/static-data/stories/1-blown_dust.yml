@@ -1,0 +1,52 @@
+id: 1
+major: true
+activities:
+- Sneak
+- Fight
+from: []
+to:
+- 2
+- 3
+title: 'Blown Dust'
+tagline: 'From simple raid to mystery and menace.'
+synopsis: 'Our hero works to harass slavers and the war effort, only to discover a hidden prisoner with strange and dangerous powers.'
+entities:
+- 3
+- 4
+- 5
+- 6
+maps:
+- 1
+content: >
+  <p class="story-detail__content--first-p">
+    Our story begins on a hazy day in mid August.  This far north, the wind blows with chilling
+    effect even at this time of year, and storms are liable to roll up out of the tundra to the north.
+  </p>
+  <p>
+    The player is commissioned by Toten Ode to intercept a singlular shipment coming down the
+    Keelibaus Ridge.  It seems like a simple enough assignment - ambush the cart at an advantageous
+    point during its descent of the ridge, kill the guards and take the cargo.  At this point, Ode
+    doesn't know what the cargo is, only that it is not the usual transport of fresh slaves that
+    comes down the ridge from the steppes above.
+  </p>
+  <p>
+    All is not as it seems, though.  The shipment is protected by outriders who will make a proper
+    ambush difficult, as they will warn the soldiers guarding the cart of any attack.  Additionally,
+    the cart is protected not only by the usual complement of mounted guards and foot soldiers, but
+    by a wizard, as well.
+  </p>
+  <p>
+    Two mounted imperial guards lead the cart by a distance of approximately 100 yards, prepared to
+    warn the van of any attempted ambush.  Two more guards ride in the cart, with two more mounted
+    guardsman protecting the rear.
+  </p>
+  <p>
+    The cargo is tied down to the center of the cart, consisting of a single large steel cell.
+    Inside is an old man of unknown origin; from the demeanor of the guards and (especially) the
+    wizard, it is clear that the old man is seen as a significant and unpredictable threat.  There
+    is a significant chance (as needed to keep the encounter balanced for the player) that the old
+    man has cause a collapse of the roadway during the caravan's descent of the ridge, costing the
+    lives of one or more guards.
+  </p>
+
+

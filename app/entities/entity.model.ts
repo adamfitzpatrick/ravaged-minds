@@ -21,6 +21,8 @@ export class Entity {
     wisdom: number;
     charisma: number;
     damageResistance: string[];
+    proficiency: string;
+    savingThrows: string[];
     senses: string[];
     languages: string[];
     challenge: number;
@@ -49,6 +51,8 @@ export class Entity {
         this.wisdom = entity.wisdom;
         this.charisma = entity.charisma;
         this.damageResistance = entity.damageResistance;
+        this.proficiency = entity.proficiency;
+        this.savingThrows = entity.savingThrows;
         this.senses = entity.senses;
         this.languages = entity.languages;
         this.challenge = entity.challenge;

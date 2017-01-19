@@ -28,6 +28,7 @@ const cdnResources = {
         "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic",
         "https://fonts.googleapis.com/css?family=Cinzel",
         "https://fonts.googleapis.com/css?family=IM+Fell+French+Canon:400i",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro",
         "https://fonts.googleapis.com/icon?family=Material+Icons"
     ],
     css: [

@@ -28,10 +28,13 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
 }
 
 .content-page {
+    font-family: $serif;
     display: block;
     height: calc(100vh - #{$header-height});
     width: 80vw;
     margin: 0 10vw;
+
+    &--reader { font-family: $serif; }
 
     &--wrapped {
         height: 100%;

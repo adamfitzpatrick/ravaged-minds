@@ -1,0 +1,45 @@
+id: 5
+name: Toten Ode
+size: medium
+type: humanoid
+subType: human
+imageUrl: /images/toten_ode.jpg
+aligment: Chaotic Neutral
+armorClass: 11
+speed: 30
+hitPoints: 11
+strength: 9
+dexterity: 11
+constitution: 13
+intelligence: 11
+wisdom: 13
+charisma: 15
+senses:
+  - passive perception 10
+languages:
+  - Common
+challenge: 1/8 (25 XP)
+skills:
+  - Perception +2
+  - Insight +2
+  - Persuasion +4
+actions:
+  -
+    - Dagger
+    - "Melee Weapon Attack +2 to hit, range 20/60, one target. Hit: 2 (1d4 +0 ) piercing damage."
+descriptions:
+-
+  - Zealous Amateur
+  - >
+    <p>Toten Ode combines his hatred of the empire with an over-blown sense of self-importance and
+    extreme naiveté into a potent package of amateurish, mostly ineffective spycraft oriented
+    towards fostering a nascent dissident element in the area.</p>
+    <p>In reality, there are a number of local dissidents who cause the empire no end of trouble.
+    These individuals make use of Ode from time to time in order to place misinformation in the
+    hands of imperial agents.  Indeed, likely the only reason Ode has not been arrested is that
+    local security forces believe him to be a use conduit for dissident activities.  Imperial agents
+    are rapidly becoming wise to the fact that Ode is not actually trusted with any information of
+    real value, though, so his days are probably numbered.
+    <p>At least one time, though, Toten Ode somehow manages to obtain information which is clearly
+    dangerous to the Empire.  With typically awful spycraft, he passes this information on to the
+    player, and thus our story begins.</p>

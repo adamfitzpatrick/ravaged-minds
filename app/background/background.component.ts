@@ -10,6 +10,8 @@ export class BackgroundController {
         this.synopsisService.get().then(this.loadSynopses);
     }
 
+    getTitle(synopsis: Synopsis) { return synopsis.title.replace(/^the /i, ""); }
+
     private loadSynopses = (synopses: Synopsis[]) => {
         this.synopses = synopses;
     }

@@ -2,7 +2,7 @@ id: 1
 name: Duergar
 size: medium
 type: humanoid
-imageUrl: /images/duergar.png
+imageUrl: /images/duergar.jpg
 subType: dwarf
 aligment: lawful evil
 armorClass: 16

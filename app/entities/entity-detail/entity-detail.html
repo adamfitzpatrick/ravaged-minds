@@ -54,6 +54,13 @@
                 <div><strong>Armor Class</strong> {{ vm.entity.armorClass }}</div>
                 <div><strong>Hit Points</strong> {{ vm.entity.hitPoints }}</div>
                 <div><strong>Speed</strong> {{ vm.entity.speed }} ft.</div>
+                <div><strong>Proficiency</strong> {{ vm.entity.proficiency }}</div>
+                <div>
+                    <strong>Saving Throws</strong>
+                    <span ng-repeat="savingThrow in vm.entity.savingThrows">
+                        {{ savingThrow }}<span ng-if="!$last">, </span>
+                    </span>
+                </div>
             </div>
             <div flex="60">
                 <div>
