@@ -20,80 +20,123 @@
         </md-button>
     </md-toolbar>
 
-    <md-content class="content-page__content">
+    <md-content class="content-page__content content-page__content--condensed">
         <img class="entity-detail__image" ng-src="{{ vm.entity.imageUrl}}"/>
+
+        <md-divider></md-divider>
+
         <div class="entity-detail__abilities" layout="row">
-            <div class="entity-detail__ability" layout="column" layout-align="center center">
-                <div><strong>STR</strong></div>
-                <div>{{ vm.entity.strength }}</div>
+            <div class="entity-ability" layout="column" layout-align="center center" flex>
+                <div class="entity-ability__label">STR</div>
+                <div class="entity-ability__value">{{ vm.entity.strength }}</div>
             </div>
-            <div class="entity-detail__ability" layout="column" layout-align="center center">
-                <div><strong>DEX</strong></div>
-                <div>{{ vm.entity.dexterity }}</div>
+            <div class="entity-ability" layout="column" layout-align="center center" flex>
+                <div class="entity-ability__label">DEX</div>
+                <div class="entity-ability__value">{{ vm.entity.dexterity }}</div>
             </div>
-            <div class="entity-detail__ability" layout="column" layout-align="center center">
-                <div><strong>CON</strong></div>
-                <div>{{ vm.entity.constitution }}</div>
+            <div class="entity-ability" layout="column" layout-align="center center" flex>
+                <div class="entity-ability__label">CON</div>
+                <div class="entity-ability__value">{{ vm.entity.constitution }}</div>
             </div>
-            <div class="entity-detail__ability" layout="column" layout-align="center center">
-                <div><strong>INT</strong></div>
-                <div>{{ vm.entity.intelligence }}</div>
+            <div class="entity-ability" layout="column" layout-align="center center" flex>
+                <div class="entity-ability__label">INT</div>
+                <div class="entity-ability__value">{{ vm.entity.intelligence }}</div>
             </div>
-            <div class="entity-detail__ability" layout="column" layout-align="center center">
-                <div><strong>WIS</strong></div>
-                <div>{{ vm.entity.wisdom }}</div>
+            <div class="entity-ability" layout="column" layout-align="center center" flex>
+                <div class="entity-ability__label">WIS</div>
+                <div class="entity-ability__value">{{ vm.entity.wisdom }}</div>
             </div>
-            <div class="entity-detail__ability" layout="column" layout-align="center center">
-                <div><strong>CHA</strong></div>
-                <div>{{ vm.entity.charisma }}</div>
+            <div class="entity-ability" layout="column" layout-align="center center" flex>
+                <div class="entity-ability__label">CHA</div>
+                <div class="entity-ability__value">{{ vm.entity.charisma }}</div>
             </div>
         </div>
 
-        <div class="entity-detail__specs" layout="row">
+        <md-divider></md-divider>
+
+        <div class="entity-specs" layout="row">
             <div flex="40">
-                <div><strong>Armor Class</strong> {{ vm.entity.armorClass }}</div>
-                <div><strong>Hit Points</strong> {{ vm.entity.hitPoints }}</div>
-                <div><strong>Speed</strong> {{ vm.entity.speed }} ft.</div>
-                <div><strong>Proficiency</strong> {{ vm.entity.proficiency }}</div>
-                <div>
-                    <strong>Saving Throws</strong>
-                    <span ng-repeat="savingThrow in vm.entity.savingThrows">
-                        {{ savingThrow }}<span ng-if="!$last">, </span>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="50">Armor Class</span>
+                    <span class="entity-specs__value">{{ vm.entity.armorClass }}</span>
+                </div>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="50">Hit Points</span>
+                    <span class="entity-specs__value">{{ vm.entity.hitPoints }}</span>
+                </div>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="50">Speed</span>
+                    <span class="entity-specs__value">{{ vm.entity.speed }} ft.</span>
+                </div>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="50">Proficiency</span>
+                    <span class="entity-specs__value">{{ vm.entity.proficiency }}</span>
+                </div>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="50">Saving Throws</span>
+                    <span class="entity-specs__value">
+                        <span ng-repeat="savingThrow in vm.entity.savingThrows">
+                            {{ savingThrow }}<span ng-if="!$last"><br/></span>
+                        </span>
                     </span>
                 </div>
             </div>
             <div flex="60">
-                <div>
-                    <strong>Damage Resistances</strong>
-                    <span ng-repeat="resistance in vm.entity.damageResistance">{{ resistance }}<span ng-if="!$last">, </span></span>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="40">Damage Resistances</span>
+                    <span class="entity-specs__value">
+                        <span ng-repeat="resistance in vm.entity.damageResistance">
+                            {{ resistance }}<span ng-if="!$last">,<br/></span>
+                        </span>
+                    </span>
                 </div>
-                <div><strong>Senses</strong>
-                    <span ng-repeat="sense in vm.entity.senses">{{ sense }}<span ng-if="!$last">, </span></span>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="40">Senses</span>
+                    <span class="entity-specs__value">
+                        <span ng-repeat="sense in vm.entity.senses">
+                            {{ sense }}<span ng-if="!$last">,<br/></span>
+                        </span>
+                    </span>
                 </div>
-                <div><strong>Languages</strong>
-                    <span ng-repeat="language in vm.entity.languages">{{ language }}<span ng-if="!$last">, </span></span>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="40">Languages</span>
+                    <span class="entity-specs__value">
+                        <span ng-repeat="language in vm.entity.languages">
+                            {{ language }}<span ng-if="!$last">,<br/></span>
+                        </span>
+                    </span>
                 </div>
-                <div><strong>Challenge</strong> {{ vm.entity.challenge }}</div>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="40">Skills</span>
+                    <span class="entity-specs__value">
+                        <span ng-repeat="skill in vm.entity.skills">
+                            {{ language }}<span ng-if="!$last">,<br/></span>
+                        </span>
+                    </span>
+                </div>
+                <div layout="row">
+                    <span class="entity-specs__label" flex="40">Challenge</span>
+                    <span class="entity-specs__value">{{ vm.entity.challenge }}</span>
+                </div>
             </div>
         </div>
 
-        <h2 ng-if="vm.entity.skills && vm.entity.skills.length">Skills</h2>
-
-        <ul>
-            <li ng-repeat="skill in vm.entity.skills">{{ skill }}</li>
-        </ul>
-
-        <h2 ng-if="vm.entity.features && vm.entity.features.length">Features</h2>
+        <md-divider></md-divider>
 
         <p ng-repeat="feature in vm.entity.features">
-            <strong>{{ feature[0] }}:</strong>
+            <strong><em>{{ feature[0] }}</em></strong>.
             {{ feature[1] }}
         </p>
 
-        <h2 ng-if="vm.entity.actions && vm.entity.actions.length">Actions</h2>
+        <h3
+            class="entity-header"
+            ng-if="vm.entity.actions && vm.entity.actions.length"
+        >
+            Actions
+        </h3>
 
         <p ng-repeat="action in vm.entity.actions">
-            <strong>{{ action[0] }}:</strong>
+            <strong><em>{{ action[0] }}.</em></strong>
             {{ action[1] }}
         </p>
 
@@ -108,7 +151,7 @@
         </ul>
 
         <div ng-if="!vm.noHeader" class="entity-detail__notes">
-            <h2>Entity Notes</h2>
+            <h3 class="entity-header">Entity Notes</h3>
             <notes link-id="vm.entity.id" link-type="entity"></notes>
         </div>
     </md-content>

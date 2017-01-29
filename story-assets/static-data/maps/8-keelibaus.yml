@@ -4,6 +4,7 @@ type: city
 subType: city
 descriptor: small
 size: 0
+imageUrl: /images/keeliebaus.png
 x: 10
 y: 11.9
 playerVisible: true

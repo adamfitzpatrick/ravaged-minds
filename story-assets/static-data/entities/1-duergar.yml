@@ -6,6 +6,7 @@ imageUrl: /images/duergar.jpg
 subType: dwarf
 aligment: lawful evil
 armorClass: 16
+proficiency: "+2"
 speed: 25
 hitPoints: 26 (4d8 + 8)
 strength: 14

@@ -28,7 +28,7 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
 }
 
 .content-page {
-    font-family: $serif;
+    font-family: $sans;
     display: block;
     height: calc(100vh - #{$header-height});
     width: 80vw;
@@ -75,5 +75,7 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
         padding: 1rem 2rem;
         height: calc(100% - 111px);
         box-sizing: border-box;
+
+        &--condensed { font-size: 0.9rem; }
     }
 }
