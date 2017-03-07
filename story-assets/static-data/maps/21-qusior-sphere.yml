@@ -1,0 +1,10 @@
+id: 21
+name: Qusior Sphere
+type: site
+subType: government
+descriptor: secure area
+x: 75.3
+y: 18.75
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

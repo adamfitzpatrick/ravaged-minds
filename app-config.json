@@ -2,6 +2,9 @@
   "dev": {
     "ORIGIN": "http://localhost:7010"
   },
+  "qa": {
+    "ORIGIN": "http://localhost:3012"
+  },
   "prod": {
     "ORIGIN": "http://ravaged-minds.stepinto.io"
   }

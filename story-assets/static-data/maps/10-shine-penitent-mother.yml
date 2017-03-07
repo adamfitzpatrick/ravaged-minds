@@ -1,0 +1,10 @@
+id: 10
+name: Shrine of the Penitent Mother
+type: site
+subType: holy
+descriptor: shrine
+x: 33.9
+y: 4.9
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

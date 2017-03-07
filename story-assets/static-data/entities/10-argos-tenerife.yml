@@ -1,0 +1,105 @@
+id: 10
+name: Argos Tenerife
+size: medium
+type: humanoid
+subType: wood elf
+class: Ranger
+level: 4
+imageUrl: /images/argos-tenerife.jpg
+aligment: lawful good
+armorClass: 14
+speed: 30
+hitPoints: 26
+proficiency: +2
+savingThrows:
+- Int +3
+- Dex +5
+strength: 11
+dexterity: 18
+constitution: 14
+intelligence: 10
+wisdom: 13
+charisma: 10
+senses:
+  - passive perception 11
+languages:
+  - Elvish
+  - Dwarven
+  - Common
+  - Undercommon
+challenge: 1
+skills:
+  - Acrobatics +5
+  - Survival +3
+  - Perception +3
+  - Stealth +5
+  - Nature +2
+features:
+-
+  - Fey Ancestry
+  - You have advantage on saving throws against being charmed, and magic can’t put you to sleep.
+-
+  - Darkvision
+  - 60ft
+-
+  - Favored Enemy (constructs)
+  - You have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence Checks to recall information about them.
+-
+  - Natural Explorer (The Underdark)
+  - >
+    "When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.
+    While traveling for an hour or more in your favored terrain, you gain the following benefits: Difficult terrain doesn't slow your group's travel;
+    your group can't become lost except by magical means;
+    even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger;
+    if you are traveling alone, you can move stealthily at a normal pace;
+    when you forage, you find twice as much food as you normally would;
+    while tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area."
+-
+  - Fighting Style (Archer)
+  - You gain a +2 bonus to Attack rolls you make with Ranged Weapons.
+-
+  - Primeval Awareness
+  - "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): Aberrations, Celestials, dragons, elementals, fey, Fiends, and Undead. This feature doesn't reveal the creatures' location or number."
+-
+  - Horde Breaker (Hunter Archetype)
+  - Once on each of your turns when you make a weapon Attack, you can make another Attack with the same weapon against a different creature that is within 5 feet of the original target and within range of your weapon.
+proficiencies:
+- Simple weapons
+- Martial weapons
+- Light armor
+- Medium armor
+- Shields
+actions:
+  -
+    - Melee Attack
+    - "Long sword (+6 to hit; 1d8 + 3 slashing)"
+  -
+    - Melee or Ranged Attack
+    - "Dagger (range 20 ft./60 ft.; +6 to hit; 1d4 + 3 piercing)"
+  -
+    - Ranged Attack
+    - "Longbow (range 150 ft./600 ft.; +7 to hit; 1d8 + 3 piercing)"
+descriptions:
+-
+  - Spellcasting
+  - >
+    <p>Wisdom is your spellcasting ability for your ranger Spells, since your magic draws on your Attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when Setting the saving throw DC for a ranger spell you cast and when Making an Attack roll with one.</p>
+    <p style="margin-left: 2rem;">
+      <strong>Spell Save DC:</strong> 12<br/>
+      <strong>Spell Attack Modifier:</strong> +4
+    </p>
+    <table style="margin-left: 2rem; margin-bottom: 1rem;">
+      <th>Spells per Day</th>
+      <tbody>
+        <tr>
+          <td>Spell Level</td><td>1</td>
+        </tr><tr>
+          <td>Spell Slots</td><td>3</td>
+        </tr>
+      </tbody>
+    </table>
+spells:
+- Hunter's Mark
+- Goodberry
+- Hail of Thorns
+- Longstrider

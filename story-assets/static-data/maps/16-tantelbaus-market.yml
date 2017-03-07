@@ -1,0 +1,10 @@
+id: 16
+name: Market
+type: site
+subType: public
+descriptor: market
+x: 47.5
+y: 29.6
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

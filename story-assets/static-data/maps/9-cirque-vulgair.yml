@@ -1,0 +1,10 @@
+id: 9
+name: Cirque Vulgair
+type: site
+subType: public
+descriptor: fairground
+x: 27
+y: 22
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

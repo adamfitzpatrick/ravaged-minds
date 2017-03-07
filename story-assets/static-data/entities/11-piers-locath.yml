@@ -1,0 +1,77 @@
+id: 11
+name: Piers Locath
+size: medium
+type: humanoid
+subType: human
+class: Fighter 2/Rogue 3 (Assassin)
+level: 5
+imageUrl: /images/peer-locath.jpg
+aligment: chaotic good
+armorClass: 14
+speed: 30
+hitPoints: 36
+hitDice: 5d10
+proficiency: +2
+savingThrows:
+- Str +4
+- Dex +6
+strength: 11
+dexterity: 18
+constitution: 14
+intelligence: 10
+wisdom: 12
+charisma: 18
+senses:
+  - passive perception 11
+languages:
+  - Elvish
+  - Dwarven
+  - Common
+  - Undercommon
+challenge: 1
+skills:
+  - Acrobatics +6
+  - Perception +3
+  - Stealth +6
+  - Deception +6
+  - Insight +3
+features:
+-
+  - Fighting Style (Two-Weapon Fighting)
+  - When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second Attack.
+-
+  - Second Wind
+  - You have a limited well of stamina that you can draw on to protect yourself from harm. On Your Turn, you can use a Bonus Action to regain hit points equal to 1d10 + your fighter level.  Once you use this feature, you must finish a short or Long Rest before you can use it again.
+-
+  - Action Surge
+  - Starting at 2nd level, you can push yourself beyond your normal limits for a moment. On Your Turn, you can take one additional action on top of your regular action and a possible Bonus Action.  Once you use this feature, you must finish a short or Long Rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn.
+-
+  - Assassinate
+  - During its first turn, the assassin has advantage on Attack rolls against any creature that hasn't taken a turn. Any hit the assassin scores against a surprised creature is a critical hit.
+-
+  - Expertise
+  - At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with Thieves' Tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.  At 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.
+-
+  - Evasion
+  - If the assassin is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, the assassin instead takes no damage if it succeeds on the saving throw, and only half damage if it fails.
+-
+  - Sneak Attack (1/turn)
+  - The assassin deals an extra 13 (4d6) damage when it hits a target with a weapon Attack and has advantage on the Attack roll, or when the target is within 5 ft. of an ally of the assassin that isn't Incapacitated and the assassin doesn't have disadvantage on the Attack roll.
+proficiencies:
+- Simple weapons
+- Martial weapons
+- Light armor
+- Medium armor
+- Heavy armor
+- Shields
+- Thieves' tools
+actions:
+  -
+    - Melee Attack
+    - "Short Sword (+6 to hit; 1d6 + 3 piercing), two attacks"
+  -
+    - Melee or Ranged Attack
+    - "Dagger (range 20 ft./60 ft.; +6 to hit; 1d4 + 3 piercing)"
+  -
+    - Ranged Attack
+    - "Longbow (range 150 ft./600 ft.; +6 to hit; 1d8 + 3 piercing)"

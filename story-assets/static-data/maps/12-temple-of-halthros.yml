@@ -1,0 +1,10 @@
+id: 12
+name: Temple of Halthros
+type: site
+subType: holy
+descriptor: church
+x: 41.1
+y: 4.7
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

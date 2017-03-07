@@ -1,0 +1,10 @@
+id: 20
+name: Airship Port
+type: site
+subType: government
+descriptor: secure area
+x: 75.4
+y: 22.5
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

@@ -1,0 +1,10 @@
+id: 18
+name: North Gate
+type: site
+subType: public
+descriptor: tavern
+x: 39.8
+y: 24.5
+imageUrl: /images/placeholder.png
+playerVisible: false
+playerClickable: false

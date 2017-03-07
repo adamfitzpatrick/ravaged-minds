@@ -1,0 +1,10 @@
+id: 17
+name: Erl Costas' Home
+type: site
+subType: private
+descriptor: home
+x: 42.5
+y: 49.3
+imageUrl: /images/erl-costas-house.jpg
+playerVisible: false
+playerClickable: false
