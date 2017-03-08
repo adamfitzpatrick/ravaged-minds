@@ -1,0 +1,9 @@
+id: 23
+name: Ruins of Kundemion
+type: area
+subType: ruins
+x: 61
+y: 47.5
+imageUrl: /images/placeholder.png
+playerVisible: true
+playerClickable: false

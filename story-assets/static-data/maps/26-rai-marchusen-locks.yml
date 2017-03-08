@@ -1,0 +1,9 @@
+id: 26
+name: Rai Marchusen Locks
+type: area
+subType: fortress
+x: 16.3
+y: 21.8
+imageUrl: /images/rai-marchusen-locks.png
+playerVisible: true
+playerClickable: false

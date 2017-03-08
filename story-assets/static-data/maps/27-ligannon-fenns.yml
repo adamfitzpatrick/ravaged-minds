@@ -1,0 +1,9 @@
+id: 27
+name: Ligannon Fens
+type: area
+subType: detail
+x: 85
+y: 67
+imageUrl: /images/placeholder.png
+playerVisible: true
+playerClickable: false

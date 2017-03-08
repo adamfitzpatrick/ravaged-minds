@@ -1,0 +1,16 @@
+id: 22
+name: Tantelbaus Area
+type: area
+subType: detail
+x: 16
+y: 12.1
+imageUrl: /images/tantelbaus_area.jpg
+playerVisible: true
+playerClickable: true
+maps:
+- 3
+- 23
+- 25
+- 26
+- 27
+- 28

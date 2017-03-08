@@ -1,0 +1,10 @@
+id: 25
+name: Povr-On-Corspar
+type: city
+subType: city
+descriptor: small
+x: 4
+y: 21.8
+imageUrl: /images/placeholder.png
+playerVisible: true
+playerClickable: false
