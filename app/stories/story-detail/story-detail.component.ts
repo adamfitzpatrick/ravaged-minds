@@ -1,4 +1,4 @@
-import {Story} from "../story.model";
+import { Story, StoryStatus } from "../story.model";
 import {StoryService} from "../story.service";
 import {Entity} from "../../entities/entity.model";
 import {EntityService} from "../../entities/entity.service";
@@ -11,14 +11,14 @@ import {Map} from "../../maps/map.model";
 interface StoryDetailRouteParams {
     storyId: string;
 }
+
 export class StoryDetailController {
     id: number;
     story: Story;
     entities: Entity[];
     maps: Map[];
     storyContent: string;
-    nextStatus = throttle(this.nextStatusOpen, 1000);
-    oldStatus: { complete: boolean, success: boolean };
+    savingStatus: boolean;
 
     constructor(
         private $sce: angular.ISCEService,
@@ -32,24 +32,26 @@ export class StoryDetailController {
        this.stateService.setState(STORY_NAV_PATH, { storyId: this.id });
     }
 
-    $onInit(): void {
-        this.storyService.get(this.id).then(this.loadStory);
+    $onInit(): void { this.storyService.get(this.id).then(this.loadStory); }
+
+    hasStatus(status: StoryStatus): boolean { return this.story && this.story.status === status; }
+
+    saveStatus(): void {
+        this.savingStatus = true;
+        this.nextStatus();
+        this.storyService.post(this.story).then(this.onStatusChange);
     }
 
-    private nextStatusOpen(): void {
-        this.oldStatus = {
-            complete: this.story.complete,
-            success: this.story.success
-        };
-        if (this.story.complete && this.story.success) {
-            this.story.success = false;
-        } else if (this.story.complete) {
-            this.story.complete = false;
-        } else {
+    private nextStatus(): void {
+        if (this.hasStatus("incomplete")) {
             this.story.complete = true;
             this.story.success = true;
+        } else if (this.hasStatus("success")) {
+            this.story.complete = true;
+            this.story.success = false;
+        } else {
+            this.story.complete = false;
         }
-        this.storyService.post(this.story).then(this.onStatusChange);
     }
 
     private loadStory = (story: Story) => {
@@ -66,11 +68,10 @@ export class StoryDetailController {
     private loadMaps = (maps: Map[]): void => { this.maps = maps; };
 
     private onStatusChange = (response: { status: number}): void => {
-        if (response.status < 400) {
-            delete this.oldStatus;
-        } else {
-            this.story.complete = this.oldStatus.complete;
-            this.story.success = this.oldStatus.success;
+        this.savingStatus = false;
+        if (response.status >= 400) {
+            this.nextStatus();
+            this.nextStatus();
         }
     }
 }

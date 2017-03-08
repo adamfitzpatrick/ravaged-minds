@@ -1,0 +1,11 @@
+id: 30
+name: South Tower
+type: encounter
+x: 79.5
+y: 61
+imageUrl: /images/rai-marchusen-locks-south-tower.png
+entities:
+- 3
+- 13
+playerVisible: false
+playerClickable: false

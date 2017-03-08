@@ -66,8 +66,12 @@ export class Entity {
 
     get fixedHitPoints(): number { return parseInt(this.hitPoints, 10); }
 
-    getDescriptor(): string {
+    get descriptor(): string {
         return `${this.capitalize(this.size)} ${this.type} (${this.subType}), ${this.aligment}`;
+    }
+
+    get shortDescriptor(): string {
+        return `${ this.capitalize(this.size) } ${ this.type } (${ this.subType })`;
     }
 
     getWriteableEntity(): Entity {

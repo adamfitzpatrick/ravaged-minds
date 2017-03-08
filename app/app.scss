@@ -14,6 +14,10 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
 @import "./combat/combat";
 @import "./notes/notes";
 
+body {
+    font-family: $body;
+}
+
 .top { height: $header-height; }
 
 .main {
@@ -27,25 +31,17 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
     &:focus { outline: none; }
 }
 
+.ellipsize {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .content-page {
-    font-family: $sans;
     display: block;
     height: calc(100vh - #{$header-height});
     width: 80vw;
     margin: 0 10vw;
-
-    &--reader { font-family: $serif; }
-
-    &--wrapped {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-    }
-
-    &--short {
-        height: auto;
-        max-height: calc(100vh - #{$header-height});
-    }
 
     &__toolbar {
         padding: 1rem 2rem;
@@ -53,15 +49,9 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
     }
 
     &__title {
-        margin: 0;
-        font-family: $title-font;
+        font-family: $title;
 
-        &:last-child { margin: 14px 0; }
-    }
-
-    &__descriptor {
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
+        &--leader { margin: 0; }
     }
 
     &__controls {
@@ -73,9 +63,6 @@ $application-backdrop: url("../story-assets/images/backdrop.png");
 
     &__content {
         padding: 1rem 2rem;
-        height: calc(100% - 111px);
-        box-sizing: border-box;
-
-        &--condensed { font-size: 0.9rem; }
+        height: calc(100vh - #{$header-height} - #{$content-page-toolbar-height});
     }
 }

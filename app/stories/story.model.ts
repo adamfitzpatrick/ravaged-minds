@@ -3,11 +3,14 @@ export const STATUS_CLASSES = {
     failure: "md-warn",
     incomplete: "md-primary"
 };
+
 export const STATUS_ICONS = {
     success: "done",
     failure: "close",
     incomplete: "security"
 };
+
+export type StoryStatus = "incomplete" | "success" | "failure";
 
 export class Story {
 
@@ -49,7 +52,7 @@ export class Story {
         return `(${this.from.toString()}).(${this.to.toString()}`;
     }
 
-    get status(): string {
+    get status(): StoryStatus {
         if (!this.complete) { return "incomplete"; }
         if (this.success) { return "success"; }
         return "failure";

@@ -72,6 +72,14 @@ export const MAP_ICONS: MapIcon[] = [{
         name: "ruins",
         label: true,
         icon: "group_work"
+    }, {
+        name: "detail",
+        label: true,
+        icon: "zoom_in"
+    }, {
+        name: "fortress",
+        label: true,
+        icon: "flag"
     }]
 }, {
     name: "city",

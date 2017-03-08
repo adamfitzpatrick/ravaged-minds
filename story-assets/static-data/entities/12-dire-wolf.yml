@@ -1,0 +1,36 @@
+id: 12
+name: Dire Wolf
+size: large
+type: beast
+subType: wolf
+imageUrl: /images/dire-wolf.jpg
+aligment: unaligned
+armorClass: 14
+speed: 50
+hitPoints: 37 (5d10 + 10)
+strength: 17
+dexterity: 15
+constitution: 15
+intelligence: 3
+wisdom: 12
+charisma: 7
+proficiency: "+2"
+senses:
+- passive perception 13
+languages:
+- none
+challenge: 1 (200 XP)
+skills:
+- Perception +3
+- Stealth + 4
+features:
+  -
+    - Keen Hearing & Smell
+    - The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell.
+  -
+    - Pack Tactics
+    - The wolf has advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally isn't incapacitated.
+actions:
+  -
+    - Bite
+    - "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) piercing damage. If the target is a creature, it must succeed on a DC 13 Strength saving throw or be knocked prone."

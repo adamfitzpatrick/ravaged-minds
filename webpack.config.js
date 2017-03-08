@@ -25,10 +25,8 @@ const cdnResources = {
         "https://use.fontawesome.com/8a2e588d30.js"
     ],
     fonts: [
-        "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic",
+        "https://fonts.googleapis.com/css?family=Playfair+Display",
         "https://fonts.googleapis.com/css?family=Cinzel",
-        "https://fonts.googleapis.com/css?family=IM+Fell+French+Canon:400i",
-        "https://fonts.googleapis.com/css?family=Source+Serif+Pro",
         "https://fonts.googleapis.com/icon?family=Material+Icons"
     ],
     css: [

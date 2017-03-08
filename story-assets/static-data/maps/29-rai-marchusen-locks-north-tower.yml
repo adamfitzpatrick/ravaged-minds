@@ -1,0 +1,23 @@
+id: 29
+name: North Tower
+type: encounter
+x: 42.2
+y: 60.6
+imageUrl: /images/rai-marchusen-locks-north-tower.png
+entities:
+- 3
+- 13
+description: >
+  Two imperial guardsmen are stationed in the north tower.  For the most part, they are incredibly bored.  One
+  guardsman is inside the tower, dozing.  The other is on the roof of the short tower, preparing to use a special
+  lighting device (built into the ballista) to illuminate the ship as it traverses the locks; his attention is mostly
+  on the approaching ship.  Two orcs are making a slow guard circuit along the granite lock walls, through the tower and
+  crossing the jetty to the shore before retracing their step.  The circuit takes about 10 minutes for them to walk.
+  The players can surprise the guard atop the tower (DC 10) provided the orcs are not facing the tower (DC 15 if they
+  are).  Should combat occur atop the tower, the orcs will definitely come running.  There is a 50% chance per round
+  that the guards on the south tower will notice.  Should the south tower be alerted to the presence of the PCs, three
+  additional guards will arrive at the south tower within three rounds, assuming the locks are closed.  Three more
+  guards will arrive during each of the next two rounds, finally followed by two more orc in the next round.  Should
+  the locks be open, no guards will arrive, although they will begin firing the ballistas on the south tower roof.
+playerVisible: false
+playerClickable: false

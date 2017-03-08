@@ -1,0 +1,10 @@
+id: 28
+name: Meresene
+type: city
+subType: city
+descriptor: small
+x: 33
+y: 32
+imageUrl: /images/placeholder.jpg
+playerVisible: true
+playerClickable: false

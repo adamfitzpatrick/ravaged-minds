@@ -1,4 +1,4 @@
-$sans: "Roboto";
-$serif: 'Source Serif Pro';
-$script: "IM Fell French Canon";
-$title-font: "Cinzel";
+$body: 'Playfair Display', serif;
+$title: 'Cinzel';
+
+h1, h2, h3, h4, h5, h6 { font-family: $title; }

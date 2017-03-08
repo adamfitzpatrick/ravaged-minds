@@ -15,7 +15,7 @@ export class EncounterController {
     ) {}
 
     $onInit(): void {
-        this.entityService.get(this.encounter.entities).then(this.loadEntities);
+        if (this.encounter.entities) { this.entityService.get(this.encounter.entities).then(this.loadEntities); }
     }
 
     startCombat(): void {

@@ -1,0 +1,35 @@
+id: 15
+name: Seaman
+size: medium
+type: humanoid
+subType: human
+imageUrl: /images/seaman.jpg
+aligment: any
+armorClass: 11
+speed: 30
+hitPoints: 32 (5d8 + 10)
+strength: 15
+dexterity: 11
+constitution: 14
+intelligence: 10
+wisdom: 10
+charisma: 11
+proficiency: "+2"
+senses:
+- passive perception 10
+languages:
+- common
+challenge: 1/2 (100 XP)
+skills:
+- Intimidation +2
+features:
+  -
+    - Pack Tactics
+    - The seaman has advantage on an attack roll against a creature if at least one of the seamans's allies is within 5 feet of the creature and the ally isn't incapacitated.
+actions:
+  -
+    - Multiple Attacks
+    - "The seaman makes two melee attacks."
+  -
+    - Cutlass
+    - "Melee Weapon Attack: +4 to hit, reach 5 ft., one creature. Hit: 5 (1d6 + 2) slashing damage."

@@ -1,0 +1,34 @@
+id: 14
+name: Worg
+size: large
+type: monstrosity
+subType: wolf
+imageUrl: /images/worg.jpg
+aligment: neutral evil
+armorClass: 14
+speed: 50
+hitPoints: 26 (4d10 + 4)
+strength: 16
+dexterity: 13
+constitution: 13
+intelligence: 7
+wisdom: 11
+charisma: 8
+proficiency: "+2"
+senses:
+- darkvision 60ft
+- passive perception 14
+languages:
+- goblin
+- worg
+challenge: 1 (200 XP)
+skills:
+- Perception +4
+features:
+  -
+    - Keen Hearing & Smell
+    - The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell.
+actions:
+  -
+    - Bite
+    - "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) piercing damage. If the target is a creature, it must succeed on a DC 13 Strength saving throw or be knocked prone."

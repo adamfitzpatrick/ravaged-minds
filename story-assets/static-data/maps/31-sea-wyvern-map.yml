@@ -1,0 +1,19 @@
+id: 31
+name: Sea Wyvern River Trader
+type: encounter
+x: 45
+y: 80
+imageUrl: /images/sea-wyvern-map.jpg
+entities:
+- 15
+description: >
+  There are eight seasoned seaman aboard the Sea Wyvern.  At the moment the ship is approaching the area, 4 crewman are
+  on deck and preparing to direct the ship during its descent through the locks.  These seaman are attending to their
+  duties, and may be fairly easy to surprise (DC 5 stealth if the PCs attempt to board near the stern, DC 15 if they
+  attempt it closer to the bow).  The other 4 seaman are sleeping soundly below decks.  Should a pitched battle occur on
+  deck, there is a 50% chance each round that they will come on deck to investigate.  On a successful knowledge check
+  (DC 10 intelligence, perception, etc), the PCs will understand that they must board from the stern, incapacitate the
+  helmsman.  At the DMs discretion it maybe appropriate to point out the option of barricading the hatch to the 'tween
+  decks.  It's an easy thing to prevent the other sailors from assisting those on deck.
+playerVisible: false
+playerClickable: false

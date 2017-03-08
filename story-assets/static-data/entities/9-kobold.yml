@@ -5,7 +5,7 @@ type: humanoid
 subType: kobold
 imageUrl: /images/kobold.jpg
 aligment: Lawful Evil
-armorClass: 162
+armorClass: 12
 speed: 30
 hitPoints: 15 (2d6 + 2)
 strength: 7

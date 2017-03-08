@@ -6,45 +6,113 @@
         layout="row"
     >
         <div
+            class="content-page__title"
             flex
             layout="column"
+            layout-align="center space-between"
         >
             Chapter {{ vm.story.id }}
-            <h1 class="story-detail__header--title">{{ vm.story.title }}</h1>
+            <h1 class="content-page__title--leader">{{ vm.story.title }}</h1>
         </div>
-        <div
+        <div>
+            <span ng-if="!vm.savingStatus">
+                <md-button
+                    ng-if="vm.hasStatus('success')"
+                    class="md-fab"
+                    ng-click="vm.saveStatus()"
+                >
+                    <md-icon class="material-icons">check</md-icon>
+                </md-button>
+                <md-button
+                    ng-if="vm.hasStatus('failure')"
+                    class="md-fab md-warn"
+                    ng-click="vm.saveStatus()"
+                >
+                    <md-icon class="material-icons">close</md-icon>
+                </md-button>
+                <md-button
+                    ng-if="vm.hasStatus('incomplete')"
+                    class="md-fab md-primary"
+                    ng-click="vm.saveStatus()"
+                >
+                    <md-icon class="material-icons">security</md-icon>
+                </md-button>
+            </span>
+            <md-progress-circular
+                ng-if="vm.savingStatus"
+                class="md-accent md-hue-3 story-detail__progress"
+                md-mode="indeterminate"
+                md-diameter="56"
+            ></md-progress-circular>
+        </div>
+    </md-toolbar>
+
+    <div
+        layout="row"
+    >
+        <md-content
+            class="content-page__content"
+            flex="66"
+        >
+            <div ng-bind-html="vm.storyContent"></div>
+        </md-content>
+        <md-content
+            class="content-page__content story-detail__data"
+            flex="33"
+        >
+            <h3 class="story-detail__map-header">Maps</h3>
+            <md-list>
+                <md-list-item
+                    ng-click="vm.showMap(map)"
+                    class="md-2-line"
+                    ng-repeat="map in vm.maps"
+                >
+                    <div class="md-list-item-text">
+                        <h3>{{ map.name }}</h3>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+            <h3>Entities</h3>
+            <md-list>
+                <md-list-item
+                    class="md-2-line"
+                    ng-repeat="entity in vm.entities"
+                    ng-click="vm.showEntity(entity)"
+                >
+                    <img class="md-avatar" ng-src="{{ entity.imageUrl }}"/>
+                    <div class="md-list-item-text">
+                        <h3>{{ entity.name }}</h3>
+                        <p>{{ entity.shortDescriptor }}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+
+        <!--<div
             flex
             layout="column"
-            layout-align="end end"
+            layout-align="center end"
         >
             <div
-                layout="row"
-                layout-align="end center"
-                class="story-detail__header--tagline"
-            >
-                {{ vm.story.tagline }}
-            </div>
-            <div
-                class="story-detail__header--path"
+                class="story-detail__header&#45;&#45;path"
                 layout="row"
                 layout-align="end center"
             >
-                Story path&nbsp;<span
-                    ng-if="vm.story.hasFrom"
-                    layout="row"
-                    layout-align="start center"
-                >from
-                <md-chips readonly="true" ng-model="vm.story.from">{{ from }}</md-chips>
-                </span><span
-                    ng-if="vm.story.hasTo"
-                    layout="row"
-                    layout-align="start center">to
-                <md-chips readonly="true" ng-model="vm.story.to"></md-chips>
+                Story path
+                <span ng-if="vm.story.hasFrom">
+                    &nbsp;from
+                    <em><span ng-repeat="from in vm.story.from">{{ from }}</span></em>
+                </span>
+                <span ng-if="vm.story.hasTo">
+                    &nbsp;to
+                    <em><span ng-repeat="to in vm.story.to">{{ from }}</span></em>
                 </span>
             </div>
         </div>
         <span ng-if="!vm.oldStatus">
-            <div ng-if="vm.story.complete" flex="5" layout="column" layout-align="center start">
+            <div ng-if="vm.story.complete" flex="5" layout="column" layout-align="center end">
                 <md-button
                     ng-if="vm.story.success"
                     class="md-fab"
@@ -60,7 +128,7 @@
                     <md-icon class="material-icons">close</md-icon>
                 </md-button>
             </div>
-            <div ng-if="!vm.story.complete" flex="5" layout="column" layout-align="center start">
+            <div ng-if="!vm.story.complete" flex="5" layout="column" layout-align="center end">
                 <md-button
                     class="md-fab md-primary"
                     ng-click="vm.nextStatus()"
@@ -109,12 +177,12 @@
             </div>
         </div>
 
-        <div player-visible="false" class="content-page--reader story-detail__content" ng-bind-html="vm.storyContent"></div>
+        <div player-visible="false" class="content-page&#45;&#45;reader story-detail__content" ng-bind-html="vm.storyContent"></div>
 
         <div class="story-detail__notes">
             <h3>Story Notes</h3>
             <notes link-id="vm.story.id" link-type="story"></notes>
         </div>
     </md-content>
-
+-->
 </div>
