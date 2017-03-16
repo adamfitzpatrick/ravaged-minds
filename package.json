@@ -10,7 +10,11 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/redux": "^3.6.0",
+    "ng-redux": "^3.4.0-beta.1",
+    "redux-logger": "^2.8.2"
+  },
   "dependencies": {
     "@types/angular": "^1.5.20",
     "@types/angular-material": "^1.1.42",

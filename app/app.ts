@@ -6,6 +6,7 @@ window["ngMaterial"] = "ngMaterial";
 
 import "./app.scss";
 import "angular-route";
+import ngRedux from "ng-redux";
 import {initConfig} from "./app.config";
 import {initRoutes} from "./app.route";
 import {initComponents} from "./app.component";
@@ -16,7 +17,8 @@ import {initRun} from "./app.run";
 const app = angular.module("App", [
     "ngRoute",
     "ngAnimate",
-    "ngMaterial"
+    "ngMaterial",
+    ngRedux
 ]);
 
 // Initialize Angular constants based on app-config.json

@@ -1,6 +1,5 @@
 import {EntityService} from "../../entities/entity.service";
 import {Entity} from "../../entities/entity.model";
-import {StateService} from "../../services/state/state.service";
 import {Combatant} from "../../combat/combatant.model";
 import {Map} from "../map.model";
 
@@ -10,7 +9,6 @@ export class EncounterController {
 
     constructor(
         private entityService: EntityService,
-        private stateService: StateService,
         private $location: angular.ILocationService
     ) {}
 
@@ -26,7 +24,6 @@ export class EncounterController {
             turnCombatantIndex: 0,
             round: 1
         };
-        this.stateService.setState("/combat", state);
         this.$location.path("/combat");
     }
 

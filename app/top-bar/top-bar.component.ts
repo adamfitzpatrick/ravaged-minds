@@ -1,44 +1,44 @@
 import * as angular from "angular";
-import {StateService} from "../services/state/state.service";
-import {navMenu} from "./nav-menu";
-import {PlayerAccessService} from "../player-access/player-access.service";
 import {ACCESS_TOKEN_KEY} from "../login/login.service";
+import { ROUTES, Route, AppState, Spoilers } from "../app-state/states";
+import { AppStateService } from "../app-state/app-state.service";
+import { SpoilerService } from "../spoiler/spoiler.service";
+import { NavService } from "../nav/nav.service";
 
 export class TopBarController {
-    navItems: any[];
+    routes: Route[];
+    dmView: boolean = false;
     logoutRequests: number = 0;
+
+    private activeRoute: Route;
 
     constructor(
         private $location: angular.ILocationService,
-        private stateService: StateService,
-        private playerAccessService: PlayerAccessService
+        private appStateService: AppStateService,
+        private navService: NavService,
+        private spoilerService: SpoilerService
     ) {}
 
     $onInit(): void {
-        this.navItems = navMenu;
+        this.routes = ROUTES;
+        this.dmView = this.appStateService.getState().spoilers.dmMode;
+        this.appStateService.connect(this.stateListener, this);
     }
 
-    setNav(navItem: any): void {
-        if (navItem.path === this.currentNavItem) {
-            this.stateService.clearState(navItem.path);
-        }
-        this.$location.path(navItem.path);
-    }
+    toggleSpoilers(): void { this.spoilerService.showSpoilers = this.dmView; }
 
     requestLogout(): void {
         this.logoutRequests++;
         if (this.logoutRequests > 3) {
             this.logoutRequests = 0;
             localStorage.removeItem(ACCESS_TOKEN_KEY);
-            this.playerAccessService.dmSwitch = false;
             this.$location.path("/login");
         }
     }
 
-    get currentNavItem(): string {
-        const match = this.$location.path().match(/^\/[^\/]*/);
-        return match && match[0];
-    }
+    gotoRoute(route: Route): void { this.navService.gotoRoute(route, true); }
 
-    set currentNavItem(item: string) { /* not used */ }
+    get selectedRoute (): Route { return this.activeRoute; }
+
+    private stateListener = (state: AppState) => { return { activeRoute: state.activeRoute }; };
 }

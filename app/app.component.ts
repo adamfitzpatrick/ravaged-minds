@@ -16,8 +16,8 @@ import {map} from "./maps/map/map";
 import {mapLegend} from "./maps/map-legend/map-legend";
 import {synopsis} from "./synopsis/synopsis/synopsis";
 import {encounter} from "./maps/encounter/encounter";
-import {playerVisible} from "./player-access/player-visible/player-visible";
-import {playerClickable} from "./player-access/player-clickable/player-clickable";
+import {playerVisible} from "./spoiler/player-visible/player-visible";
+import {playerClickable} from "./spoiler/player-clickable/player-clickable";
 import {login} from "./login/login";
 
 export function initComponents(app: angular.IModule) {

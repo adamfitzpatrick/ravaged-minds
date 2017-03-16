@@ -1,6 +1,10 @@
 import * as angular from "angular";
 import {ToasterService} from "./toaster/toaster.service";
 import {ACCESS_TOKEN_KEY} from "./login/login.service";
+import * as reducers from "./app-state/reducers";
+import * as createLogger from "redux-logger";
+import { combineReducers, ReducersMapObject } from "redux";
+import { INITIAL_STATE } from "./app-state/states";
 
 const AUTHORIZATION = "authorization";
 
@@ -50,6 +54,13 @@ export function initConfig(app: angular.IModule) {
             .primaryPalette("blue-grey")
             .accentPalette("red")
             .warnPalette("blue");
+
         $mdAriaProvider.disableWarnings();
+    });
+
+    app.config(($ngReduxProvider) => {
+        const logger = createLogger({ level: "info", collapsed: true });
+        const combinedReducers = combineReducers(reducers as any as ReducersMapObject);
+        $ngReduxProvider.createStoreWith(combinedReducers, [ logger ], null, INITIAL_STATE);
     });
 }

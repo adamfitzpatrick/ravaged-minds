@@ -3,7 +3,7 @@
     ng-mouseleave="vm.onExit()"
     class="md-fab story-node"
     ng-class="{ 'md-mini': !vm.story.major }"
-    ng-href="#/story/{{ vm.story.id }}"
+    ng-click="vm.gotoStory(vm.story)"
 >
     <md-icon class="material-icons">security</md-icon>
     <md-button

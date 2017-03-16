@@ -1,7 +1,9 @@
 import {MapService} from "../map.service";
 import {Map} from "../map.model";
-import {StateService} from "../../services/state/state.service";
 import * as throttle from "lodash.throttle";
+import { NavService } from "../../nav/nav.service";
+import { AppStateService } from "../../app-state/app-state.service";
+import { AppState } from "../../app-state/states";
 
 interface MapData { map: Map; mapMaps: Map[]; }
 
@@ -17,7 +19,6 @@ export class MapController {
     sites: Map[] = [];
     cities: Map[] = [];
     encounters: Map[] = [];
-    mapPath: number[];
     showLegend: boolean = true;
     zoom: number = 0;
     controlsOpen: boolean;
@@ -27,29 +28,19 @@ export class MapController {
     constructor(
         private $route: MapRoute,
         private mapService: MapService,
-        private stateService: StateService,
-        private $location: angular.ILocationService
+        private appStateService: AppStateService,
+        private navService: NavService
     ) {}
 
     $onInit(): void {
         this.map = this.$route.current.locals.mapData.map;
         this.loadMaps(this.$route.current.locals.mapData.mapMaps);
-        const state = this.stateService.getState(MAPS);
-        this.mapPath = (state && state.mapPath) || [1];
+        this.appStateService.connect(this.stateListener, this);
     }
 
-    gotoMap(mapId: number) {
-        this.mapPath.push(mapId);
-        this.stateService.setState(MAPS, { mapPath: this.mapPath });
-        this.$location.path(`${MAPS}/${mapId}`);
-    }
+    gotoMap(mapId: number) { this.navService.gotoSubRoute("maps", mapId); }
 
-    moveUpPath(): void {
-        if (this.mapPath.length > 1) {
-            this.mapPath.pop();
-            this.$location.path(`${MAPS}/${this.mapPath[this.mapPath.length - 1]}`);
-        }
-    }
+    moveUpPath(): void { this.navService.gotoPrevSubRoute("maps"); }
 
     getZoomLevel(): string {
         if (this.map.type === "encounter") { return "map__wrapper--encounter"; }
@@ -97,5 +88,10 @@ export class MapController {
             if (map.type === "city") { return this.cities.push(map); }
             if (map.type === "encounter") { return this.encounters.push(map); }
         });
+    }
+
+    private stateListener(state: AppState): Object {
+        const mapPath = state.subRoutes.maps;
+        return { mapPath };
     }
 }

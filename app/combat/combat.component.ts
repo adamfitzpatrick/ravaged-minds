@@ -1,7 +1,6 @@
 import {Combatant} from "./combatant.model";
 import {Entity} from "../entities/entity.model";
 import {EntityService} from "../entities/entity.service";
-import {StateService} from "../services/state/state.service";
 
 export class CombatController {
     entities: Entity[];
@@ -12,11 +11,9 @@ export class CombatController {
     round: number = 1;
 
     constructor(
-        private entityService: EntityService,
-        private stateService: StateService
+        private entityService: EntityService
     ) {
         entityService.get().then(this.loadEntities);
-        this.restoreState();
     }
 
     get isControlOpen(): boolean { return this.controlOpen; }
@@ -84,7 +81,6 @@ export class CombatController {
         this.round = 1;
         delete this.selectedCombatantIndex;
         delete this.turnCombatantIndex;
-        this.stateService.clearState("/combat", true);
     }
 
     private loadEntities = (entities: Entity[]): void => {
@@ -102,16 +98,5 @@ export class CombatController {
             turnCombatantIndex: this.turnCombatantIndex,
             round: this.round
         };
-        this.stateService.setState("/combat", state, true);
-    }
-
-    private restoreState(): void {
-        const state = this.stateService.getState("/combat");
-        if (state) {
-            this.combatants = state.combatants;
-            this.selectedCombatantIndex = state.selectedCombatantIndex;
-            this.turnCombatantIndex = state.turnCombatantIndex;
-            this.round = state.round;
-        }
     }
 }

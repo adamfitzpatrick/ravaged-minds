@@ -1,3 +1,5 @@
+@import "../global-styles/colors";
+
 .top-bar {
     width: 100vw;
     min-height: inherit;
@@ -6,13 +8,13 @@
         margin-left: 2rem;
         font-family: $title;
         cursor: pointer;
-
-        &:focus { outline: none; }
     }
-
-    md-switch.top-bar__dm-switch { margin-right: 5rem; }
 
     &__nav {
         margin-right: 2rem;
+
+        .md-nav-bar { border-bottom-color: transparentize($white, 0.88); }
+
+        .md-button._md-nav-button.md-unselected { color: $text-light; }
     }
 }

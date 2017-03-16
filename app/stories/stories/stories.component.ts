@@ -1,8 +1,7 @@
 import * as angular from "angular";
 import {Story} from "../story.model";
 import {StoryService} from "../story.service";
-import {StateService} from "../../services/state/state.service";
-import {PlayerAccessService} from "../../player-access/player-access.service";
+import { AppStateService } from "../../app-state/app-state.service";
 
 interface ConnectionDiagram {
     from: number[];
@@ -12,8 +11,6 @@ interface ConnectionDiagram {
 interface StoryControllerState {
     storyId: number;
 }
-
-export const STORY_NAV_PATH = "/story";
 
 export class StoriesController {
     stories: Story[];
@@ -29,9 +26,7 @@ export class StoriesController {
         private $timeout: angular.ITimeoutService,
         private $location: angular.ILocationService,
         private storyService: StoryService,
-        private stateService: StateService,
-        private $scope: angular.IScope,
-        private playerAccessService: PlayerAccessService
+        private appStateService: AppStateService
     ) {}
 
     $onInit(): void {
@@ -73,14 +68,14 @@ export class StoriesController {
         this.canvasContext = (this.$element.find("canvas")[0] as HTMLCanvasElement).getContext("2d");
         this.$window.onresize = this.connectNodes;
         this.connectNodes();
-        this.$scope.$watch(() => this.playerAccessService.dm, () => {
+        this.appStateService.connect(() => {
             this.$timeout(this.connectNodes);
-        });
+            return {};
+        }, this);
     }
 
     private setState = (): void => {
-        const state = this.stateService.getState(STORY_NAV_PATH) as StoryControllerState;
-        if (state && state.storyId) { this.$location.path(`/story/${state.storyId}`); }
+        /* not yet */
     }
 
     private sortById(a: Story, b: Story): number {

@@ -2,11 +2,9 @@ import { Story, StoryStatus } from "../story.model";
 import {StoryService} from "../story.service";
 import {Entity} from "../../entities/entity.model";
 import {EntityService} from "../../entities/entity.service";
-import {StateService} from "../../services/state/state.service";
-import {STORY_NAV_PATH} from "../stories/stories.component";
-import * as throttle from "lodash.throttle";
 import {MapService} from "../../maps/map.service";
 import {Map} from "../../maps/map.model";
+import { AppStateService } from "../../app-state/app-state.service";
 
 interface StoryDetailRouteParams {
     storyId: string;
@@ -24,12 +22,11 @@ export class StoryDetailController {
         private $sce: angular.ISCEService,
         private storyService: StoryService,
         private entityService: EntityService,
-        private stateService: StateService,
         private mapService: MapService,
+        private appStateService: AppStateService,
         $routeParams: StoryDetailRouteParams
     ) {
        this.id = parseInt($routeParams.storyId, 10);
-       this.stateService.setState(STORY_NAV_PATH, { storyId: this.id });
     }
 
     $onInit(): void { this.storyService.get(this.id).then(this.loadStory); }
@@ -56,6 +53,7 @@ export class StoryDetailController {
 
     private loadStory = (story: Story) => {
         this.story = story;
+        this.appStateService.dispatchAddSubRoute("story", story.id);
         this.storyContent = this.$sce.trustAsHtml(this.story.content);
         this.entityService.get(this.story.entities).then(this.loadEntities);
         if (this.story.maps && this.story.maps.length > 0) {
