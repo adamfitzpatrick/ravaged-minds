@@ -1,0 +1,124 @@
+<form
+    class="combatant"
+    ng-class="{ 'combatant--disengaged': !vm.combatant.engaged }"
+    md-theme="combat"
+    md-whiteframe="6"
+    layout="column"
+    layout-align="space-between"
+>
+    <div
+        layout="row"
+        layout-align="start center"
+    >
+        <div
+            class="combatant__order"
+            ng-class="{ 'combatant__order--pc': vm.combatant.player }"
+        >
+            <input
+                type="number"
+                class="combatant__input combatant__input--order"
+                ng-model="vm.combatant.initiative"
+            />
+            <md-tooltip class="combatant__tooltip" md-direction="right">Initiative (click to change)</md-tooltip>
+        </div>
+        <input
+            type="text"
+            flex
+            placeholder="Combatant Name"
+            class="combatant__input combatant__input--name"
+            ng-model="vm.combatant.name"
+        />
+        <div>
+            <md-checkbox ng-model="vm.combatant.engaged"></md-checkbox>
+            <md-tooltip class="combatant__tooltip" md-direction="left">Engaged</md-tooltip>
+        </div>
+    </div>
+
+    <div
+        layout="row"
+        layout-align="space-between start"
+        class="combatant__stats"
+    >
+        <div layout="column" layout-align="center center">
+            <div>Armor Class</div>
+            <input
+                type="number"
+                class="combatant__input combatant__input--stat"
+                ng-model="vm.combatant.armorClass"
+            >
+        </div>
+        <div layout="column" layout-align="center center">
+            <div>PC</div>
+            <md-switch
+                class="combatant__player-switch"
+                ng-model="vm.combatant.player"
+            ></md-switch>
+        </div>
+        <div layout="column" layout-align="center center">
+            <div>Dexterity</div>
+            <div layout="row">
+                <input
+                    type="number"
+                    class="combatant__input combatant__input--stat"
+                    ng-model="vm.combatant.dexterity"
+                >
+                ({{ vm.combatant.dexMod }})
+            </div>
+        </div>
+    </div>
+
+    <div
+        layout="row"
+        layout-align="space-between center"
+        class="combatant__hit-points-row"
+    >
+        <div
+            class="combatant__instance-designator"
+        >
+            <span ng-if="vm.combatant.hitPoints.length">{{ vm.getInstanceDesignator() }}</span>
+        </div>
+        <div
+            class="combatant__hit-points"
+            layout="column"
+            layout-align="center center"
+        >
+            <input
+                type="number"
+                class="combatant__input combatant__input--hit-points"
+                ng-class="{ 'combatant__input--high-hit-points': vm.highHitPoints() }"
+                ng-model="vm.instanceHitPoints"
+            />
+        </div>
+        <div
+            class="combatant__add-instance"
+            ng-click="vm.addInstance()"
+        >
+            +
+            <md-tooltip class="combatant__tooltip">Add another instance of this combatant</md-tooltip>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="center center">
+        <div
+            class="combatant__instance-marker"
+            ng-click="vm.setInstance($index)"
+            ng-class="{ 'combatant__instance-marker--active': vm.isSelectedInstance($index) }"
+            ng-repeat="instance in vm.combatant.hitPoints track by $index"
+        >
+            <md-tooltip class="combatant__tooltip">
+                Combatant Instance {{ vm.getInstanceDesignator($index) }}
+            </md-tooltip>
+        </div>
+    </div>
+
+    <div class="combatant__hit-points-label">Hit Points</div>
+
+    <md-chips
+        ng-model="vm.combatant.conditions"
+        placeholder="Add condition..."
+        md-add-on-blur="true"
+        md-transform-chip="vm.conditionTransformer($chip)"
+    >
+        <md-chip-template>{{ $chip.name }} ({{ $chip.duration }})</md-chip-template>
+    </md-chips>
+</form>

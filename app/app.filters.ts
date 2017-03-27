@@ -7,4 +7,12 @@ export function initFilters(app: angular.IModule) {
     }
 
     app.filter("capitalize", () => capitalize);
+
+    function floor(str: string) {
+        const value = parseInt(str, 10);
+        if (!str || value !== value) { return str; }
+        return value;
+    }
+
+    app.filter("floor", () => floor);
 }

@@ -1,19 +1,34 @@
 import {Combatant} from "./combatant.model";
 import {Entity} from "../entities/entity.model";
 import {EntityService} from "../entities/entity.service";
+import { AppStateService } from "../app-state/app-state.service";
+
+const ACTIVE_COMBATANT_TOP = "calc(50vh - 200px - 108px)";
+const ACTIVE_COMBATANT_LEFT = "calc(50vw - 200px)";
+const TOP_CARD_LEFT = "80px";
 
 export class CombatController {
     entities: Entity[];
     controlOpen: boolean = false;
     combatants: Combatant[] = [];
-    selectedCombatantIndex: number;
-    turnCombatantIndex: number = 0;
-    round: number = 1;
+    round: number = 0;
+    turn: number;
+    topCard: Combatant;
 
     constructor(
-        private entityService: EntityService
-    ) {
-        entityService.get().then(this.loadEntities);
+        private entityService: EntityService,
+        private appStateService: AppStateService
+    ) {}
+
+    $onInit(): void {
+        this.entityService.get().then(this.loadEntities);
+        /*this.combatants = this.appStateService.getCombat().combatants;
+        this.turn = this.appStateService.getCombat().turn;
+        this.round = this.appStateService.getCombat().round;*/
+    }
+
+    $onDestroy(): void {
+        this.saveState();
     }
 
     get isControlOpen(): boolean { return this.controlOpen; }
@@ -24,64 +39,88 @@ export class CombatController {
 
     hideControls(): void { this.controlOpen = false; }
 
+    showIntro(): boolean {
+        if (!this.combatants || !this.combatants.length) {
+            this.showControls();
+            return true;
+        }
+        return false;
+    }
+
     addCombatant(): void {
-        this.combatants.push(new Combatant({ engaged: true } as Combatant));
-        this.saveState();
+        const combatant = new Combatant({ engaged: true } as Combatant);
+        this.combatants.push(combatant);
+        this.setTopCard(combatant);
     }
 
-    togglePlayer(combatant: Combatant): void { combatant.player = !combatant.player; }
-
-    setSelectedCombatant(combatantIndex: number): void {
-        this.selectedCombatantIndex = combatantIndex;
-        this.saveState();
-    }
-
-    isCombatantSelected(combatantIndex: number): boolean {
-        return this.selectedCombatantIndex === combatantIndex;
-    }
-
-    isCombatantTurn(combatantIndex: number): boolean {
-        return this.turnCombatantIndex === combatantIndex;
-    }
-
-    deleteSelectedCombatant(): void {
-        this.combatants.splice(this.selectedCombatantIndex, 1);
+    deleteSelectedCombatant(combatant: Combatant): void {
+        const index = this.combatants.indexOf(combatant);
+        this.combatants.splice(index, 1);
         this.saveState();
     }
 
     showEntity(combatant: Combatant): boolean {
-        const index = this.combatants.indexOf(combatant);
-        return this.isCombatantSelected(index) && !combatant.player && !!combatant.entity;
+        return false;
     }
 
+    isActiveCombatant(combatant): boolean { return combatant.matchesCombatOrder(this.turn); }
+
     nextTurn(): void {
-        if (this.turnCombatantIndex < this.combatants.length - 1) {
-            this.turnCombatantIndex++;
-        } else {
-            this.turnCombatantIndex = 0;
-            this.round++;
-        }
-        if (!this.combatants[this.turnCombatantIndex].engaged) { this.nextTurn(); }
+        this.turn = this.getNextOrderedCombatant().combatOrder;
         this.saveState();
     }
 
     lastTurn(): void {
-        if (this.turnCombatantIndex > 0) {
-            this.turnCombatantIndex--;
-        } else if (this.round > 1) {
-            this.turnCombatantIndex = this.combatants.length - 1;
-            this.round--;
-        }
-        if (!this.combatants[this.turnCombatantIndex].engaged) { this.lastTurn(); }
+        this.turn = this.getPrevOrderedCombatant().combatOrder;
         this.saveState();
     }
 
     resetCombat(): void {
         this.combatants = [];
         this.round = 1;
-        delete this.selectedCombatantIndex;
-        delete this.turnCombatantIndex;
+        this.saveState();
     }
+
+    getCardPositioningStyle(combatant: Combatant): Object {
+        const orderedCombatants = this.getOrderedCombatants();
+        const combatOrder = orderedCombatants.indexOf(combatant);
+        let zIndex = combatOrder;
+        let left = "0px";
+        let top = `${80 * combatOrder}px`;
+        /*if (this.isActiveCombatant(combatant)) {
+            top = ACTIVE_COMBATANT_TOP;
+            left = ACTIVE_COMBATANT_LEFT;
+            zIndex = 999;
+            return;
+        } else*/
+        if (this.isTopCard(combatant)) {
+            left = TOP_CARD_LEFT;
+            zIndex = 100;
+        }
+        return {
+            "top": top,
+            "left": left,
+            "z-index": zIndex
+        };
+    }
+
+    getCombatantOrderIndex(combatant: Combatant): number {
+        return this.getOrderedCombatants().indexOf(combatant);
+    }
+
+    getCombatantPlacementClass(combatant: Combatant): string {
+        const combatOrder = this.getCombatantOrderIndex(combatant);
+        let classStr = "";
+        if (this.isTopCard(combatant)) { classStr += "combat__combatant--top"; }
+        // if (this.isActiveCombatant(combatant)) { classStr += " combat__combatant--active"; }
+        return `combat__combatant--${combatOrder} ${classStr}`;
+    }
+
+    setTopCard = (combatant: Combatant): void => {
+        this.topCard = combatant;
+    }
+
+    isTopCard(combatant: Combatant): boolean { return combatant === this.topCard; }
 
     private loadEntities = (entities: Entity[]): void => {
         this.entities = entities.sort((a: Entity, b: Entity) => {
@@ -92,11 +131,25 @@ export class CombatController {
     }
 
     private saveState(): void {
-        const state = {
-            combatants: this.combatants,
-            selectedCombatantIndex: this.selectedCombatantIndex,
-            turnCombatantIndex: this.turnCombatantIndex,
-            round: this.round
-        };
+        this.appStateService.dispatchSetCombat(this.combatants, this.turn, this.round);
+    }
+
+    private getOrderedCombatants(): Combatant[] {
+        return Object.assign([], this.combatants).sort((a: Combatant, b: Combatant) => b.combatOrder - a.combatOrder);
+    }
+
+    private getNextOrderedCombatant(): Combatant {
+        const remainingCombatants =  this.getOrderedCombatants().filter(combatant => combatant.combatOrder < this.turn);
+        if (remainingCombatants.length) {  return remainingCombatants[0]; }
+        this.round++;
+        return this.getOrderedCombatants()[0];
+    }
+
+    private getPrevOrderedCombatant(): Combatant {
+        const previousCombatants = this.getOrderedCombatants().reverse()
+            .filter(combatant => combatant.combatOrder > this.turn);
+        if (previousCombatants.length) { return previousCombatants[0]; }
+        this.round--;
+        return this.getOrderedCombatants().reverse()[0];
     }
 }

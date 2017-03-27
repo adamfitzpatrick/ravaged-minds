@@ -1,6 +1,8 @@
-import { Route, Spoilers, INITIAL_STATE, SubRoutes } from "./states";
+import * as angular from "angular";
+import { Route, Spoilers, INITIAL_STATE, SubRoutes, Combat } from "./states";
 import { Reducer } from "redux";
-import { RouteAction, SpoilersAction, SubRoutesAction } from "./actions";
+import { RouteAction, SpoilersAction, SubRoutesAction, CombatAction } from "./actions";
+import { Combatant } from "../combat/combatant.model";
 
 /**
  * Reducer for the activeRoute application state
@@ -68,4 +70,17 @@ export const spoilers: Reducer<Spoilers> = (spoilersValue: Spoilers, action: Spo
         return action.spoilers;
     }
     return spoilersValue || INITIAL_STATE.spoilers;
+};
+
+/**
+ * Reducer for combat application state
+ * @param combatValue
+ * @param action
+ * @returns {any}
+ */
+export const combat: Reducer<Combat> = (combatValue: Combat, action: CombatAction): Combat => {
+    if (action.type === "SET_COMBAT") {
+        return angular.copy(action.combat);
+    }
+    return combatValue || INITIAL_STATE.combat;
 };

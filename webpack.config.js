@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const StyleLintPlugin = require("stylelint-webpack-plugin");
 const webpack = require("webpack");
 const yargs = require("yargs");
 const startServer = require("./backend/server.js");
@@ -35,7 +36,9 @@ const cdnResources = {
 };
 
 const externals = [
-    "angular"
+    "angular",
+    { "angular-route": "ngRoute" },
+    { "angular-animate": "ngRoute" },
 ];
 
 if (process.argv[1].indexOf("webpack-dev-server") !== -1) {
@@ -50,8 +53,7 @@ module.exports = {
     },
     module: {
         preLoaders: [
-            { test: /\.ts$/, loader: "tslint" },
-            { test: /\.scss$/, loader: "sasslint" }
+            { test: /\.ts$/, loader: "tslint" }
         ],
         loaders: [
             { test: /\.ts$/, loader: "ts" },
@@ -89,6 +91,10 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             CONFIG: JSON.stringify(appConfig[env])
-        })
+        }),
+        new StyleLintPlugin({
+            configFile: ".stylelintrc",
+            context: "./app/"
+        }),
     ]
 };

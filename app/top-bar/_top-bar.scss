@@ -1,8 +1,10 @@
 @import "../global-styles/colors";
+@import "../global-styles/layout";
 
 .top-bar {
     width: 100vw;
     min-height: inherit;
+    z-index: $header-z-index;
 
     &__title {
         margin-left: 2rem;

@@ -54,6 +54,12 @@ export function initConfig(app: angular.IModule) {
             .primaryPalette("blue-grey")
             .accentPalette("red")
             .warnPalette("blue");
+        $mdThemingProvider.theme("combat")
+            .primaryPalette("blue-grey")
+            .accentPalette("blue-grey", {
+                default: "800"
+            })
+            .warnPalette("red");
 
         $mdAriaProvider.disableWarnings();
     });
@@ -61,6 +67,7 @@ export function initConfig(app: angular.IModule) {
     app.config(($ngReduxProvider) => {
         const logger = createLogger({ level: "info", collapsed: true });
         const combinedReducers = combineReducers(reducers as any as ReducersMapObject);
-        $ngReduxProvider.createStoreWith(combinedReducers, [ logger ], null, INITIAL_STATE);
+
+        $ngReduxProvider.createStoreWith(combinedReducers, [ logger, "combatStoreService" ], null, INITIAL_STATE);
     });
 }

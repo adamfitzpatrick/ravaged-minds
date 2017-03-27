@@ -1,38 +1,41 @@
-import {Entity} from "../entities/entity.model";
-
-export interface CombatantCondition { name: string; duration: number; }
+export interface CombatantCondition { name: string; duration: number | string; }
 
 export class Combatant {
     name: string;
-    clazz?: string;
-    entity?: Entity;
     initiative: number;
-    hitPoints?: number;
+    hitPoints?: number | number[];
     dexterity: number;
-    conditions: CombatantCondition[];
+    armorClass: number;
+    conditions: CombatantCondition[] | CombatantCondition[][];
     player: boolean;
     engaged: boolean;
+    created: number;
 
     constructor(combatant: Combatant) {
         this.name = combatant.name;
-        this.clazz = combatant.clazz;
-        this.entity = combatant.entity;
         this.initiative = combatant.initiative;
         this.hitPoints = combatant.hitPoints;
         this.dexterity = combatant.dexterity;
-        this.conditions = combatant.conditions;
+        this.armorClass = combatant.armorClass;
+        this.conditions = combatant.conditions || [];
         this.player = combatant.player;
         this.engaged = combatant.engaged;
+        this.created = new Date().getTime() - new Date("1/1/2017").getTime();
     }
 
-    get dexMod(): string {
+    get dexMod(): string { return (this.dexModValue() > 0 ? "+" : "") + this.dexModValue(); }
+
+    get combatOrder(): number {
+        return this.initiative + 0.1 * this.dexModValue() + 0.001 * (this.dexterity || 0) + 1e-16 * this.created;
+    }
+
+    matchesCombatOrder(turn: number): boolean {
+        return Math.abs(turn - this.combatOrder) < 1e-16;
+    }
+
+    private dexModValue(): number {
         let dexterity = this.dexterity;
         if (this.dexterity % 2 === 0) { dexterity++; }
-        const mod = dexterity - (Math.floor(dexterity / 2) + 6);
-        return (mod > 0 ? "+" : "") + mod;
-    }
-
-    get combatOrder(): string {
-        return `${this.initiative}.${this.dexMod}.${this.dexterity}`;
+        return dexterity - (Math.floor(dexterity / 2) + 6) || 0;
     }
 }

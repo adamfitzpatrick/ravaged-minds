@@ -1,8 +1,11 @@
 import * as angular from "angular";
 import { INgRedux } from "ng-redux";
-import { Route, AppState, Spoilers, SubRoutes, ROUTE_SEARCH_REGEX } from "./states";
-import { setRoute, setSpoilers, setSubRoutes, addSubRoute, resetSubRoutes, backSubRoute } from "./actions";
+import { Route, AppState, Spoilers, SubRoutes, ROUTE_SEARCH_REGEX, Combat } from "./states";
+import {
+    setRoute, setSpoilers, setSubRoutes, addSubRoute, resetSubRoutes, backSubRoute, setCombat
+} from "./actions";
 import { USERNAME } from "../login/login.service";
+import { Combatant } from "../combat/combatant.model";
 
 export interface StateListener { (state: AppState): Object; }
 
@@ -26,6 +29,8 @@ export class AppStateService {
 
     getSubRoutes(route: Route): string[] { return this.$ngRedux.getState().subRoutes[route] || []; }
 
+    getCombat(): Combat { return this.$ngRedux.getState().combat; }
+
     dispatchSetRoute(route: Route): void {
         this.$ngRedux.dispatch(setRoute(route));
     }
@@ -48,6 +53,10 @@ export class AppStateService {
 
     dispatchSetSpoilerView(spoilers: Spoilers): void {
         this.$ngRedux.dispatch(setSpoilers(spoilers));
+    }
+
+    dispatchSetCombat(combatants: Combatant[], turn: number, round: number): void {
+        this.$ngRedux.dispatch(setCombat(combatants, turn, round));
     }
 
     private initializeActiveRoute() {

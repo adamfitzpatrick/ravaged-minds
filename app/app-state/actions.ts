@@ -1,5 +1,6 @@
-import { Route, Spoilers, SubRoutes } from "./states";
+import { Route, Spoilers, SubRoutes, Combat } from "./states";
 import { Action } from "redux";
+import { Combatant } from "../combat/combatant.model";
 
 export type ActionType =
     "SET_ROUTE" |
@@ -7,7 +8,8 @@ export type ActionType =
     "ADD_SUB_ROUTE" |
     "RESET_SUB_ROUTE" |
     "BACK_SUB_ROUTE" |
-    "SET_SPOILER_VIEW";
+    "SET_SPOILER_VIEW" |
+    "SET_COMBAT";
 
 export interface StateAction extends Action { type: ActionType; }
 
@@ -19,6 +21,12 @@ export interface SubRoutesAction extends StateAction {
 }
 
 export interface SpoilersAction extends StateAction { spoilers: Spoilers; }
+
+export interface CombatAction extends StateAction {
+    combat: Combat;
+    combatant: Combatant;
+    existingIndex: number;
+}
 
 export function setRoute(route: Route): RouteAction { return { type: "SET_ROUTE", route }; }
 
@@ -40,4 +48,8 @@ export function backSubRoute(route: Route): SubRoutesAction {
 
 export function setSpoilers(spoilers: Spoilers): SpoilersAction {
     return { type: "SET_SPOILER_VIEW", spoilers };
+}
+
+export function setCombat(combatants: Combatant[], turn: number, round: number): CombatAction {
+    return { type: "SET_COMBAT", combat: { combatants, turn, round }, combatant: undefined, existingIndex: -1 };
 }

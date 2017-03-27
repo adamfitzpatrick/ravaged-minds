@@ -1,3 +1,6 @@
+@import "../global-styles/layout";
+@import "./combatant/combatant";
+
 .combat {
     background: $translucent-black;
     width: 100vw;
@@ -11,82 +14,83 @@
     }
 
     &__content {
-        background: transparent;
-        height: 100%;
-        width: 100%;
-        padding: 0 10vw;
-        box-sizing: border-box;
-    }
-
-    &__input {
-        border: none;
-        border-bottom: 1px solid $light-grey;
-        background: inherit;
-
-        &--short { width: 60px; }
-
-        &:focus {
-            outline: none;
-            border-bottom: 2px solid $blue-grey-400;
-        }
-    }
-
-    &__checkbox { margin: 0; }
-
-    &__select {
-        margin: 0;
-
-        .md-select-value { padding: 0; }
-    }
-
-    &__card {
         position: relative;
-        border-radius: 2px;
-        background: $white;
-        width: 100%;
-        margin: 30px 0;
+        background: transparent;
+        width: 100vw;
+        height: calc(100vh - #{$header-height});
+    }
 
-        &-selector {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            color: $grey;
-            cursor: pointer;
+    &__tour {
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        position: absolute;
+        background: transparentize($black, 0.5);
+        color: $text-light;
+        padding: 0 1rem;
+        line-height: 2rem;
+        border-radius: 0.2rem;
 
-            &:focus { outline: none; }
+        &--hover {
+            top: 7.5vh;
+            right: 8vw;
         }
 
-        &-header { padding: 1rem; }
-
-        &-avatar {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
+        &--add {
+            top: 14.5vh;
+            right: 8vw;
         }
 
-        &-title { margin: 0 0 5px 0; }
-
-        &-conditions {
-            padding: 1rem;
-        }
-
-        &-turn-indicator {
-            position: absolute;
-            top: -27px;
-            left: -28px;
-        }
-
-        &-mask {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.9;
-            width: 100%;
-            height: 100%;
-            background: $white;
-            pointer-events: none;
+        &--start {
+            top: 21vh;
+            right: 8vw;
         }
     }
 
-    &__stat-icon { color: $grey; }
+    &__combatant-cards {
+        position: relative;
+        margin: 2rem 0 0 2rem;
+    }
+
+    &__combatant {
+        $spacing: 80px;
+
+        position: absolute;
+        transition: top 0.3s ease-in-out, left 0.3s ease-in-out;
+
+        @for $i from 0 to 20 {
+            &--#{$i} {
+                left: 0;
+                top: calc(#{$spacing} * #{$i});
+                z-index: $i;
+            }
+        }
+
+        &--top {
+            z-index: 100;
+            left: $spacing;
+        }
+
+        &.ng-leave {
+            transition: opacity 0.3s linear;
+            opacity: 1;
+        }
+
+        &.ng-leave.ng-leave-active {
+            opacity: 0;
+        }
+    }
+
+    &__delete-combatant {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        color: $text-dark;
+        background: $white;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+            color: $deep-red;
+        }
+    }
 }

@@ -19,6 +19,9 @@ import {encounter} from "./maps/encounter/encounter";
 import {playerVisible} from "./spoiler/player-visible/player-visible";
 import {playerClickable} from "./spoiler/player-clickable/player-clickable";
 import {login} from "./login/login";
+import { combatant } from "./combat/combatant/combatant";
+import { clickAware } from "./click-aware/click-aware";
+import { combatantActivator } from "./combat/combatant-activator/combatant-activator";
 
 export function initComponents(app: angular.IModule) {
     app.component("topBar", topBar);
@@ -37,8 +40,11 @@ export function initComponents(app: angular.IModule) {
     app.component("entityDetail", entityDetail);
     app.component("entityDetailRoute", entityDetailRoute);
     app.component("combat", combat);
+    app.component("combatant", combatant);
+    app.directive("combatantActivator", combatantActivator);
     app.component("note", note);
     app.component("notes", notes);
     app.directive("playerVisible", () => playerVisible);
     app.directive("playerClickable", () => playerClickable);
+    app.component("clickAware", clickAware);
 }

@@ -66,3 +66,8 @@ body {
         height: calc(100vh - #{$header-height} - #{$content-page-toolbar-height});
     }
 }
+
+md-tooltip {
+    font-family: sans-serif;
+    z-index: 1001;
+}

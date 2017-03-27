@@ -38,7 +38,6 @@ export class EncounterController {
         const uniqueName = entity.name;
         const combatantObj = {
             name: uniqueName,
-            entity,
             hitPoints: entity.fixedHitPoints,
             dexterity: entity.dexterity,
             engaged: true

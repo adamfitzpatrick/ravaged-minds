@@ -9,6 +9,7 @@ import {toasterService} from "./toaster/toaster.service";
 import { AppStateService } from "./app-state/app-state.service";
 import { SpoilerService } from "./spoiler/spoiler.service";
 import { NavService } from "./nav/nav.service";
+import { combatStoreService } from "./combat/combat-store.service";
 
 export function initServices(app: angular.IModule) {
     app.service("appStateService", AppStateService);
@@ -21,4 +22,5 @@ export function initServices(app: angular.IModule) {
     app.service("entityService", EntityService);
     app.service("noteService", NoteService);
     app.service("synopsisService", SynopsisService);
+    app.service("combatStoreService", combatStoreService);
 }
