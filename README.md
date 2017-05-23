@@ -13,9 +13,9 @@ of the various story paths available
 - The ability to show or hide information to a logged-in player based on the story path the player has
 followed and the information that has been uncovered or must remain hidden.
 
-The module is written in typescript and utilizes AngularJS.  It is served up by an integrated NodeJs
-express application and incorporates very simple authentication.  Notes and adventure progress are
-maintained in a Mongo database.
+The module is written in TypeScript and utilizes AngularJS.  It is served up by an integrated Node.js
+Express application and incorporates very simple authentication.  Notes and adventure progress are
+maintained in MongoDB.
 <!--- /bit --->
 
 For story, images and yaml files in `story-assets` directory can be modified, including the favicon.
