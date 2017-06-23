@@ -1,0 +1,33 @@
+id: 5
+major: false
+activities:
+- Sneak
+- Investigate
+- Insight
+from:
+- 4
+to: []
+title: 'Journey to Tantelbaus'
+tagline: 'Neither alone nor out of the woods.'
+synopsis: 'Joined by members of the underground resistance, the hero seeks new opportunities for victory in a distant city.'
+entities:
+- 2
+- 10
+- 11
+maps:
+- 1
+content: >
+  <p class="story-detail__content--p">
+    The player may see smoke in the distance; this will lead her to Gram Trevils.
+  </p>
+  <p>
+    If the player is not cautious, she may be waylaid by imperial guards
+  </p>
+  <p>
+    If the player attempts to navigate around to descend from the steppes, she will have a random encounter with kobolds.
+  </p>
+  <p>
+    The player can return to civilization to the east by circling the ridge to the north (3 days) or to the south (5 days).
+  </p>
+
+
